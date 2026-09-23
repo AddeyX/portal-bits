@@ -1,0 +1,58 @@
+{
+  "name": "portal-bits",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles/base.css",
+    "./tokens.css": "./dist/styles/tokens.css"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "package": "svelte-kit sync && svelte-package",
+    "test": "vitest run",
+    "test:consumer": "node scripts/check-consumer.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "peerDependencies": {
+    "bits-ui": "^2.19.3",
+    "svelte": "^5.33.0"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "latest",
+    "@internationalized/date": "^3.8.1",
+    "@sveltejs/adapter-auto": "latest",
+    "@sveltejs/kit": "2.70.3",
+    "@sveltejs/package": "latest",
+    "@sveltejs/vite-plugin-svelte": "latest",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/svelte": "latest",
+    "@types/node": "^26.6.2",
+    "bits-ui": "2.19.3",
+    "jsdom": "latest",
+    "prettier": "^3.9.8",
+    "prettier-plugin-svelte": "^4.1.1",
+    "svelte": "5.57.1",
+    "svelte-check": "latest",
+    "typescript": "latest",
+    "vite": "8.3.0",
+    "vitest": "latest"
+  },
+  "dependencies": {
+    "@lucide/svelte": "^1.47.0"
+  }
+}

@@ -1,0 +1,51 @@
+:root,
+.p-theme {
+  --portal-font: 'Roobert', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --portal-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+  --portal-ink: #181818;
+  --portal-muted: #686e78; /* Contrast adaptation of source #9da3ac. */
+  --portal-subtle: #9da3ac;
+  --portal-green: #19e783;
+  --portal-green-deep: #05472a;
+  --portal-canvas: #f8faff;
+  --portal-surface: #fff;
+  --portal-soft: #f2f4f9;
+  --portal-border: #edeff3;
+  --portal-focus: #008746;
+  --portal-error: #bf2424;
+  --portal-radius: 16px;
+  --portal-pill: 100px;
+  --portal-space-1: 4px;
+  --portal-space-2: 8px;
+  --portal-space-3: 12px;
+  --portal-space-4: 16px;
+  --portal-space-6: 24px;
+  --portal-space-8: 32px;
+  --portal-shadow-control: 0 6px 10px -4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%);
+  --portal-shadow-icon: 0 1px 4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%);
+  --portal-shadow-surface:
+    0 3px 5px rgb(200 206 215 / 25%), 0 2px 3px rgb(135 175 199 / 12%),
+    0 4px 10px rgb(222 228 235 / 25%);
+  --portal-duration: 300ms;
+  --portal-ease: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --portal-z-chrome: 20;
+  --portal-z-popover: 40;
+  --portal-z-modal: 60;
+  --portal-z-tooltip: 80;
+}
+/* Optional dark adaptation: not claimed as measured Portal dark theme. */
+[data-portal-theme='dark'] {
+  --portal-ink: #f4f5f7;
+  --portal-muted: #b4bbc5;
+  --portal-subtle: #8e97a5;
+  --portal-canvas: #111416;
+  --portal-surface: #1c2023;
+  --portal-soft: #272d31;
+  --portal-border: #343b41;
+  --portal-focus: #19e783;
+  --portal-error: #ff8a8a;
+  --portal-shadow-control: 0 4px 8px rgb(0 0 0 / 25%), 0 0 0 1px rgb(255 255 255 / 9%);
+  --portal-shadow-icon: 0 1px 4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 9%);
+  --portal-shadow-surface: 0 3px 10px rgb(0 0 0 / 22%);
+  color-scheme: dark;
+}
