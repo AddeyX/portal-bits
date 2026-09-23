@@ -4,3 +4,4 @@ dist/
 build/
 .DS_Store
 .impeccable/review/
+.agents/skills/github-bootstrap/
