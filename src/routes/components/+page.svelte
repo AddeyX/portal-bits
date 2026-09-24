@@ -1,5 +1,10 @@
 <script lang="ts">
   import {
+    Alert,
+    Checkbox,
+    Select,
+    RowList,
+    Row,
     Button,
     IconButton,
     Badge,
@@ -25,6 +30,8 @@
     Check,
     Bell,
   } from '@lucide/svelte';
+  let consent = $state(false);
+  let category = $state('');
   let pressed = $state(false);
   let checked = $state(true);
   let selected = $state('all');
@@ -51,7 +58,7 @@
       <h1>Good parts. Ready to use.</h1>
       <p>Typed Svelte 5 components, with Bits UI doing the heavy lifting.</p>
     </div>
-    <Badge>18 exports</Badge>
+    <Badge>24 exports</Badge>
   </header>
   <nav class="doc-links" aria-label="Component sections">
     {#each ['Buttons', 'Inputs', 'Selection', 'Identity', 'Overlays', 'Cards', 'Chrome'] as section (section)}<a
@@ -62,7 +69,7 @@
     <div class="demo-section" id="buttons">
       <div>
         <h2>Buttons</h2>
-        <p>Soft elevation. Pill geometry. Three distinct intentions.</p>
+        <p>Soft elevation. Pill geometry. Pill controls and inline actions.</p>
       </div>
       <div class="demo-preview">
         <div class="demo-row">
@@ -71,6 +78,8 @@
           ><Button>Secondary</Button><Button variant="green" href="/foundations"
             >Get started <ArrowUpRight size={15} /></Button
           ><Button disabled>Disabled</Button>
+          <Button variant="quiet" size={48} onclick={() => (saved = !saved)}>Try again</Button>
+          <Button variant="quiet" disabled>Unavailable</Button>
         </div>
         <div class="demo-row">
           <Button size={32}>Small</Button><Button size={40}>Default</Button><Button size={48}
@@ -84,8 +93,8 @@
 </Button>
 <IconButton label="Add item"><Plus /></IconButton>`}</pre>
         <div class="api-line">
-          <code>variant</code> primary | secondary | green · <code>size</code> 32 | 40 | 48 · Native button/link
-          props forwarded.
+          <code>variant</code> primary | secondary | green | quiet · <code>size</code> 32 | 40 | 48 ·
+          Native button/link props forwarded. Quiet stays a native inline button; size does not apply.
         </div>
       </div>
     </div>
@@ -114,6 +123,28 @@
             Enter an email address, such as alex@example.com.
           </p>
           <Input label="Disabled input example" value="Not editable" disabled />
+          <Select
+            label="Record category"
+            bind:value={category}
+            placeholder="Choose a category"
+            options={[
+              { value: 'notes', label: 'Notes' },
+              { value: 'drafts', label: 'Drafts' },
+              { value: 'archived', label: 'Archived', disabled: true },
+            ]}
+          />
+          <Checkbox bind:checked={consent}>
+            {#snippet label()}I agree to the <a href="/auth-preview?size=reading">demo terms</a
+              >.{/snippet}
+          </Checkbox>
+          <Checkbox disabled
+            >{#snippet label()}Disabled choice; <a href="/auth-preview?size=reading">demo terms</a> remain
+              available.{/snippet}</Checkbox
+          >
+          <p aria-live="polite">
+            {category || 'No category'} · {consent ? 'Agreed' : 'Not agreed'}
+          </p>
+          <p class="api-line">Checkbox, Select, Alert, and quiet Button styling are adaptations.</p>
         </div>
         <pre>{`<Input label="Search apps" bind:value placeholder="Search…" />`}</pre>
         <div class="api-line">
@@ -211,9 +242,7 @@
                 bind:value={name}
                 invalid={!!formError}
                 aria-describedby={formError ? 'name-error' : undefined}
-              />{#if formError}<p id="name-error" role="alert" style="color:var(--portal-error)">
-                  {formError}
-                </p>{/if}
+              />{#if formError}<Alert id="name-error" message={formError} />{/if}
               <div class="detail-actions">
                 <span class="panel-copy">Local demo only</span><Button variant="green" type="submit"
                   >Save profile</Button
@@ -263,6 +292,23 @@
             bind:favorite
           />
         </div>
+        <RowList aria-label="Example records">
+          <Row
+            ><a href="/auth-preview?size=reading">Field notes</a><Badge>Draft</Badge><Button
+              variant="quiet"
+              onclick={() => (saved = !saved)}>{saved ? 'Saved' : 'Save'}</Button
+            ></Row
+          >
+          <Row><span>A single cell can explain this record.</span></Row>
+          <Row
+            ><span
+              >A longer synthetic record wraps naturally when the available space is narrow.</span
+            ><Badge>Ready</Badge></Row
+          >
+        </RowList>
+        <p class="api-line">
+          RowList and Row are adaptations. Cells wrap; each row keeps its bottom border.
+        </p>
         <EmptyState
           title="Nothing saved yet"
           description="Your collection starts with a single favorite."
@@ -285,6 +331,8 @@
       </div>
       <div class="demo-preview">
         <p>
+          <a href="/auth-preview">Open compact AuthFrame demo</a> or
+          <a href="/auth-preview?size=reading">reading AuthFrame demo</a>. Both are adaptations.
           This gallery uses the exported PortalShell, SidebarNav, TopBar, and MobileNav. Collapse
           the sidebar on desktop, or resize to see bottom navigation.
         </p>

@@ -737,3 +737,135 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Task and record patterns are adaptations; they reuse existing semantic tokens. */
+.p-button--quiet,
+.p-button--quiet:active:not(:disabled) {
+  display: inline;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: normal;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.p-auth-frame {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--portal-canvas);
+  color: var(--portal-ink);
+}
+.p-auth-frame-inner {
+  width: 100%;
+  max-width: 28rem;
+  min-width: 0;
+}
+.p-auth-frame--reading .p-auth-frame-inner {
+  max-width: 40rem;
+}
+.p-auth-frame-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 16px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+.p-auth-frame-panel {
+  min-height: 20rem;
+  padding: clamp(16px, 4vw, 32px);
+  background: var(--portal-surface);
+  border: 1px solid var(--portal-border);
+  border-radius: 16px;
+  overflow-wrap: anywhere;
+}
+.p-checkbox-field {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--portal-ink);
+  font-size: 14px;
+  line-height: 20px;
+}
+.p-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  padding: 0;
+  border: 1px solid var(--portal-border);
+  border-radius: 4px;
+  background: var(--portal-surface);
+  color: #181818;
+  cursor: pointer;
+}
+.p-checkbox[data-state='checked'] {
+  background: var(--portal-green);
+}
+.p-checkbox[aria-invalid='true'] {
+  border-color: var(--portal-error);
+}
+.p-checkbox:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+.p-checkbox-label {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.p-select-field {
+  width: 100%;
+  min-width: 0;
+}
+.p-select-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--portal-ink);
+  font-size: 14px;
+  line-height: 20px;
+}
+.p-select {
+  cursor: pointer;
+}
+.p-alert {
+  margin: 8px 0;
+  color: var(--portal-error);
+  font-size: 14px;
+  line-height: 20px;
+}
+.p-row-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.p-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--portal-border);
+}
+.p-row > * {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}

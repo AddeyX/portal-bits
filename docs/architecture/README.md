@@ -26,6 +26,7 @@ Svelte and Bits UI stay peer dependencies. The gallery also installs them for lo
 - `/foundations` shows palette, type, spacing, radius, shadow, and motion.
 - `/components` shows interactive examples.
 - `/motion` shows motion a person can trigger.
+- `/auth-preview` shows AuthFrame without application navigation. The `size=reading` query selects its reading layout.
 
 Gallery state stays on the page that owns it. Filtering derives from `src/demo`. The gallery does not keep a global store.
 
