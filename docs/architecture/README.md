@@ -41,4 +41,4 @@ Account values and network data stay outside the shell. The shell does not call 
 
 ## Outside this shape
 
-Gallery routes and demo content stay out of the package exports. This scope does not add a monorepo, a second documentation site, publishing, or deployment.
+Gallery routes and demo content stay out of the package exports. The package publishes to GitHub Packages as `@addeyx/portal-bits`. [ADR 0002](../decisions/0002-publish-to-github-packages.md) records why. This scope does not add a monorepo, a second documentation site, or deployment.

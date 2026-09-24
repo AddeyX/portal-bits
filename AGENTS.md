@@ -8,7 +8,7 @@
 - Demo content stays synthetic, with no wallet, chain, or account calls.
 - Public exports are library components, tokens, and styles.
 - Svelte and Bits UI stay peer dependencies.
-- Publishing, deployment, and font files are a later decision.
+- The package publishes to GitHub Packages as `@addeyx/portal-bits`. Deployment and font files are a later decision.
 
 ## Context
 

@@ -23,7 +23,7 @@ Developers who consume the Svelte components and inspect their states, APIs, and
 - Bits UI supplies interaction primitives.
 - Visual decisions must be traceable to the DOM analysis.
 - Demo content is neutral and synthetic.
-- The package name is `portal-bits`. Publishing destination is not chosen. The deliverable is local.
+- The package name is `@addeyx/portal-bits`. It publishes to GitHub Packages. Deployment is not chosen.
 
 ## Evidence on Hand
 

@@ -1,6 +1,6 @@
 # portal-bits
 
-A Svelte component library inspired heavily by [Abstract Portal](https://portal.abs.xyz) and expanding on the design language. 
+A Svelte component library inspired heavily by [Abstract Portal](https://portal.abs.xyz) and expanding on the design language.
 
 ## Status
 
@@ -8,7 +8,7 @@ Active
 
 ## What it does
 
-Run the gallery to inspect the components, foundations, and motion. Import the components and token CSS into a Svelte app.
+Run the gallery to inspect the components, foundations, and motion. Install `@addeyx/portal-bits` from GitHub Packages. The install steps are in [docs/guides/install-the-library.md](docs/guides/install-the-library.md).
 
 ## Quick start
 

@@ -14,5 +14,6 @@ Notable changes, newest first.
 
 ### Added
 
+- The library publishes to GitHub Packages as `@addeyx/portal-bits`.
 - A local gallery that shows the library in a shell, with foundations, component, and motion pages.
 - A local Svelte package that exports the components and token CSS.

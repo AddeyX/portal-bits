@@ -16,3 +16,4 @@ Add a numbered file when a real decision is made.
 ## Records
 
 - [0001 One SvelteKit repository](0001-one-sveltekit-repository.md)
+- [0002 Publish to GitHub Packages](0002-publish-to-github-packages.md)
