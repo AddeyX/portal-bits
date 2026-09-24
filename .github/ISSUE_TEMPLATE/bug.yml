@@ -1,0 +1,18 @@
+name: Bug
+description: Something broke or behaved unexpectedly.
+labels: ['bug']
+body:
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How do you reproduce it?
+      description: Steps, version, and environment.
+    validations:
+      required: true

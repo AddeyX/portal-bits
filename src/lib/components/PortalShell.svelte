@@ -30,7 +30,7 @@
   <a class="p-skip-link" href="#main-content">Skip to content</a>
   <aside class="p-sidebar">
     <div class="p-brand">
-      <a href="/" aria-label="Portal Bits home"
+      <a href="/" aria-label="portal-bits home"
         ><Aperture size={27} />{#if !collapsed}{#if brand}{@render brand()}{:else}<span
               >portal<span class="p-brand-light">bits</span></span
             >{/if}{/if}</a

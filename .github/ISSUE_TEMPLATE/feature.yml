@@ -1,0 +1,17 @@
+name: Feature
+description: A change that would make the project more useful.
+labels: ['enhancement']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem is this?
+      description: Who hits it, and what they need.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What should happen?
+    validations:
+      required: true

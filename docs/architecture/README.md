@@ -1,0 +1,44 @@
+# Architecture
+
+System shape: the parts, how they connect, and what each part owns.
+
+This repository is one SvelteKit app. The library and the gallery share it. [ADR 0001](../decisions/0001-one-sveltekit-repository.md) records why.
+
+## Library
+
+`src/lib` owns reusable components, styles, and the public API.
+
+- `src/lib/components/` owns styled wrappers and compositions.
+- `src/lib/styles/tokens.css` owns primitive and semantic tokens.
+- `src/lib/styles/base.css` owns library typography and shared styles.
+- `src/lib/index.ts` owns the public export list.
+- `src/lib/types.ts` owns shared public types. `NavItem` is the navigation item.
+
+Svelte and Bits UI stay peer dependencies. The gallery also installs them for local development.
+
+`npm run package` builds the library with `@sveltejs/package`. Entry points are the `exports` field in `package.json`.
+
+## Gallery
+
+`src/routes` owns the gallery pages. `src/gallery.css` owns gallery-only styles. `src/demo` owns demo content. `static/art` owns local demo images.
+
+- `/` shows the library inside a representative shell.
+- `/foundations` shows palette, type, spacing, radius, shadow, and motion.
+- `/components` shows interactive examples.
+- `/motion` shows motion a person can trigger.
+
+Gallery state stays on the page that owns it. Filtering derives from `src/demo`. The gallery does not keep a global store.
+
+## Shell
+
+`PortalShell` owns responsive layout and spacing. The consumer supplies branding, navigation, toolbar controls, and page content through snippets.
+
+`SidebarNav` owns desktop navigation, including expanded and collapsed layouts. `TopBar` owns the search, notification, and favorite triggers, plus an optional account capsule. `MobileNav` owns navigation at narrow widths. A breakpoint chosen before the mobile layout is measured is an adaptation. See [fidelity](../concepts/fidelity.md).
+
+Sticky chrome, popovers, modal overlays, and tooltips use separate stacking roles. Overlay content stays outside the shell's scroll clipping.
+
+Account values and network data stay outside the shell. The shell does not call a wallet API.
+
+## Outside this shape
+
+Gallery routes and demo content stay out of the package exports. This scope does not add a monorepo, a second documentation site, publishing, or deployment.

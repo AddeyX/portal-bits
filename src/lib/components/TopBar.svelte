@@ -4,6 +4,6 @@
 </script>
 
 <header class="p-topbar">
-  <span class="p-breadcrumb">Portal <span>/</span> {breadcrumb ?? 'Overview'}</span>
+  <span class="p-breadcrumb">{breadcrumb ?? 'Overview'}</span>
   <div class="p-topbar-actions">{@render actions?.()}</div>
 </header>

@@ -280,7 +280,7 @@
     </div>
     <div class="demo-section" id="chrome">
       <div>
-        <h2>Portal chrome</h2>
+        <h2>Chrome</h2>
         <p>The frame is part of the system, too.</p>
       </div>
       <div class="demo-preview">

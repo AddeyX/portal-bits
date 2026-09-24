@@ -1,12 +1,12 @@
-# Abstract Portal: DOM design-language analysis
+# DOM design-language analysis
 
-Inspected 2026-09-23. Source: https://portal.abs.xyz/discover.
+Inspected 2026-09-23.
 
 ## Evidence and limits
 
 Initial `/` navigation resolved to `/login`. The discovery route subsequently loaded in the available browser session. This report records rendered DOM, computed styles, root CSS custom properties, and a viewport screenshot inspected in-browser. It does not assume the session was anonymous. No account details or wallet identifiers are reproduced here.
 
-This is an initial light-theme discovery-surface audit, not a complete portal audit. Dark theme, mobile navigation, exact media-query thresholds, focus/hover states, and other routes remain to be measured. Viewport dimensions changed during inspection; sizes below describe samples rather than established breakpoints. Declared custom properties are distinguished from actual computed component values. Authentication-provider variables are excluded from the proposed design system.
+This is an initial light-theme discovery-surface audit, not a complete audit of every surface. Dark theme, mobile navigation, exact media-query thresholds, focus/hover states, and other routes remain to be measured. Viewport dimensions changed during inspection; sizes below describe samples rather than established breakpoints. Declared custom properties are distinguished from actual computed component values. Authentication-provider variables are excluded from the proposed design system.
 
 ## Visual grammar
 
@@ -95,7 +95,7 @@ Observed view controls and upvote controls transition over 0.3s using `cubic-bez
 
 ## Proposed Bits UI mapping
 
-| Portal pattern                                | Library implementation                                                        |
+| Observed pattern                              | Library implementation                                                        |
 | --------------------------------------------- | ----------------------------------------------------------------------------- |
 | Primary / secondary / green actions           | Button wrapper with size and variant props                                    |
 | Favorite heart                                | Toggle with accessible pressed state                                          |
@@ -116,7 +116,7 @@ Source DOM includes visually styled non-native controls and heading tags used fo
 
 Recommended: a reusable Svelte 5 library with Bits UI primitives, semantic CSS tokens, and a SvelteKit gallery in this workspace. Use `src/lib` for package exports and `src/routes` for gallery pages. Keep the package independent of the gallery and use neutral mock data.
 
-Alternative 1: a close Portal page recreation first. Faster visual comparison, but narrower reusable API coverage.
+Alternative 1: a close page recreation first. Faster visual comparison, but narrower reusable API coverage.
 
 Alternative 2: a brand-adapted system. More freedom over type and color, but less faithful to the requested source.
 

@@ -46,7 +46,7 @@
   <header class="page-intro">
     <div>
       <h1>Start with the essentials.</h1>
-      <p>The small decisions that make everything feel like Portal.</p>
+      <p>The small decisions that hold the library together.</p>
     </div>
     <Badge variant="success">DOM-derived</Badge>
   </header>
@@ -66,7 +66,8 @@
       </div>
       <p class="note">
         Source muted text is #9da3ac. This kit uses #686e78 for small text on light surfaces to
-        improve contrast. Dark preview is an adaptation, not an extracted dark theme.
+        improve contrast. Dark preview is an adaptation. It is not inspired by a measured dark
+        theme.
       </p>
     </div>
   </section>
@@ -83,8 +84,9 @@
           ><code>{type.size}/{type.line} · {type.weight}</code>
         </div>{/each}
       <p class="note">
-        Portal uses Roobert. This gallery bundles Inter under the SIL Open Font License as a
-        predictable fallback. Supply licensed Roobert through --portal-font for closer typography.
+        The measured family is Roobert. This gallery bundles Inter under the SIL Open Font License
+        as a predictable fallback. Supply licensed Roobert through --portal-font for closer
+        typography.
       </p>
     </div>
   </section>
@@ -149,13 +151,7 @@
           ></tbody
         >
       </table>
-      <p class="note">
-        Inspected September 23, 2026. Source: <a
-          href="https://portal.abs.xyz/discover"
-          target="_blank"
-          rel="noreferrer">Abstract Portal / Discover</a
-        >. Full selector and computed-style notes live in docs/portal-dom-analysis.md.
-      </p>
+   
     </div>
   </section>
 </div>

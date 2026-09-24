@@ -58,7 +58,7 @@
   <header class="page-intro">
     <div>
       <h1>Everything feels connected.</h1>
-      <p>The Portal design language, made reusable.</p>
+      <p>A measured design language, made reusable.</p>
     </div>
     <a href="/components" class="intro-link">Explore components <ArrowUpRight size={17} /></a>
   </header>
@@ -182,7 +182,7 @@
       >{/if}
   </section>
   <footer class="gallery-footer">
-    <span>Inspired by Abstract Portal. Built on Bits UI.</span><a href="/foundations"
+    <span>Built on Bits UI.</span><a href="/foundations"
       >See what was measured <ArrowRight size={14} /></a
     >
   </footer>

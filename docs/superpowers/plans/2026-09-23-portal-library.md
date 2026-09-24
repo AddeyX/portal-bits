@@ -1,8 +1,8 @@
-# Portal Bits Implementation Plan
+# portal-bits implementation plan
 
 > **For agentic workers:** Use superpowers:executing-plans to implement this plan task-by-task. User explicitly authorized building; execute locally without another approval gate.
 
-**Goal:** Ship a reusable Portal-derived Svelte library with working chrome and motion gallery.
+**Goal:** Ship a reusable Svelte library with working chrome and a motion gallery.
 
 **Architecture:** One package, with public components and CSS in src/lib and a separate SvelteKit demonstration in src/routes. Bits UI owns interaction semantics. Demo state stays outside the library.
 
@@ -13,7 +13,7 @@
 ## Global Constraints
 
 - Neutral synthetic demo content; no account integrations.
-- Namespaced `--portal-` tokens; no font binaries copied from Portal.
+- Namespaced `--portal-` tokens; font files stay out of the repo.
 - Light theme source-derived; adaptations clearly documented.
 - Library exports exclude gallery data and routes.
 - Browser interaction and verification use the available CUA browser API.
@@ -29,7 +29,7 @@
 ## Tasks
 
 - [ ] Foundation: package configuration, measured tokens, scoped base styles, reproducible build/check/package scripts.
-- [ ] Primitives: Button, IconButton, Badge, Avatar, Input, Toggle, ToggleGroup, Switch, Dialog, Popover, Tooltip. Typed native props, bindable states, portal theme scope.
+- [ ] Primitives: Button, IconButton, Badge, Avatar, Input, Toggle, ToggleGroup, Switch, Dialog, Popover, Tooltip. Typed native props, bindable states, theme scope.
 - [ ] Compositions: AppCard, SectionHeader, SidebarNav, EmptyState, PortalShell, TopBar, MobileNav. Snippet-based injection and independent navigation links.
 - [ ] Gallery: overview, foundations, components, motion; local search/favorites/notifications; neutral artwork and explicit provenance.
 - [ ] Validation: integration tests for disabled controls, binding, overlays, focus, filtering; package consumer compile; typecheck/build; Svelte autofixer; desktop/mobile browser inspection and one correction batch.

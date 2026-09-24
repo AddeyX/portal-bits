@@ -15,7 +15,7 @@
     <Badge>Motion lab</Badge>
   </header>
   <section class="gallery-surface">
-    <SectionHeader title="The Portal curve" description="Quick to respond. Soft on arrival." />
+    <SectionHeader title="The easing curve" description="Quick to respond. Soft on arrival." />
     <div class="docs-content">
       <div class="motion-stage">
         <Button onclick={() => (end = !end)}><Play size={15} /> Replay</Button>

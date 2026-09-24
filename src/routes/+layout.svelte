@@ -49,9 +49,9 @@
 </script>
 
 <svelte:head
-  ><title>{current} — Portal Bits</title><meta
+  ><title>{current} — portal-bits</title><meta
     name="description"
-    content="A Portal-inspired Svelte 5 component library, built on Bits UI. Explore foundations, components, chrome and motion."
+    content="A Svelte 5 component library, built on Bits UI. Explore foundations, components, chrome, and motion."
   /></svelte:head
 >
 <div class="p-theme gallery-root" data-portal-theme={theme}>
