@@ -32,6 +32,7 @@ Notable changes, newest first.
 
 ### Changed
 
+- Docs pages keep the article in a 760px column with 16px of side padding, measured from the Bits UI docs layout, so the copy does not span the full main area. With the sidebar open, the left inset is shorter by half the sidebar width so the column sits in the middle of the page.
 - Library styles read the `--portal-space-*`, `--portal-radius`, and `--portal-pill` tokens, so overriding them now reaches every component. Rendered values are unchanged.
 - Input shows its `label` above the field, like Select. Pass `hideLabel` for search fields whose context is already visible. Placeholders are examples, not labels.
 - Shell spotlight actions are named for their card, such as "Explore Orbit Studio".

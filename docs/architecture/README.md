@@ -25,6 +25,7 @@ Svelte and Bits UI stay peer dependencies. The gallery also installs them for lo
 - `/` is the gallery home. `FloatingNav` places the logo on the left and Home, Docs, and GitHub in the middle. Docs pages add a search icon on the right; it fades out on Home. That search is a gallery adaptation: fuzzysort over component and guide copy, shown in a popover.
 - `/components` lists the components. `/components/[slug]` shows one component, its example, and the props that matter.
 - `/foundations` and `/motion` share that docs sidebar. At 800px and narrower, the sidebar becomes a Browse docs disclosure that names the current page and scrolls with the page. This is an adaptation.
+- The docs article is 760px at most. Inline padding is 16px, top padding is 32px below 640px and 64px from there up, and bottom padding is 96px. Those values were measured on the Bits UI docs page. Bits UI also reserves a right-hand table of contents; this gallery does not, so the space beside the article is wider. That missing column is an adaptation. While the sidebar sits beside the article, the left inset is shorter by half the sidebar width, which centers the column in the page. At 800px and narrower the sidebar stacks and that shift is absent.
 - `/shell` shows the library inside a representative shell.
 - `/auth-preview` shows AuthFrame without the gallery header. The `size=reading` query selects its reading layout.
 
