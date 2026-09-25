@@ -30,6 +30,10 @@ Notable changes, newest first.
 - On narrow screens, docs navigation opens from a Browse docs control instead of a sticky sidebar that covered the page.
 - Shell spotlight cards scroll in a row until their section fits three readable cards.
 
+### Removed
+
+- The shell no longer shows a library version in the top bar or sidebar.
+
 ### Changed
 
 - Docs pages keep the article in a 760px column with 16px of side padding, measured from the Bits UI docs layout, so the copy does not span the full main area. With the sidebar open, the left inset is shorter by half the sidebar width so the column sits in the middle of the page.

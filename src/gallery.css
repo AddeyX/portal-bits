@@ -707,9 +707,6 @@ pre {
     flex-direction: column;
     font-size: 11px;
   }
-  .top-version {
-    display: none;
-  }
   .docs-content {
     padding: 0 16px 20px;
   }

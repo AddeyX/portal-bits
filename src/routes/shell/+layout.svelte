@@ -23,7 +23,6 @@
     Input,
     EmptyState,
     Button,
-    Badge,
     Switch,
   } from '$lib';
   let { children }: { children: Snippet } = $props();
@@ -106,7 +105,7 @@
             : 'Light theme · source-derived'}
       </p>
       <div class="sidebar-footnote">
-        <span>Built with Svelte + Bits UI</span><span>Local library · v0.3.0</span>
+        <span>Built with Svelte + Bits UI</span><span>Local library</span>
       </div>
     {/snippet}
     {#snippet topbar()}
@@ -172,9 +171,6 @@
             >
           </Popover>
           <ColorSelector bind:value={accent} {theme} />
-          <span class="top-version"
-            ><Badge variant="success"><span class="status-dot"></span> v0.3.0</Badge></span
-          >
         {/snippet}
       </TopBar>
     {/snippet}
