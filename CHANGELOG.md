@@ -10,6 +10,11 @@ Notable changes, newest first.
 - Docs search in a popover. Matching text is bold and accent-colored. The search icon fades out on Home.
 - `/shell` keeps the representative application shell.
 
+### Fixed
+
+- On narrow screens, docs navigation opens from a Browse docs control instead of a sticky sidebar that covered the page.
+- Shell spotlight cards scroll in a row until their section fits three readable cards.
+
 ### Changed
 
 - The gallery bar places the logo on the left and Docs, Home, and GitHub in the middle. Component examples each have a docs page, with a sidebar grouped in the library's own sections.
