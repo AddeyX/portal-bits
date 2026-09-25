@@ -4,6 +4,8 @@ Notable changes, newest first.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-09-25
+
 ### Added
 
 - FloatingNav, a white pill bar with brand, middle links, and optional actions. Narrow widths open those links from Menu.
