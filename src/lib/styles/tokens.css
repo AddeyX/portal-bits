@@ -5,13 +5,15 @@
   --portal-ink: #181818;
   --portal-muted: #686e78; /* Contrast adaptation of source #9da3ac. */
   --portal-subtle: #9da3ac;
-  --portal-green: #19e783;
+  --portal-green: var(--portal-accent, #19e783);
+  --portal-on-accent: var(--portal-accent-foreground, #181818);
+  --portal-accent-hover: var(--portal-selected-hover, #2fbf7a);
   --portal-green-deep: #05472a;
   --portal-canvas: #f8faff;
   --portal-surface: #fff;
   --portal-soft: #f2f4f9;
   --portal-border: #edeff3;
-  --portal-focus: #008746;
+  --portal-focus: var(--portal-accent-focus, #008746);
   --portal-error: #bf2424;
   --portal-radius: 16px;
   --portal-pill: 100px;
@@ -42,7 +44,7 @@
   --portal-surface: #1c2023;
   --portal-soft: #272d31;
   --portal-border: #343b41;
-  --portal-focus: #19e783;
+  --portal-focus: var(--portal-accent-focus, #19e783);
   --portal-error: #ff8a8a;
   --portal-shadow-control: 0 4px 8px rgb(0 0 0 / 25%), 0 0 0 1px rgb(255 255 255 / 9%);
   --portal-shadow-icon: 0 1px 4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 9%);

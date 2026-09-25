@@ -1,5 +1,8 @@
 <script lang="ts">
   import {
+    ArticleCard,
+    FeatureCard,
+    Carousel,
     Alert,
     Checkbox,
     Select,
@@ -30,6 +33,38 @@
     Check,
     Bell,
   } from '@lucide/svelte';
+  const stories = [
+    {
+      id: 'field',
+      label: 'A field guide to small ideas',
+      image: '/art/field.svg',
+      href: '#content',
+    },
+    {
+      id: 'orbit',
+      label: 'Make space for your next project',
+      image: '/art/orbit.svg',
+      href: '#content',
+    },
+    { id: 'tempo', label: 'Find a rhythm that works', image: '/art/tempo.svg', href: '#content' },
+  ];
+  const features = [
+    {
+      title: 'Start with a spark',
+      description: 'Collect the little ideas worth returning to.',
+      image: '/art/forma.svg',
+    },
+    {
+      title: 'Room to explore',
+      description: 'Give each direction the space it needs to grow.',
+      image: '/art/common.svg',
+    },
+    {
+      title: 'Bring it together',
+      description: 'Turn a few good pieces into something you can share.',
+      image: '/art/gather.svg',
+    },
+  ];
   let consent = $state(false);
   let category = $state('');
   let pressed = $state(false);
@@ -58,10 +93,10 @@
       <h1>Good parts. Ready to use.</h1>
       <p>Typed Svelte 5 components, with Bits UI doing the heavy lifting.</p>
     </div>
-    <Badge>24 exports</Badge>
+    <Badge>28 components</Badge>
   </header>
   <nav class="doc-links" aria-label="Component sections">
-    {#each ['Buttons', 'Inputs', 'Selection', 'Identity', 'Overlays', 'Cards', 'Chrome'] as section (section)}<a
+    {#each ['Buttons', 'Inputs', 'Selection', 'Identity', 'Overlays', 'Cards', 'Content', 'Chrome'] as section (section)}<a
         href={`#${section.toLowerCase()}`}>{section}</a
       >{/each}
   </nav>
@@ -324,6 +359,42 @@
         </div>
       </div>
     </div>
+    <div class="demo-section content-demo" id="content">
+      <div>
+        <h2>Stories &amp; possibilities</h2>
+        <p>Editorial cards and feature collections, with room to explore.</p>
+      </div>
+      <div class="demo-preview">
+        <Carousel label="Studio journal" items={stories}>
+          {#snippet item(story)}
+            <ArticleCard
+              title={story.label}
+              href={story.href}
+              image={story.image}
+              imageAlt="Geometric illustration"
+            />
+          {/snippet}
+        </Carousel>
+        <div class="feature-demo-grid">
+          {#each features as feature (feature.title)}
+            <FeatureCard {...feature} imageAlt="Colorful geometric illustration" />
+          {/each}
+        </div>
+        <p class="api-line">
+          Measured card geometry; responsive layout, image fallbacks, dark styling, and keyboard
+          navigation are adaptations. Synthetic content. Focus the carousel viewport to use arrow
+          keys, Home, or End. Navigation is immediate, including with reduced motion.
+        </p>
+        <pre>{`<Carousel label="Journal" items={stories}>
+  {#snippet item(story)}
+    <ArticleCard title={story.label} href={story.href}
+      image={story.image} imageAlt="Geometric artwork" />
+  {/snippet}
+</Carousel>
+<FeatureCard title="Room to explore"
+  description="Give each idea space to grow." />`}</pre>
+      </div>
+    </div>
     <div class="demo-section" id="chrome">
       <div>
         <h2>Chrome</h2>
@@ -353,3 +424,19 @@
     </div>
   </section>
 </div>
+
+<style>
+  .content-demo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .content-demo .demo-preview {
+    display: grid;
+    gap: 32px;
+    min-width: 0;
+  }
+  .feature-demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap: 24px;
+  }
+</style>

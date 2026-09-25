@@ -2,6 +2,8 @@
 
 Inspected 2026-09-23.
 
+The separate [marketing homepage analysis](reference/marketing-dom-analysis.md) records the 2026-09-24 marketing homepage inspection and ranks additional component candidates.
+
 ## Evidence and limits
 
 Initial `/` navigation resolved to `/login`. The discovery route subsequently loaded in the available browser session. This report records rendered DOM, computed styles, root CSS custom properties, and a viewport screenshot inspected in-browser. It does not assume the session was anonymous. No account details or wallet identifiers are reproduced here.

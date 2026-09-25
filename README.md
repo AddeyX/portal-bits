@@ -1,6 +1,6 @@
 # portal-bits
 
-A Svelte component library inspired heavily by [Abstract Portal](https://portal.abs.xyz) and expanding on the design language.
+A Svelte component library built around a measured visual language and reusable interface patterns.
 
 ## Status
 

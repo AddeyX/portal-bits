@@ -24,3 +24,7 @@ export { default as Alert } from './components/Alert.svelte';
 export { default as RowList } from './components/RowList.svelte';
 export { default as Row } from './components/Row.svelte';
 export type { SelectOption } from './types';
+export { default as ColorSelector } from './components/ColorSelector.svelte';
+export { default as ArticleCard } from './components/ArticleCard.svelte';
+export { default as FeatureCard } from './components/FeatureCard.svelte';
+export { default as Carousel } from './components/Carousel.svelte';

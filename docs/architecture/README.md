@@ -28,7 +28,7 @@ Svelte and Bits UI stay peer dependencies. The gallery also installs them for lo
 - `/motion` shows motion a person can trigger.
 - `/auth-preview` shows AuthFrame without application navigation. The `size=reading` query selects its reading layout.
 
-Gallery state stays on the page that owns it. Filtering derives from `src/demo`. The gallery does not keep a global store.
+Gallery state stays on the page that owns it. The shared layout owns the gallery accent and applies CSS properties at the document root so portaled overlays share it; cleanup removes these properties. Filtering derives from `src/demo`. The gallery does not keep a global store.
 
 ## Shell
 

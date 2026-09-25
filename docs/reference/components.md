@@ -93,3 +93,63 @@ Rows do not imply navigation or selection. Sorting, pagination, column headers, 
   <Row><span>Field notes</span><Button variant="quiet" onclick={() => {}}>Retry</Button></Row>
 </RowList>
 ```
+
+## ColorSelector
+
+Import `ColorSelector` from `@addeyx/portal-bits` and load `@addeyx/portal-bits/styles.css` once. The selector is an adaptation: its presets, gradient dimensions, and interactions are unmeasured. It reuses the existing popover radius, shadow, typography, and entry/exit motion, including reduced-motion behavior. Roobert remains consumer-supplied, with Inter/system fallbacks.
+
+`value` is a bindable hex string, defaulting to `#19e783`. `open` is bindable; `label` defaults to “Accent color”; `theme` accepts `light` or `dark`. `onValueChange` receives normalized six-digit hex strings on user changes. Invalid external values display default green until replaced by a valid selection.
+
+Five fixed presets are green, blue, violet, rose, and amber. The sixth, rainbow, expands a saturation/brightness gradient with pointer dragging, keyboard-accessible hue/saturation/brightness sliders, and a hex field. Three- and six-digit hex input is accepted; invalid input shows an error without changing the selected color. Escape and outside interaction dismiss the popover and restore trigger focus. Selection applies immediately and keeps the popover open. Alpha is outside this contract.
+
+```svelte
+<script lang="ts">
+  import { ColorSelector } from '@addeyx/portal-bits';
+  let accent = $state('#19e783');
+</script>
+
+<ColorSelector bind:value={accent} />
+```
+
+The component does not mutate global styles. Consumers own accent application and persistence. Set `--portal-accent` for accent fills and `--portal-accent-foreground` for contrasting text; `--portal-selected-hover`, `--portal-accent-nav`, `--portal-accent-soft`, `--portal-accent-text`, and `--portal-accent-focus` customize related states. Put these properties on a shared ancestor (such as the document root) to reach portaled overlays. Legacy `--portal-green` and Button's `green` variant remain compatible. Default green retains existing token values.
+
+The gallery mounts this control in the top-right toolbar. Layout-owned state updates accent tokens across routes and overlays, with contrasting text and theme-aware focus colors. Reload resets to green; no storage or account calls occur. Status colors and demo artwork remain independent of the accent.
+
+## Content cards and carousel
+
+Import `ArticleCard`, `FeatureCard`, and `Carousel` from `@addeyx/portal-bits`; load `@addeyx/portal-bits/styles.css` once. Measured geometry is recorded in the [marketing analysis](marketing-dom-analysis.md). The [design spec](../superpowers/specs/2026-09-24-marketing-components-design.md) records scope and adaptations. Roobert is consumer-supplied, with Inter/system fallbacks. No font files are bundled.
+
+### ArticleCard
+
+Required props are `title` and `href`. Optional props are `image`, `imageAlt` (default empty for decorative imagery), `actionLabel` (default `Read`), and `headingLevel` (`2 | 3 | 4`, default `3`). An article contains 16:9 media, a heading, and one native navigation link. Its accessible link name combines the action label and title. There are no nested buttons or whole-card click handlers.
+
+Media uses the measured 32px radius; the title uses 24/28px at weight 400. Intrinsic card height, 16px spacing, image fitting, and fallback art are adaptations. Missing or failed imagery preserves the media region and readable content. Supplying a new URL retries the image. Consumer text is rendered as text, not HTML.
+
+### FeatureCard
+
+Required props are `title` and `description`. Optional `image`, `imageAlt`, and `headingLevel` follow ArticleCard. The static article contains media and copy, with measured 32px outer radius and 24px padding. A 4:3 media ratio, 16px inner radius, typography, token-colored surfaces, desktop composition, and missing-image treatment are adaptations. The card does not imply navigation or selection.
+
+### Carousel
+
+Supply `label`, `items`, and an `item` snippet. Items may carry any data but must include unique stable `id: string` and descriptive `label: string` fields. The snippet receives the typed item. `layout` defaults to `responsive`; `carousel` retains scrolling at all widths.
+
+Responsive layout switches from a horizontal track to a three-column grid at 48rem of component width. This threshold is an adaptation. Native touch/trackpad scrolling and keyboard focus can reveal offscreen content. Dots provide 44px targets around 6px markers and expose selection through `aria-current`. Arrow keys, Home, and End navigate when the viewport itself has focus. Nested links and controls retain their own keys. Navigation clamps at the ends and keeps focus on its trigger.
+
+An empty collection has no viewport or controls. A single item has no pagination. Changing item IDs or their order resets to the first item; changing copy under stable IDs preserves selection. Resize reconciles selection with visible geometry. There is no autoplay, looping, external index binding, or custom drag physics. Programmatic navigation is immediate, including under reduced motion. The track uses left-to-right navigation; bidirectional carousel controls are outside this version's contract. Dark colors use the library's existing adaptation.
+
+```svelte
+<script lang="ts">
+  import { ArticleCard, FeatureCard, Carousel } from '@addeyx/portal-bits';
+  const stories = [
+    { id: 'notes', label: 'Field notes', href: '/notes', image: '/art/field.svg' },
+    { id: 'studio', label: 'Inside the studio', href: '/studio', image: '/art/orbit.svg' },
+  ];
+</script>
+
+<Carousel label="Journal" items={stories}>
+  {#snippet item(story)}
+    <ArticleCard title={story.label} href={story.href} image={story.image} />
+  {/snippet}
+</Carousel>
+<FeatureCard title="Room to explore" description="Give each idea space to grow." />
+```

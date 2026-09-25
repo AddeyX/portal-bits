@@ -71,7 +71,7 @@
 }
 .p-button--green {
   background: var(--portal-green);
-  color: #181818;
+  color: var(--portal-on-accent);
 }
 .p-button--secondary:hover {
   background: var(--portal-soft);
@@ -80,7 +80,7 @@
   background: #353535;
 }
 .p-button--green:hover {
-  background: #2fbf7a;
+  background: var(--portal-accent-hover);
 }
 .p-button:active:not(:disabled) {
   box-shadow: inset 0 1px 3px rgb(0 0 0 / 14%);
@@ -195,8 +195,8 @@
   box-shadow: var(--portal-shadow-icon);
 }
 .p-toggle[data-state='on'] {
-  background: #e4f9ed;
-  color: #087346;
+  background: var(--portal-accent-soft, #e4f9ed);
+  color: var(--portal-accent-text, #087346);
 }
 .p-toggle:hover {
   color: var(--portal-ink);
@@ -594,8 +594,8 @@
   box-shadow: 0 0 0 1px var(--portal-border);
 }
 .p-nav-link[aria-current='page'] .p-nav-icon {
-  background: linear-gradient(135deg, #b4f9d0, #19e783);
-  color: #05472a;
+  background: var(--portal-accent-nav, linear-gradient(135deg, #b4f9d0, #19e783));
+  color: var(--portal-accent-foreground, #05472a);
   box-shadow: 0 2px 4px rgb(0 160 80 / 15%);
 }
 .p-nav-count {
@@ -710,7 +710,7 @@
     padding: 4px;
   }
   .p-mobile-nav a[aria-current='page'] {
-    color: #008746;
+    color: var(--portal-accent-text, #008746);
   }
   .p-section-header {
     padding: 20px 16px;
@@ -818,6 +818,7 @@
 }
 .p-checkbox[data-state='checked'] {
   background: var(--portal-green);
+  color: var(--portal-on-accent);
 }
 .p-checkbox[aria-invalid='true'] {
   border-color: var(--portal-error);
@@ -868,4 +869,118 @@
   min-width: 0;
   max-width: 100%;
   overflow-wrap: anywhere;
+}
+
+/* Color selector: unmeasured adaptation using existing control and motion tokens. */
+.p-color-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid var(--portal-surface);
+}
+.p-button:has(.p-color-indicator) {
+  position: relative;
+}
+.p-color-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+.p-color-heading > span {
+  color: var(--portal-muted);
+  font: 11px var(--portal-mono);
+}
+.p-color-presets {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.p-color-swatch {
+  display: grid;
+  place-items: center;
+  flex: 1;
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 1px solid rgb(0 0 0 / 12%);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px var(--portal-surface);
+  transition: box-shadow var(--portal-duration) var(--portal-ease);
+}
+.p-color-swatch:hover,
+.p-color-swatch[aria-pressed='true'] {
+  box-shadow:
+    inset 0 0 0 3px var(--portal-surface),
+    0 0 0 1px var(--portal-ink);
+}
+.p-color-rainbow {
+  background: conic-gradient(#ff6464, #ffe76b, #6fe39a, #65b9ff, #b185ff, #ff6464);
+  color: #181818;
+}
+.p-color-custom {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+  animation: p-enter var(--portal-duration) var(--portal-ease);
+}
+.p-color-plane {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  border: 0;
+  border-radius: 10px;
+  background:
+    linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, transparent),
+    var(--hue);
+  touch-action: none;
+  cursor: crosshair;
+}
+.p-color-plane > span {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 50%);
+  pointer-events: none;
+}
+.p-color-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--portal-muted);
+}
+.p-color-field input[type='range'] {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--portal-ink);
+}
+.p-color-hue {
+  appearance: none;
+  height: 14px;
+  border-radius: 100px;
+  background: linear-gradient(to right, red, #ff0, #0f0, #0ff, #00f, #f0f, red);
+}
+.p-color-channels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.p-color-error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--portal-error);
+}
+@media (prefers-reduced-motion: reduce) {
+  .p-color-custom {
+    animation: none;
+  }
 }

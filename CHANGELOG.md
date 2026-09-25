@@ -4,6 +4,20 @@ Notable changes, newest first.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-09-24
+
+### Added
+
+- ArticleCard, FeatureCard, and a responsive Carousel with native scrolling and keyboard pagination.
+- Synthetic editorial and feature examples, plus component contracts and a design spec.
+- ColorSelector with five fixed presets, a rainbow gradient picker, keyboard sliders, and exact hex input.
+- A top-right gallery accent control with immediate theme-aware color updates.
+
+### Changed
+
+- Documentation describes the measured design language without website attribution.
+- Gallery component counts now reflect all 28 exported components.
+
 ## [0.2.0] - 2026-09-24
 
 ### Changed

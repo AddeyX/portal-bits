@@ -98,7 +98,7 @@
     ><a href="/components"
       ><span class="building-icon lavender"><Component size={21} /></span>
       <div>
-        <h2>24 components</h2>
+        <h2>28 components</h2>
         <p>Accessible from the inside out</p>
       </div>
       <ArrowUpRight size={18} /></a

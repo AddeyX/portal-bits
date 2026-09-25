@@ -4,6 +4,7 @@
   import '@fontsource/inter/600.css';
   import '$lib/styles/base.css';
   import '../gallery.css';
+  import { accentForeground } from '$lib/internal/color';
   import { page } from '$app/state';
   import type { Snippet } from 'svelte';
   import {
@@ -22,6 +23,7 @@
   } from '@lucide/svelte';
   import {
     PortalShell,
+    ColorSelector,
     TopBar,
     Popover,
     Dialog,
@@ -33,6 +35,42 @@
     Avatar,
   } from '$lib';
   let { children }: { children: Snippet } = $props();
+  let accent = $state('#19e783');
+  $effect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--portal-accent', accent);
+    root.style.setProperty(
+      '--portal-accent-foreground',
+      accent === '#19e783' ? '#181818' : accentForeground(accent),
+    );
+    root.style.setProperty(
+      '--portal-selected-hover',
+      accent === '#19e783'
+        ? '#2fbf7a'
+        : `color-mix(in srgb, ${accent}, ${accentForeground(accent)} 12%)`,
+    );
+    const adapted = accent !== '#19e783';
+    const textColor = `color-mix(in srgb, ${accent} 35%, ${dark ? '#ffffff' : '#181818'})`;
+    const extra = {
+      '--portal-accent-focus': textColor,
+      '--portal-accent-text': textColor,
+      '--portal-accent-soft': `color-mix(in srgb, ${accent} 16%, ${dark ? '#1c2023' : '#ffffff'})`,
+      '--portal-accent-nav': accent,
+    };
+    for (const [property, value] of Object.entries(extra)) {
+      if (adapted) root.style.setProperty(property, value);
+      else root.style.removeProperty(property);
+    }
+    return () => {
+      for (const property of Object.keys(extra)) root.style.removeProperty(property);
+      for (const property of [
+        '--portal-accent',
+        '--portal-accent-foreground',
+        '--portal-selected-hover',
+      ])
+        root.style.removeProperty(property);
+    };
+  });
   let dark = $state(false);
   let search = $state('');
   let searchOpen = $state(false);
@@ -41,7 +79,7 @@
   const nav = [
     { href: '/', label: 'Overview', icon: LayoutGrid },
     { href: '/foundations', label: 'Foundations', icon: Layers },
-    { href: '/components', label: 'Components', icon: Component, count: '24' },
+    { href: '/components', label: 'Components', icon: Component, count: '28' },
     { href: '/motion', label: 'Motion', icon: Wind },
   ];
   let found = $derived(nav.filter((n) => n.label.toLowerCase().includes(search.toLowerCase())));
@@ -75,10 +113,14 @@
           />
         </div>
         <p class="theme-note">
-          {dark ? 'Adapted theme · source unverified' : 'Light theme · source-derived'}
+          {dark
+            ? 'Adapted theme · source unverified'
+            : accent !== '#19e783'
+              ? 'Custom accent · adapted palette'
+              : 'Light theme · source-derived'}
         </p>
         <div class="sidebar-footnote">
-          <span>Built with Svelte + Bits UI</span><span>Local library · v0.2.0</span>
+          <span>Built with Svelte + Bits UI</span><span>Local library · v0.3.0</span>
         </div>{/snippet}
       {#snippet topbar()}<TopBar breadcrumb={current}>
           {#snippet actions()}
@@ -130,7 +172,7 @@
               {#snippet trigger()}<Code2 size={17} />{/snippet}
               <h3 class="panel-title">Built to be yours.</h3>
               <p class="panel-copy">
-                24 typed Svelte components. Bits UI behavior. Source-derived tokens.
+                28 typed Svelte components. Bits UI behavior. Source-derived tokens.
               </p>
               <p class="panel-copy">
                 Demo content is fictional. Inter stands in for licensed Roobert.
@@ -139,8 +181,9 @@
                 >View foundations <ArrowUpRight size={14} /></Button
               >
             </Popover>
+            <ColorSelector bind:value={accent} {theme} />
             <span class="top-version"
-              ><Badge variant="success"><span class="status-dot"></span> v0.2.0</Badge></span
+              ><Badge variant="success"><span class="status-dot"></span> v0.3.0</Badge></span
             >
           {/snippet}
         </TopBar>{/snippet}
