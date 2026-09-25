@@ -4,7 +4,7 @@ Inspected the public marketing homepage on 2026-09-24 (America/New_York).
 
 ## Scope and evidence
 
-This inspection compares the public marketing homepage with the current exports in `src/lib/index.ts`, including the working-tree ColorSelector addition. It records the inspection-time candidate ranking. ArticleCard, Carousel, and FeatureCard are now implemented; their current contracts are in [components](components.md).
+This inspection compares the public marketing homepage with the current exports in `src/lib/index.ts`, including the working-tree ColorSelector addition. It records the inspection-time candidate ranking. ArticleCard, Carousel, FeatureCard, and FloatingNav are now implemented; their current contracts are in [components](components.md).
 
 Evidence comes from rendered DOM, computed styles, accessibility snapshots, screenshots, and menu and carousel interactions. Samples cover 1440 × 1000, 390 × 844, and the initial 615 × 945 viewport. These are sample widths, not measured breakpoint thresholds. Source CSS-module class names below are inspection locators and can change on deployment.
 
@@ -24,7 +24,7 @@ Names below are proposals. Priorities reflect reuse and overlap with existing co
 | 2        | MediaCard    | “Build without boundaries”: four image-backed articles with overlaid copy                      | New media-led composition. Keep asymmetric grid layout in a recipe until another consumer needs it.                                       |
 | 3        | ResourceLink | Four footer resource links combine imagery, heading, and arrow                                 | Small native-anchor composition; lower priority than cards and carousel.                                                                  |
 
-The implemented first batch is ArticleCard, Carousel, and FeatureCard. They cover distinct missing structures without adding another shell.
+ArticleCard, Carousel, FeatureCard, and FloatingNav are implemented. Their contracts live in [components](components.md).
 
 ## Extend or compose existing components
 

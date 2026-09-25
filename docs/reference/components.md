@@ -21,6 +21,7 @@ Contracts for the public components. The export list is `src/lib/index.ts`. Bits
 | SidebarNav    | Items with href, label, icon snippet, and active indication.                                                         | Native nav and anchors |
 | MobileNav     | Narrow-width navigation.                                                                                             | Native nav and anchors |
 | TopBar        | Search, notification, and favorite triggers, plus an optional account capsule.                                       | Composition            |
+| FloatingNav   | White pill bar. Brand, items, and optional actions. Narrow widths disclose the same links.                           | Semantic nav           |
 | PortalShell   | Responsive layout. Snippets supply branding, navigation, toolbar, and page content.                                  | Composition            |
 | AuthFrame     | Centered compact or reading panel with required brand link and children snippets.                                    | Semantic HTML          |
 | Checkbox      | Bindable boolean, required label snippet, disabled, required, invalid, and form name.                                | Bits UI Checkbox       |
@@ -114,6 +115,22 @@ Five fixed presets are green, blue, violet, rose, and amber. The sixth, rainbow,
 The component does not mutate global styles. Consumers own accent application and persistence. Set `--portal-accent` for accent fills and `--portal-accent-foreground` for contrasting text; `--portal-selected-hover`, `--portal-accent-nav`, `--portal-accent-soft`, `--portal-accent-text`, and `--portal-accent-focus` customize related states. Put these properties on a shared ancestor (such as the document root) to reach portaled overlays. Legacy `--portal-green` and Button's `green` variant remain compatible. Default green retains existing token values.
 
 The gallery mounts this control in the top-right toolbar. Layout-owned state updates accent tokens across routes and overlays, with contrasting text and theme-aware focus colors. Reload resets to green; no storage or account calls occur. Status colors and demo artwork remain independent of the accent.
+
+## FloatingNav
+
+Import `FloatingNav` from `@addeyx/portal-bits` and load `@addeyx/portal-bits/styles.css` once. Measured geometry is in the [marketing analysis](marketing-dom-analysis.md): 56px height, 100px radius, padding `0 12px 0 20px`, a white surface, and the control shadow. Desktop width was sampled at 960px and narrow width at 374px inside a 390px viewport, so the bar is fluid up to 960px.
+
+`label` names the navigation. `brand` is the leading mark, usually a home link. `items` are the middle links. `actions` is an optional trailing group, such as an external repository link. Each destination is one anchor. Do not nest a button inside a link.
+
+Below 640px of component width, the links leave the bar. A Menu button becomes Close and shows them in a separate rounded panel. The 640px threshold, 16px panel radius, 8px gap, selected-link fill, and 36px control height are adaptations. The source menu was observed at a 615px viewport, which is a sample, not a measured breakpoint. Escape and an outside pointer close the panel; the inspected source did not dismiss on Escape. Focus trapping, scroll locking, and the page blur were not measured and are not reproduced. A declared 0.75s navigation animation is also omitted because its animated properties were not measured. Dark colors follow the existing token adaptation.
+
+```svelte
+<FloatingNav label="Primary">
+  {#snippet brand()}<a href="/">Home</a>{/snippet}
+  {#snippet items()}<a href="/docs" aria-current="page">Docs</a>{/snippet}
+  {#snippet actions()}<a href="https://github.com/example">GitHub</a>{/snippet}
+</FloatingNav>
+```
 
 ## Content cards and carousel
 

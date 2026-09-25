@@ -15,6 +15,7 @@ export { default as AppCard } from './components/AppCard.svelte';
 export { default as SidebarNav } from './components/SidebarNav.svelte';
 export { default as MobileNav } from './components/MobileNav.svelte';
 export { default as TopBar } from './components/TopBar.svelte';
+export { default as FloatingNav } from './components/FloatingNav.svelte';
 export { default as PortalShell } from './components/PortalShell.svelte';
 export type { NavItem } from './types';
 export { default as AuthFrame } from './components/AuthFrame.svelte';
