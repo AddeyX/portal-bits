@@ -15,6 +15,7 @@
 Read context based on task. Do not read every project document by default.
 
 - Product purpose, users, constraints → `PRODUCT.md`
+- Visual tokens, component styling, named design rules → `DESIGN.md`
 - Library, gallery, or shell structure → `docs/architecture/README.md`
 - Terms → `docs/glossary.md`
 - Product guardrails → `docs/principles.md`

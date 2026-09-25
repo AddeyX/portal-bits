@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 16px;
+    gap: var(--portal-space-4);
   }
   .p-article-media {
     aspect-ratio: 16 / 9;

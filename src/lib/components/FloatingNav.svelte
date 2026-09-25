@@ -61,8 +61,8 @@
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     height: 56px;
-    padding: 0 12px 0 20px;
-    border-radius: 100px;
+    padding: 0 var(--portal-space-3) 0 20px;
+    border-radius: var(--portal-pill);
     background: var(--portal-surface);
     box-shadow: var(--portal-shadow-control);
     color: var(--portal-ink);
@@ -79,7 +79,7 @@
   .p-floating-nav-actions {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--portal-space-1);
   }
   .p-floating-nav-items {
     grid-column: 2;
@@ -138,14 +138,14 @@
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      gap: 4px;
+      gap: var(--portal-space-1);
       position: absolute;
       z-index: 1;
       top: calc(100% + 8px);
       left: 0;
       right: 0;
-      padding: 8px;
-      border-radius: 16px;
+      padding: var(--portal-space-2);
+      border-radius: var(--portal-radius);
       background: var(--portal-surface);
       box-shadow: var(--portal-shadow-control);
     }

@@ -9,12 +9,10 @@ Notable changes, newest first.
 - FloatingNav, a white pill bar with brand, middle links, and optional actions. Narrow widths open those links from Menu.
 - Docs search in a popover. Matching text is bold and accent-colored. The search icon fades out on Home.
 - `/shell` keeps the representative application shell.
-
-### Added
-
 - PortalShell `brandHref` and `brandLabel` set the brand link's destination and name. The link takes its name from the visible brand, or `Home` when collapsed.
 - Tooltip `theme` scopes its portaled content, like Dialog and Popover.
 - `--portal-control-border` and the `--portal-inverse` token set.
+- `DESIGN.md` records the visual system: tokens, component styling, and named rules.
 
 ### Fixed
 
@@ -27,6 +25,7 @@ Notable changes, newest first.
 
 ### Changed
 
+- Library styles read the `--portal-space-*`, `--portal-radius`, and `--portal-pill` tokens, so overriding them now reaches every component. Rendered values are unchanged.
 - Input shows its `label` above the field, like Select. Pass `hideLabel` for search fields whose context is already visible. Placeholders are examples, not labels.
 - Shell spotlight actions are named for their card, such as "Explore Orbit Studio".
 - The Button docs snippet matches its preview.

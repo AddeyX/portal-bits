@@ -1,0 +1,438 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-25T03:08:09.329Z",
+  "title": "Design System: portal-bits",
+  "extensions": {
+    "colorMeta": {
+      "action-green": {
+        "role": "primary",
+        "displayName": "Action Green",
+        "tonalRamp": [
+          "oklch(15.0% 0.120 153.9)",
+          "oklch(26.0% 0.142 153.9)",
+          "oklch(37.0% 0.164 153.9)",
+          "oklch(49.0% 0.188 153.9)",
+          "oklch(60.0% 0.190 153.9)",
+          "oklch(72.0% 0.166 153.9)",
+          "oklch(84.0% 0.142 153.9)",
+          "oklch(95.0% 0.120 153.9)"
+        ]
+      },
+      "action-green-hover": {
+        "role": "primary",
+        "displayName": "Action Green Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.094 156.9)",
+          "oklch(26.0% 0.111 156.9)",
+          "oklch(37.0% 0.128 156.9)",
+          "oklch(49.0% 0.147 156.9)",
+          "oklch(60.0% 0.148 156.9)",
+          "oklch(72.0% 0.130 156.9)",
+          "oklch(84.0% 0.111 156.9)",
+          "oklch(95.0% 0.094 156.9)"
+        ]
+      },
+      "action-green-text": {
+        "role": "primary",
+        "displayName": "Action Green Text",
+        "tonalRamp": [
+          "oklch(15.0% 0.068 157.4)",
+          "oklch(26.0% 0.080 157.4)",
+          "oklch(37.0% 0.093 157.4)",
+          "oklch(49.0% 0.107 157.4)",
+          "oklch(60.0% 0.108 157.4)",
+          "oklch(72.0% 0.094 157.4)",
+          "oklch(84.0% 0.080 157.4)",
+          "oklch(95.0% 0.068 157.4)"
+        ]
+      },
+      "action-green-soft": {
+        "role": "primary",
+        "displayName": "Action Green Soft",
+        "tonalRamp": [
+          "oklch(15.0% 0.016 160.9)",
+          "oklch(26.0% 0.019 160.9)",
+          "oklch(37.0% 0.022 160.9)",
+          "oklch(49.0% 0.026 160.9)",
+          "oklch(60.0% 0.026 160.9)",
+          "oklch(72.0% 0.023 160.9)",
+          "oklch(84.0% 0.019 160.9)",
+          "oklch(95.0% 0.016 160.9)"
+        ]
+      },
+      "deep-forest": {
+        "role": "primary",
+        "displayName": "Deep Forest",
+        "tonalRamp": [
+          "oklch(15.0% 0.048 157.6)",
+          "oklch(26.0% 0.057 157.6)",
+          "oklch(37.0% 0.065 157.6)",
+          "oklch(49.0% 0.075 157.6)",
+          "oklch(60.0% 0.076 157.6)",
+          "oklch(72.0% 0.066 157.6)",
+          "oklch(84.0% 0.057 157.6)",
+          "oklch(95.0% 0.048 157.6)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.0% 0.000 89.9)",
+          "oklch(37.0% 0.000 89.9)",
+          "oklch(49.0% 0.000 89.9)",
+          "oklch(60.0% 0.000 89.9)",
+          "oklch(72.0% 0.000 89.9)",
+          "oklch(84.0% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "inverse-hover": {
+        "role": "neutral",
+        "displayName": "Inverse Hover",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.0% 0.000 89.9)",
+          "oklch(37.0% 0.000 89.9)",
+          "oklch(49.0% 0.000 89.9)",
+          "oklch(60.0% 0.000 89.9)",
+          "oklch(72.0% 0.000 89.9)",
+          "oklch(84.0% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "muted-slate": {
+        "role": "neutral",
+        "displayName": "Muted Slate",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 260.7)",
+          "oklch(26.0% 0.012 260.7)",
+          "oklch(37.0% 0.014 260.7)",
+          "oklch(49.0% 0.016 260.7)",
+          "oklch(60.0% 0.016 260.7)",
+          "oklch(72.0% 0.014 260.7)",
+          "oklch(84.0% 0.012 260.7)",
+          "oklch(95.0% 0.010 260.7)"
+        ]
+      },
+      "subtle-slate": {
+        "role": "neutral",
+        "displayName": "Subtle Slate",
+        "tonalRamp": [
+          "oklch(15.0% 0.009 258.4)",
+          "oklch(26.0% 0.010 258.4)",
+          "oklch(37.0% 0.012 258.4)",
+          "oklch(49.0% 0.014 258.4)",
+          "oklch(60.0% 0.014 258.4)",
+          "oklch(72.0% 0.012 258.4)",
+          "oklch(84.0% 0.010 258.4)",
+          "oklch(95.0% 0.009 258.4)"
+        ]
+      },
+      "quiet-canvas": {
+        "role": "neutral",
+        "displayName": "Quiet Canvas",
+        "tonalRamp": [
+          "oklch(15.0% 0.004 268.5)",
+          "oklch(26.0% 0.005 268.5)",
+          "oklch(37.0% 0.006 268.5)",
+          "oklch(49.0% 0.007 268.5)",
+          "oklch(60.0% 0.007 268.5)",
+          "oklch(72.0% 0.006 268.5)",
+          "oklch(84.0% 0.005 268.5)",
+          "oklch(95.0% 0.004 268.5)"
+        ]
+      },
+      "white-surface": {
+        "role": "neutral",
+        "displayName": "White Surface",
+        "tonalRamp": [
+          "oklch(15.0% 0.000 89.9)",
+          "oklch(26.0% 0.000 89.9)",
+          "oklch(37.0% 0.000 89.9)",
+          "oklch(49.0% 0.000 89.9)",
+          "oklch(60.0% 0.000 89.9)",
+          "oklch(72.0% 0.000 89.9)",
+          "oklch(84.0% 0.000 89.9)",
+          "oklch(95.0% 0.000 89.9)"
+        ]
+      },
+      "soft-mist": {
+        "role": "neutral",
+        "displayName": "Soft Mist",
+        "tonalRamp": [
+          "oklch(15.0% 0.004 268.5)",
+          "oklch(26.0% 0.005 268.5)",
+          "oklch(37.0% 0.006 268.5)",
+          "oklch(49.0% 0.007 268.5)",
+          "oklch(60.0% 0.007 268.5)",
+          "oklch(72.0% 0.006 268.5)",
+          "oklch(84.0% 0.005 268.5)",
+          "oklch(95.0% 0.004 268.5)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "tonalRamp": [
+          "oklch(15.0% 0.003 264.5)",
+          "oklch(26.0% 0.004 264.5)",
+          "oklch(37.0% 0.005 264.5)",
+          "oklch(49.0% 0.005 264.5)",
+          "oklch(60.0% 0.005 264.5)",
+          "oklch(72.0% 0.005 264.5)",
+          "oklch(84.0% 0.004 264.5)",
+          "oklch(95.0% 0.003 264.5)"
+        ]
+      },
+      "control-edge": {
+        "role": "neutral",
+        "displayName": "Control Edge",
+        "tonalRamp": [
+          "oklch(15.0% 0.010 257.2)",
+          "oklch(26.0% 0.012 257.2)",
+          "oklch(37.0% 0.014 257.2)",
+          "oklch(49.0% 0.016 257.2)",
+          "oklch(60.0% 0.016 257.2)",
+          "oklch(72.0% 0.014 257.2)",
+          "oklch(84.0% 0.012 257.2)",
+          "oklch(95.0% 0.010 257.2)"
+        ]
+      },
+      "focus-green": {
+        "role": "primary",
+        "displayName": "Focus Green",
+        "tonalRamp": [
+          "oklch(15.0% 0.085 152.9)",
+          "oklch(26.0% 0.100 152.9)",
+          "oklch(37.0% 0.116 152.9)",
+          "oklch(49.0% 0.133 152.9)",
+          "oklch(60.0% 0.134 152.9)",
+          "oklch(72.0% 0.117 152.9)",
+          "oklch(84.0% 0.100 152.9)",
+          "oklch(95.0% 0.085 152.9)"
+        ]
+      },
+      "error-red": {
+        "role": "error",
+        "displayName": "Error Red",
+        "tonalRamp": [
+          "oklch(15.0% 0.114 26.9)",
+          "oklch(26.0% 0.135 26.9)",
+          "oklch(37.0% 0.156 26.9)",
+          "oklch(49.0% 0.179 26.9)",
+          "oklch(60.0% 0.181 26.9)",
+          "oklch(72.0% 0.158 26.9)",
+          "oklch(84.0% 0.135 26.9)",
+          "oklch(95.0% 0.114 26.9)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headers; 28px below 1280px, 24px on phones."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Dialog titles and compact headings."
+      },
+      "body-large": {
+        "displayName": "Body Large",
+        "purpose": "Feature card descriptions."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Controls, nav links, inputs, and panel text."
+      },
+      "supporting": {
+        "displayName": "Supporting",
+        "purpose": "Secondary lines and search details."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges, tooltips, breadcrumbs, captions."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Code and hex values only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "control",
+        "value": "0 6px 10px -4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%)",
+        "purpose": "Buttons and FloatingNav."
+      },
+      {
+        "name": "icon",
+        "value": "0 1px 4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%)",
+        "purpose": "Icon buttons, toggles, the selected segment."
+      },
+      {
+        "name": "surface",
+        "value": "0 3px 5px rgb(200 206 215 / 25%), 0 2px 3px rgb(135 175 199 / 12%), 0 4px 10px rgb(222 228 235 / 25%)",
+        "purpose": "Cards on hover and gallery panels."
+      },
+      {
+        "name": "pressed",
+        "value": "inset 0 1px 3px rgb(0 0 0 / 14%)",
+        "purpose": "Active button state."
+      },
+      {
+        "name": "dialog",
+        "value": "0 24px 80px rgb(0 0 0 / 18%)",
+        "purpose": "Dialogs over a 35% black, 6px-blur overlay."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration",
+        "value": "300ms",
+        "purpose": "Color, shadow, overlay entry, and sidebar collapse."
+      },
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.215, 0.61, 0.355, 1)",
+        "purpose": "Shared ease-out for every transition."
+      },
+      {
+        "name": "exit",
+        "value": "160ms ease-in",
+        "purpose": "Dialog, popover, and overlay exit."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile-shell",
+        "value": "767px"
+      },
+      {
+        "name": "floating-nav-menu",
+        "value": "640px (container)"
+      },
+      {
+        "name": "carousel-grid",
+        "value": "48rem (container)"
+      },
+      {
+        "name": "headline-large",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action on a surface. Ink pill with a soft lift.",
+      "html": "<button class=\"ds-btn ds-btn-primary\">Save changes</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 21px; border: 0; border-radius: 100px; font: 400 14px/20px var(--portal-font, Inter, sans-serif); letter-spacing: -0.14px; cursor: pointer; box-shadow: 0 6px 10px -4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%); transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1), box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1); } .ds-btn:focus-visible { outline: 2px solid #008746; outline-offset: 4px; } .ds-btn:active { box-shadow: inset 0 1px 3px rgb(0 0 0 / 14%); } .ds-btn-primary { background: #181818; color: #fff; } .ds-btn-primary:hover { background: #353535; }"
+    },
+    {
+      "name": "Green Button",
+      "kind": "button",
+      "refersTo": "button-green",
+      "description": "The signal action. Uses the accent when a consumer sets one.",
+      "html": "<button class=\"ds-btn ds-btn-green\">Get started</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 21px; border: 0; border-radius: 100px; font: 400 14px/20px var(--portal-font, Inter, sans-serif); cursor: pointer; box-shadow: 0 6px 10px -4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%); transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1); } .ds-btn:focus-visible { outline: 2px solid #008746; outline-offset: 4px; } .ds-btn:active { box-shadow: inset 0 1px 3px rgb(0 0 0 / 14%); } .ds-btn-green { background: #19e783; color: #181818; } .ds-btn-green:hover { background: #2fbf7a; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A quieter alternative beside the main action.",
+      "html": "<button class=\"ds-btn ds-btn-secondary\">Secondary</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; height: 40px; padding: 0 21px; border: 0; border-radius: 100px; font: 400 14px/20px var(--portal-font, Inter, sans-serif); cursor: pointer; box-shadow: 0 6px 10px -4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%); transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1); } .ds-btn:focus-visible { outline: 2px solid #008746; outline-offset: 4px; } .ds-btn:active { box-shadow: inset 0 1px 3px rgb(0 0 0 / 14%); } .ds-btn-secondary { background: #fff; color: #181818; } .ds-btn-secondary:hover { background: #f2f4f9; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A labeled pill field with a 3:1 control edge.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Email</span><input class=\"ds-input\" placeholder=\"alex@example.com\" /></label>",
+      "css": ".ds-field { display: grid; gap: 8px; width: 320px; font: 400 14px/20px var(--portal-font, Inter, sans-serif); color: #181818; } .ds-input { height: 40px; padding: 0 16px; border: 1px solid #878e98; border-radius: 32px; background: #fff; color: #181818; font: inherit; caret-color: #008746; } .ds-input::placeholder { color: #686e78; } .ds-input:focus-visible { outline: 2px solid #008746; outline-offset: 4px; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "A short noninteractive label.",
+      "html": "<span class=\"ds-badge\">Creative</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; padding: 5px 10px; border-radius: 100px; background: #f2f4f9; color: #181818; font: 400 12px/18px var(--portal-font, Inter, sans-serif); }"
+    },
+    {
+      "name": "Toggle",
+      "kind": "chip",
+      "refersTo": "toggle-on",
+      "description": "A pressable on or off control; pressed turns pale mint.",
+      "html": "<button class=\"ds-toggle\" aria-pressed=\"true\"><svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"/></svg></button>",
+      "css": ".ds-toggle { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: #fff; color: #686e78; cursor: pointer; box-shadow: 0 1px 4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%); } .ds-toggle[aria-pressed=\"true\"] { background: #e4f9ed; color: #087346; } .ds-toggle:hover { color: #181818; } .ds-toggle:focus-visible { outline: 2px solid #008746; outline-offset: 4px; }"
+    },
+    {
+      "name": "App Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A content surface: flat with a hairline at rest, lifted on hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"></div><div class=\"ds-card-info\"><h3>Orbit Studio</h3><p>Creative</p></div></article>",
+      "css": ".ds-card { width: 280px; overflow: hidden; border: 1px solid #edeff3; border-radius: 16px; background: #fff; font-family: var(--portal-font, Inter, sans-serif); transition: box-shadow 300ms cubic-bezier(0.215, 0.61, 0.355, 1); } .ds-card:hover { box-shadow: 0 3px 5px rgb(200 206 215 / 25%), 0 2px 3px rgb(135 175 199 / 12%), 0 4px 10px rgb(222 228 235 / 25%); } .ds-card-media { height: 150px; background: #dcece6; } .ds-card-info { padding: 14px; } .ds-card-info h3 { margin: 0; font-size: 15px; font-weight: 500; line-height: 22px; color: #181818; } .ds-card-info p { margin: 3px 0 0; font-size: 12px; color: #686e78; }"
+    },
+    {
+      "name": "Floating Nav",
+      "kind": "nav",
+      "refersTo": "nav-link-active",
+      "description": "A white pill bar; the current link is an ink pill.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Home</a><a href=\"#\">Docs</a><a href=\"#\">GitHub</a></nav>",
+      "css": ".ds-nav { display: inline-flex; align-items: center; gap: 4px; height: 56px; padding: 0 12px; border-radius: 100px; background: #fff; box-shadow: 0 6px 10px -4px rgb(0 0 0 / 12%), 0 0 0 1px rgb(0 0 0 / 5%); font: 400 14px/20px var(--portal-font, Inter, sans-serif); } .ds-nav a { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 100px; color: #686e78; text-decoration: none; } .ds-nav a:hover { color: #181818; } .ds-nav a[aria-current=\"page\"] { background: #181818; color: #fff; } .ds-nav a:focus-visible { outline: 2px solid #008746; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Measured Specimen",
+    "overview": "Every value in this system can be traced to where it came from, like a specimen sheet. It was either observed on the source surface and written down in `docs/dom-analysis.md`, or it is labeled an adaptation where it is defined. The result reads as calm and exact: white surfaces float on a faintly blue canvas, ink does the talking, and a single saturated green means \"act\" or \"on\".\n\nControls are tactile and friendly. Buttons are raised pills with a short, soft lift and a 1px ring. They sink under an inset shadow when pressed. Surfaces are soft, rounded panels lifted by a diffuse three-layer shadow rather than outlined. Density is moderate: 40px controls, 16px surface corners, and a 4px spacing scale that mostly steps by 8.\n\nThe measured theme is light. The dark theme is an adaptation that swaps the neutral tokens and keeps the same shapes, and it does not claim to be a measured dark theme.",
+    "keyCharacteristics": [
+      "Cool neutral canvas, white raised surfaces, ink text.",
+      "One signal color, action green, for primary fills and checked states.",
+      "Pills for anything you press or type into; 16px rounded rectangles for anything that holds content.",
+      "Soft offset shadows with a faint ring, never hard edges.",
+      "Medium weight at most; hierarchy comes from size and tight tracking."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Action green marks an action or an on state. It is not decoration, and it is never text on white; green text uses Action Green Text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Traceable Value Rule",
+        "body": "A new color is either measured and recorded, or it is labeled an adaptation where the token is defined. There is no third kind.",
+        "section": "colors"
+      },
+      {
+        "name": "The Medium Ceiling Rule",
+        "body": "Library type never goes above weight 500. Emphasis comes from size and negative tracking, not bold.",
+        "section": "typography"
+      },
+      {
+        "name": "The Soft Lift Rule",
+        "body": "Every shadow has an offset and a soft blur. A zero-blur or hard offset shadow does not belong here.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do reference `--portal-*` tokens for color, spacing, radius, shadow, and motion so consumer overrides reach every component.",
+      "Do label any unmeasured value as an adaptation where it is defined, as the muted text and control edge are.",
+      "Do keep control edges at 3:1 or better against their background.",
+      "Do use Action Green Text, not Action Green, whenever green is text.",
+      "Do honor reduced motion: state changes stay, movement goes."
+    ],
+    "donts": [
+      "Don't set library type heavier than 500.",
+      "Don't use Subtle Slate for text or for icons that carry meaning.",
+      "Don't outline a surface when a soft lift will do; borders are hairlines.",
+      "Don't present the dark theme as measured.",
+      "Don't use hard offset or zero-blur shadows."
+    ]
+  }
+}

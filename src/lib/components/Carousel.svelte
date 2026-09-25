@@ -142,11 +142,11 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: auto;
     scrollbar-width: thin;
-    padding: 4px;
+    padding: var(--portal-space-1);
   }
   .p-carousel-track {
     display: flex;
-    gap: 16px;
+    gap: var(--portal-space-4);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -166,7 +166,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 16px;
+    margin-top: var(--portal-space-4);
   }
   .p-carousel-dot {
     display: inline-flex;
@@ -198,7 +198,7 @@
     .p-carousel-responsive .p-carousel-track {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      gap: var(--portal-space-6);
     }
     .p-carousel-responsive .p-carousel-viewport {
       overflow: visible;

@@ -30,18 +30,18 @@
 <style>
   .p-feature-card {
     min-width: 0;
-    padding: 24px;
+    padding: var(--portal-space-6);
     border-radius: 32px;
     background: var(--portal-soft);
     color: var(--portal-ink);
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--portal-space-6);
   }
   .p-feature-media {
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    border-radius: 16px;
+    border-radius: var(--portal-radius);
     background: var(--portal-surface);
   }
   img,
@@ -57,7 +57,7 @@
   }
   .p-feature-copy {
     display: grid;
-    gap: 8px;
+    gap: var(--portal-space-2);
     overflow-wrap: anywhere;
   }
   .p-feature-title {
