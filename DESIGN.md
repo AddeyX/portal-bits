@@ -257,6 +257,7 @@ The shapes follow a two-part rule. Things you press or type into are pills: butt
 - **Secondary:** white fill with ink text; hover moves to soft mist.
 - **Hover / Focus:** 300ms color and shadow transitions on the shared ease. Focus is a 2px focus-green ring offset by 4px. Pressing swaps the lift for an inset shadow. Disabled drops to 42% opacity.
 - **Quiet:** an inline underlined text action with no pill or shadow.
+- **Links:** inside themed content, a plain link inherits the surrounding text color and keeps its underline, offset 4px.
 
 ### Chips
 

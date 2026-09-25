@@ -36,9 +36,8 @@
           aria-label="Close dialog"><X size={16} /></Dialog.Close
         >
       </div>
-      <Dialog.Description class={description ? 'p-description' : 'p-sr-only'}
-        >{description || title}</Dialog.Description
-      >
+      {#if description}<Dialog.Description class="p-description">{description}</Dialog.Description
+        >{/if}
       <div class="p-dialog-body">{@render children?.()}</div>
     </Dialog.Content>
   </Dialog.Portal>

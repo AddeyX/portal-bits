@@ -44,6 +44,11 @@ describe('public control contracts', () => {
     expect(input).toHaveValue('wrong');
     expect(input).toHaveAttribute('aria-invalid', 'true');
   });
+  it('a decorative avatar stays out of the accessibility tree', () => {
+    const { container } = render(Avatar, { alt: 'Ada Morgan', decorative: true });
+    expect(screen.queryByRole('img', { name: 'Ada Morgan' })).not.toBeInTheDocument();
+    expect(container.querySelector('.p-avatar')).toHaveAttribute('aria-hidden', 'true');
+  });
   it('input labels are visible unless hidden, and name the field either way', () => {
     render(Input, { label: 'Email' });
     expect(screen.getByText('Email')).toHaveClass('p-input-label');

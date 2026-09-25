@@ -45,7 +45,7 @@
     >
   </div>
   <div class="p-app-card-info">
-    <Avatar alt={title} size={42} />
+    <Avatar alt={title} size={42} decorative />
     <div class="p-app-card-copy">
       <h3>{title}</h3>
       <p>{category}</p>

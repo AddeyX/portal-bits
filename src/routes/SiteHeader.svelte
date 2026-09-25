@@ -62,7 +62,9 @@
     {#snippet items()}
       <a href="/" aria-current={home ? 'page' : undefined}>Home</a>
       <a href="/components" aria-current={docs ? 'page' : undefined}>Docs</a>
-      <a href="https://github.com/AddeyX/portal-bits" rel="noreferrer" target="_blank">GitHub</a>
+      <a href="https://github.com/AddeyX/portal-bits" rel="noreferrer" target="_blank"
+        >GitHub<span class="p-sr-only"> (opens in a new tab)</span></a
+      >
     {/snippet}
     {#snippet actions()}
       {#if docs}

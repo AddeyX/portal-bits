@@ -13,6 +13,8 @@ Notable changes, newest first.
 - Tooltip `theme` scopes its portaled content, like Dialog and Popover.
 - `--portal-control-border` and the `--portal-inverse` token set.
 - `DESIGN.md` records the visual system: tokens, component styling, and named rules.
+- Avatar `decorative` removes it from the accessibility tree. AppCard uses it, since the card title already names the avatar.
+- The gallery has a favicon.
 
 ### Fixed
 
@@ -20,6 +22,11 @@ Notable changes, newest first.
 - Input, Select, Checkbox, and the off Switch have 3:1 edges. This is a contrast adaptation; dividers keep the source border.
 - Primary buttons and tooltips invert in the dark theme instead of disappearing into the surface.
 - Docs group labels and the sidebar collapse icon meet contrast minimums.
+- Plain links in themed content use the text color instead of the browser's default blue.
+- Dialog without a description no longer repeats its title as the description.
+- Reduced motion reaches library components outside a `.p-theme` wrapper.
+- The smallest gallery and mobile-nav text is 11px instead of 10px.
+- The gallery GitHub link says it opens in a new tab.
 - On narrow screens, docs navigation opens from a Browse docs control instead of a sticky sidebar that covered the page.
 - Shell spotlight cards scroll in a row until their section fits three readable cards.
 

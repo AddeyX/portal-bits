@@ -17,7 +17,8 @@
   outline: 2px solid var(--portal-focus);
   outline-offset: 4px;
 }
-.p-theme a {
+:where(.p-theme) a {
+  color: inherit;
   text-underline-offset: 4px;
 }
 .p-theme {
@@ -711,7 +712,7 @@
     align-items: center;
     color: var(--portal-muted);
     text-decoration: none;
-    font-size: 10px;
+    font-size: 11px;
     padding: var(--portal-space-1);
   }
   .p-mobile-nav a[aria-current='page'] {
@@ -733,6 +734,8 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .p-theme *,
+  [class^='p-'],
+  [class*=' p-'],
   .p-dialog,
   .p-popover,
   .p-overlay,

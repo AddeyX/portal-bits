@@ -148,7 +148,7 @@ input {
   margin-left: auto;
 }
 .theme-note {
-  font-size: 10px;
+  font-size: 11px;
   margin: 9px 0 22px;
 }
 .sidebar-footnote {
@@ -156,7 +156,7 @@ input {
   flex-direction: column;
   padding-top: 16px;
   border-top: 1px solid var(--portal-border);
-  font-size: 10px;
+  font-size: 11px;
 }
 .notification-icon {
   display: flex;
@@ -230,7 +230,7 @@ input {
 }
 .notification-item small {
   color: var(--portal-muted);
-  font-size: 10px;
+  font-size: 11px;
 }
 .search-results {
   margin-top: 14px;
@@ -705,7 +705,7 @@ pre {
   }
   .gallery-footer {
     flex-direction: column;
-    font-size: 10px;
+    font-size: 11px;
   }
   .top-version {
     display: none;

@@ -5,7 +5,14 @@
     alt,
     fallback,
     size = 40,
-  }: { src?: string; alt: string; fallback?: string; size?: number } = $props();
+    decorative = false,
+  }: {
+    src?: string;
+    alt: string;
+    fallback?: string;
+    size?: number;
+    decorative?: boolean;
+  } = $props();
   let initials = $derived(
     fallback ??
       alt
@@ -16,8 +23,15 @@
   );
 </script>
 
-<Avatar.Root class="p-avatar" style={`--avatar-size:${size}px`}>
-  {#if src}<Avatar.Image {src} {alt} class="p-avatar-image" />{/if}
-  <Avatar.Fallback class="p-avatar-fallback" role="img" aria-label={alt}>{initials}</Avatar.Fallback
+<Avatar.Root
+  class="p-avatar"
+  style={`--avatar-size:${size}px`}
+  aria-hidden={decorative || undefined}
+>
+  {#if src}<Avatar.Image {src} alt={decorative ? '' : alt} class="p-avatar-image" />{/if}
+  <Avatar.Fallback
+    class="p-avatar-fallback"
+    role={decorative ? undefined : 'img'}
+    aria-label={decorative ? undefined : alt}>{initials}</Avatar.Fallback
   >
 </Avatar.Root>
