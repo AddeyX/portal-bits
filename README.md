@@ -8,7 +8,7 @@ Active
 
 ## What it does
 
-Run the gallery to inspect the components, foundations, and motion. Install `@addeyx/portal-bits` from GitHub Packages. The install steps are in [docs/guides/install-the-library.md](docs/guides/install-the-library.md).
+Run the gallery to inspect the components, foundations, and motion. Install `portal-bits` from the public npm registry. The install steps are in [docs/guides/install-the-library.md](docs/guides/install-the-library.md).
 
 ## Quick start
 

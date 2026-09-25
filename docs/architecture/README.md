@@ -14,7 +14,7 @@ This repository is one SvelteKit app. The library and the gallery share it. [ADR
 - `src/lib/index.ts` owns the public export list.
 - `src/lib/types.ts` owns shared public types. `NavItem` is the navigation item.
 
-Svelte and Bits UI stay peer dependencies. The gallery also installs them for local development.
+Svelte and Bits UI stay peer dependencies. [ADR 0004](../decisions/0004-svelte-and-bits-ui-as-peers.md) records why. The gallery also installs them for local development.
 
 `npm run package` builds the library with `@sveltejs/package`. Entry points are the `exports` field in `package.json`.
 
@@ -43,4 +43,4 @@ Account values and network data stay outside the shell. The shell does not call 
 
 ## Outside this shape
 
-Gallery routes and demo content stay out of the package exports. The package publishes to GitHub Packages as `@addeyx/portal-bits`. [ADR 0002](../decisions/0002-publish-to-github-packages.md) records why. This scope does not add a monorepo, a second documentation site, or deployment.
+Gallery routes and demo content stay out of the package exports. The package publishes to the public npm registry as `portal-bits`. [ADR 0003](../decisions/0003-publish-to-npm.md) records why. This scope does not add a monorepo, a second documentation site, or deployment.

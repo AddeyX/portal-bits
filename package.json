@@ -1,5 +1,5 @@
 {
-  "name": "@addeyx/portal-bits",
+  "name": "portal-bits",
   "version": "0.3.0",
   "type": "module",
   "repository": {
@@ -7,7 +7,7 @@
     "url": "git+https://github.com/AddeyX/portal-bits.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
+    "registry": "https://registry.npmjs.org",
     "access": "public"
   },
   "files": [

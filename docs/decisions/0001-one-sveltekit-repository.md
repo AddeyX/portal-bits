@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted. The publishing limit is superseded by [ADR 0002](0002-publish-to-github-packages.md).
+Accepted. The publishing limit is superseded by [ADR 0002](0002-publish-to-github-packages.md). The registry in that decision is superseded by [ADR 0003](0003-publish-to-npm.md).
 
 ## Context
 
@@ -10,7 +10,7 @@ The library and the gallery both needed a home. A monorepo, a separate documenta
 
 ## Decision
 
-Use one SvelteKit repository. Export the library from `src/lib/index.ts`. Package it with the Svelte library packaging tool. Keep the gallery in `src/routes`. Keep Svelte and Bits UI as peer dependencies. Publishing is decided in [ADR 0002](0002-publish-to-github-packages.md). Do not deploy the gallery in this scope.
+Use one SvelteKit repository. Export the library from `src/lib/index.ts`. Package it with the Svelte library packaging tool. Keep the gallery in `src/routes`. Keep Svelte and Bits UI as peer dependencies, as [ADR 0004](0004-svelte-and-bits-ui-as-peers.md) records. Publishing is decided in [ADR 0003](0003-publish-to-npm.md). Do not deploy the gallery in this scope.
 
 ## Consequences
 

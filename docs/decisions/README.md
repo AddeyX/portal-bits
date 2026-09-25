@@ -16,4 +16,6 @@ Add a numbered file when a real decision is made.
 ## Records
 
 - [0001 One SvelteKit repository](0001-one-sveltekit-repository.md)
-- [0002 Publish to GitHub Packages](0002-publish-to-github-packages.md)
+- [0002 Publish to GitHub Packages](0002-publish-to-github-packages.md) — superseded
+- [0003 Publish to npm](0003-publish-to-npm.md)
+- [0004 Svelte and Bits UI as peers](0004-svelte-and-bits-ui-as-peers.md)

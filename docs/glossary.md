@@ -4,7 +4,7 @@ One term, one meaning. Use these words in filenames, UI, docs, APIs, and commits
 
 ## Library
 
-The reusable Svelte package in `src/lib`. Its npm name is `@addeyx/portal-bits`.
+The reusable Svelte package in `src/lib`. Its npm name is `portal-bits`.
 
 ## Gallery
 

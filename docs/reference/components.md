@@ -36,7 +36,7 @@ Overlay wrappers keep a name, focus trapping where it applies, Escape, outside i
 
 ## Short tasks and records
 
-Import `AuthFrame`, `Checkbox`, `Select`, `Alert`, `RowList`, `Row`, and `Button` from `@addeyx/portal-bits`. Import `@addeyx/portal-bits/styles.css` once. These patterns are adaptations. Their dimensions and behavior have not been measured against the source. They reuse the existing semantic colors and typography. The font token accepts consumer-supplied Roobert; Inter and system fonts remain the fallback. No font files are bundled.
+Import `AuthFrame`, `Checkbox`, `Select`, `Alert`, `RowList`, `Row`, and `Button` from `portal-bits`. Import `portal-bits/styles.css` once. These patterns are adaptations. Their dimensions and behavior have not been measured against the source. They reuse the existing semantic colors and typography. The font token accepts consumer-supplied Roobert; Inter and system fonts remain the fallback. No font files are bundled.
 
 ### Quiet Button
 
@@ -72,7 +72,7 @@ Rows do not imply navigation or selection. Sorting, pagination, column headers, 
 
 ```svelte
 <script lang="ts">
-  import { Checkbox, Select, Alert, RowList, Row, Button } from '@addeyx/portal-bits';
+  import { Checkbox, Select, Alert, RowList, Row, Button } from 'portal-bits';
   let agreed = $state(false);
   let category = $state('');
   let error = $state('');
@@ -97,7 +97,7 @@ Rows do not imply navigation or selection. Sorting, pagination, column headers, 
 
 ## ColorSelector
 
-Import `ColorSelector` from `@addeyx/portal-bits` and load `@addeyx/portal-bits/styles.css` once. The selector is an adaptation: its presets, gradient dimensions, and interactions are unmeasured. It reuses the existing popover radius, shadow, typography, and entry/exit motion, including reduced-motion behavior. Roobert remains consumer-supplied, with Inter/system fallbacks.
+Import `ColorSelector` from `portal-bits` and load `portal-bits/styles.css` once. The selector is an adaptation: its presets, gradient dimensions, and interactions are unmeasured. It reuses the existing popover radius, shadow, typography, and entry/exit motion, including reduced-motion behavior. Roobert remains consumer-supplied, with Inter/system fallbacks.
 
 `value` is a bindable hex string, defaulting to `#19e783`. `open` is bindable; `label` defaults to “Accent color”; `theme` accepts `light` or `dark`. `onValueChange` receives normalized six-digit hex strings on user changes. Invalid external values display default green until replaced by a valid selection.
 
@@ -105,7 +105,7 @@ Five fixed presets are green, blue, violet, rose, and amber. The sixth, rainbow,
 
 ```svelte
 <script lang="ts">
-  import { ColorSelector } from '@addeyx/portal-bits';
+  import { ColorSelector } from 'portal-bits';
   let accent = $state('#19e783');
 </script>
 
@@ -118,7 +118,7 @@ The gallery mounts this control in the top-right toolbar. Layout-owned state upd
 
 ## FloatingNav
 
-Import `FloatingNav` from `@addeyx/portal-bits` and load `@addeyx/portal-bits/styles.css` once. Measured geometry is in the [marketing analysis](marketing-dom-analysis.md): 56px height, 100px radius, padding `0 12px 0 20px`, a white surface, and the control shadow. Desktop width was sampled at 960px and narrow width at 374px inside a 390px viewport, so the bar is fluid up to 960px.
+Import `FloatingNav` from `portal-bits` and load `portal-bits/styles.css` once. Measured geometry is in the [marketing analysis](marketing-dom-analysis.md): 56px height, 100px radius, padding `0 12px 0 20px`, a white surface, and the control shadow. Desktop width was sampled at 960px and narrow width at 374px inside a 390px viewport, so the bar is fluid up to 960px.
 
 `label` names the navigation. `brand` is the leading mark, usually a home link. `items` are the middle links. `actions` is an optional trailing group, such as an external repository link. Each destination is one anchor. Do not nest a button inside a link.
 
@@ -134,7 +134,7 @@ Below 640px of component width, the links leave the bar. A Menu button becomes C
 
 ## Content cards and carousel
 
-Import `ArticleCard`, `FeatureCard`, and `Carousel` from `@addeyx/portal-bits`; load `@addeyx/portal-bits/styles.css` once. Measured geometry is recorded in the [marketing analysis](marketing-dom-analysis.md). The [design spec](../superpowers/specs/2026-09-24-marketing-components-design.md) records scope and adaptations. Roobert is consumer-supplied, with Inter/system fallbacks. No font files are bundled.
+Import `ArticleCard`, `FeatureCard`, and `Carousel` from `portal-bits`; load `portal-bits/styles.css` once. Measured geometry is recorded in the [marketing analysis](marketing-dom-analysis.md). The [design spec](../superpowers/specs/2026-09-24-marketing-components-design.md) records scope and adaptations. Roobert is consumer-supplied, with Inter/system fallbacks. No font files are bundled.
 
 ### ArticleCard
 
@@ -156,7 +156,7 @@ An empty collection has no viewport or controls. A single item has no pagination
 
 ```svelte
 <script lang="ts">
-  import { ArticleCard, FeatureCard, Carousel } from '@addeyx/portal-bits';
+  import { ArticleCard, FeatureCard, Carousel } from 'portal-bits';
   const stories = [
     { id: 'notes', label: 'Field notes', href: '/notes', image: '/art/field.svg' },
     { id: 'studio', label: 'Inside the studio', href: '/studio', image: '/art/orbit.svg' },
