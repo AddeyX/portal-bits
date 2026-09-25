@@ -60,8 +60,8 @@
       </a>
     {/snippet}
     {#snippet items()}
-      <a href="/components" aria-current={docs ? 'page' : undefined}>Docs</a>
       <a href="/" aria-current={home ? 'page' : undefined}>Home</a>
+      <a href="/components" aria-current={docs ? 'page' : undefined}>Docs</a>
       <a href="https://github.com/AddeyX/portal-bits" rel="noreferrer" target="_blank">GitHub</a>
     {/snippet}
     {#snippet actions()}

@@ -17,7 +17,7 @@ Notable changes, newest first.
 
 ### Changed
 
-- The gallery bar places the logo on the left and Docs, Home, and GitHub in the middle. Component examples each have a docs page, with a sidebar grouped in the library's own sections.
+- The gallery bar places the logo on the left and Home, Docs, and GitHub in the middle. Component examples each have a docs page, with a sidebar grouped in the library's own sections.
 
 ## [0.3.0] - 2026-09-24
 

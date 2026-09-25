@@ -22,7 +22,7 @@ Svelte and Bits UI stay peer dependencies. The gallery also installs them for lo
 
 `src/routes` owns the gallery pages. `src/gallery.css` owns gallery-only styles. `src/demo` owns demo content. `static/art` owns local demo images.
 
-- `/` is the gallery home. `FloatingNav` places the logo on the left and Docs, Home, and GitHub in the middle. Docs pages add a search icon on the right; it fades out on Home. That search is a gallery adaptation: fuzzysort over component and guide copy, shown in a popover.
+- `/` is the gallery home. `FloatingNav` places the logo on the left and Home, Docs, and GitHub in the middle. Docs pages add a search icon on the right; it fades out on Home. That search is a gallery adaptation: fuzzysort over component and guide copy, shown in a popover.
 - `/components` lists the components. `/components/[slug]` shows one component, its example, and the props that matter.
 - `/foundations` and `/motion` share that docs sidebar. At 800px and narrower, the sidebar becomes a Browse docs disclosure that names the current page and scrolls with the page. This is an adaptation.
 - `/shell` shows the library inside a representative shell.
