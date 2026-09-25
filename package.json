@@ -50,6 +50,7 @@
     "@testing-library/svelte": "latest",
     "@types/node": "^26.6.2",
     "bits-ui": "2.19.3",
+    "fuzzysort": "^4.0.2",
     "jsdom": "latest",
     "prettier": "^3.9.8",
     "prettier-plugin-svelte": "^4.1.1",

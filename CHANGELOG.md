@@ -7,6 +7,7 @@ Notable changes, newest first.
 ### Added
 
 - FloatingNav, a white pill bar with brand, middle links, and optional actions. Narrow widths open those links from Menu.
+- Docs search in a popover. Matching text is bold and accent-colored. The search icon fades out on Home.
 - `/shell` keeps the representative application shell.
 
 ### Changed
