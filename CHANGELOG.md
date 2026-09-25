@@ -27,6 +27,7 @@ Notable changes, newest first.
 
 ### Changed
 
+- PortalShell collapse lays out the main column once, then slides it with a transform. Reduced motion skips the slide.
 - The gallery bar places the logo on the left and Home, Docs, and GitHub in the middle. Component examples each have a docs page, with a sidebar grouped in the library's own sections.
 
 ## [0.3.0] - 2026-09-24

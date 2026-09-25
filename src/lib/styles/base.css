@@ -510,6 +510,7 @@
 .p-shell {
   --sidebar-width: 236px;
   min-height: 100dvh;
+  overflow-x: clip;
   background: var(--portal-canvas);
   color: var(--portal-ink);
 }
@@ -615,7 +616,6 @@
 }
 .p-shell-main {
   margin-left: var(--sidebar-width);
-  transition: margin-left var(--portal-duration) var(--portal-ease);
 }
 .p-topbar {
   height: 72px;

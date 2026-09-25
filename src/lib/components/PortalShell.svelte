@@ -1,5 +1,6 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
+  import { untrack, type Snippet } from 'svelte';
+  import { prefersReducedMotion } from 'svelte/motion';
   import type { NavItem } from '../types';
   import { PanelLeftClose, PanelLeftOpen, Aperture } from '@lucide/svelte';
   import SidebarNav from './SidebarNav.svelte';
@@ -28,6 +29,25 @@
     topbar?: Snippet;
     children?: Snippet;
   } = $props();
+  let main = $state<HTMLDivElement>();
+  let mainLeft: number | undefined;
+  // The main column changes margin once, then slides from its old position on the compositor.
+  $effect.pre(() => {
+    void collapsed;
+    mainLeft = main?.getBoundingClientRect().left;
+  });
+  $effect(() => {
+    void collapsed;
+    if (!main || mainLeft === undefined) return;
+    for (const animation of main.getAnimations?.() ?? []) animation.cancel();
+    const shift = mainLeft - main.getBoundingClientRect().left;
+    if (!shift || untrack(() => prefersReducedMotion.current)) return;
+    const style = getComputedStyle(main);
+    main.animate([{ transform: `translateX(${shift}px)` }, { transform: 'none' }], {
+      duration: parseFloat(style.getPropertyValue('--portal-duration')) || 300,
+      easing: style.getPropertyValue('--portal-ease').trim() || 'ease-out',
+    });
+  });
 </script>
 
 <div class="p-shell" data-collapsed={collapsed}>
@@ -51,7 +71,7 @@
     <SidebarNav {items} {active} {collapsed} />
     {#if !collapsed}<div class="p-sidebar-footer">{@render footer?.()}</div>{/if}
   </aside>
-  <div class="p-shell-main">
+  <div class="p-shell-main" bind:this={main}>
     {@render topbar?.()}
     <main id="main-content" tabindex="-1">{@render children?.()}</main>
   </div>
