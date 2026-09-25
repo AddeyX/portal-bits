@@ -6,6 +6,8 @@ body {
 body {
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  background: var(--portal-canvas);
+  color: var(--portal-ink);
 }
 button,
 input {
@@ -20,6 +22,8 @@ input {
   min-height: 100dvh;
   font-size: 14px;
   line-height: 1.5;
+  background: var(--portal-canvas);
+  color: var(--portal-ink);
 }
 .gallery-page {
   max-width: 1500px;
@@ -736,5 +740,295 @@ pre {
   .source-table td {
     padding: 12px 6px;
     font-size: 11px;
+  }
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--portal-z-chrome);
+  padding: 12px 8px 8px;
+  background: var(--portal-canvas);
+}
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 36px;
+  color: var(--portal-ink);
+  text-decoration: none;
+}
+.site-brand-mark {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--portal-surface);
+  box-shadow: var(--portal-shadow-icon);
+}
+.site-brand-name {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.site-brand-name span {
+  color: var(--portal-muted);
+  font-weight: 400;
+}
+.site-brand[aria-current='page'] .site-brand-mark {
+  background: var(--portal-accent-nav, linear-gradient(135deg, #b4f9d0, #19e783));
+  color: var(--portal-accent-foreground, #05472a);
+}
+.home {
+  padding: clamp(56px, 9vw, 104px) clamp(20px, 4vw, 40px) 80px;
+}
+.home-hero {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.home-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 6px 12px 6px 10px;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-pill);
+  background: var(--portal-surface);
+  color: var(--portal-muted);
+  font-size: 13px;
+}
+.home-hero h1 {
+  margin: 0;
+  font-size: clamp(40px, 6.4vw, 68px);
+  line-height: 1.02;
+  font-weight: 500;
+  letter-spacing: -2px;
+}
+.home-hero > p {
+  max-width: 36rem;
+  margin: 18px auto 28px;
+  color: var(--portal-muted);
+  font-size: 18px;
+  line-height: 1.5;
+}
+.home-stage {
+  position: relative;
+  max-width: 960px;
+  margin: 64px auto 0;
+  max-height: 440px;
+  overflow: hidden;
+}
+.home-stage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 96px;
+  background: linear-gradient(transparent, var(--portal-canvas));
+  pointer-events: none;
+}
+.home-stage-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 20px;
+  align-items: start;
+}
+.stage-panel-side {
+  margin-top: 48px;
+  padding: 18px;
+  background: var(--portal-surface);
+  border-radius: 20px;
+  box-shadow: var(--portal-shadow-surface);
+}
+.stage-panel-side header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.stage-panel-side h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+.stage-panel-side p {
+  margin: 16px 0 0;
+  color: var(--portal-muted);
+  font-size: 13px;
+}
+.stage-panel-main {
+  padding: 10px;
+}
+.home-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 960px;
+  margin: 28px auto 0;
+  padding-top: 8px;
+}
+.home-notes h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+}
+.home-notes p {
+  margin: 0;
+  color: var(--portal-muted);
+  font-size: 14px;
+  line-height: 22px;
+}
+.docs-frame {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  align-items: start;
+}
+.docs-sidebar {
+  position: sticky;
+  top: 76px;
+  height: calc(100dvh - 76px);
+  overflow: auto;
+  padding: 18px 14px 40px;
+  border-right: 1px solid var(--portal-border);
+}
+.docs-sidebar a {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 10px;
+  color: var(--portal-muted);
+  text-decoration: none;
+  font-size: 14px;
+}
+.docs-sidebar a:hover,
+.docs-sidebar a[aria-current='page'] {
+  color: var(--portal-ink);
+  background: var(--portal-soft);
+}
+.docs-group-label,
+.docs-subgroup {
+  margin: 18px 10px 6px;
+  color: var(--portal-subtle);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.docs-subgroup {
+  margin-top: 14px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-size: 12px;
+}
+.docs-main {
+  min-width: 0;
+  padding: clamp(28px, 4vw, 56px) clamp(20px, 5vw, 64px) 88px;
+}
+.docs-main > .gallery-page {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.doc-article h1 {
+  margin: 0;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -1.4px;
+}
+.doc-lede {
+  max-width: 38rem;
+  margin: 14px 0 32px;
+  color: var(--portal-muted);
+  font-size: 18px;
+  line-height: 1.45;
+}
+.doc-preview {
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--portal-surface);
+  box-shadow: var(--portal-shadow-surface);
+}
+.doc-preview > p:last-child {
+  margin-bottom: 0;
+}
+.doc-index section + section {
+  margin-top: 28px;
+}
+.doc-index h2 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--portal-subtle);
+}
+.doc-index ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.doc-index a {
+  display: grid;
+  gap: 4px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--portal-border);
+  color: inherit;
+  text-decoration: none;
+}
+.doc-index a:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.doc-index strong {
+  font-weight: 500;
+}
+.doc-index span {
+  color: var(--portal-muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+@media (max-width: 800px) {
+  .site-brand-name {
+    display: none;
+  }
+  .docs-sidebar {
+    top: 76px;
+  }
+  .home-stage,
+  .home-stage::after {
+    max-height: none;
+    height: auto;
+    background: none;
+  }
+  .home-stage {
+    overflow: visible;
+  }
+  .home-stage::after {
+    content: none;
+  }
+  .home-stage-grid,
+  .home-notes {
+    grid-template-columns: 1fr;
+  }
+  .stage-panel-side {
+    margin-top: 0;
+  }
+  .docs-frame {
+    grid-template-columns: 1fr;
+  }
+  .docs-sidebar {
+    position: sticky;
+    height: auto;
+    max-height: 38dvh;
+    border-right: 0;
+    border-bottom: 1px solid var(--portal-border);
   }
 }

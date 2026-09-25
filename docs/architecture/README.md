@@ -22,13 +22,13 @@ Svelte and Bits UI stay peer dependencies. The gallery also installs them for lo
 
 `src/routes` owns the gallery pages. `src/gallery.css` owns gallery-only styles. `src/demo` owns demo content. `static/art` owns local demo images.
 
-- `/` shows the library inside a representative shell.
-- `/foundations` shows palette, type, spacing, radius, shadow, and motion.
-- `/components` shows interactive examples.
-- `/motion` shows motion a person can trigger.
-- `/auth-preview` shows AuthFrame without application navigation. The `size=reading` query selects its reading layout.
+- `/` is the gallery home. `FloatingNav` places the logo on the left and Docs, Home, and GitHub in the middle.
+- `/components` lists the components. `/components/[slug]` shows one component, its example, and the props that matter.
+- `/foundations` and `/motion` share that docs sidebar.
+- `/shell` shows the library inside a representative shell.
+- `/auth-preview` shows AuthFrame without the gallery header. The `size=reading` query selects its reading layout.
 
-Gallery state stays on the page that owns it. The shared layout owns the gallery accent and applies CSS properties at the document root so portaled overlays share it; cleanup removes these properties. Filtering derives from `src/demo`. The gallery does not keep a global store.
+Gallery state stays on the page that owns it. The shell layout owns the gallery accent and applies CSS properties at the document root so portaled overlays share it; cleanup removes these properties. Filtering derives from `src/demo`. The gallery does not keep a global store.
 
 ## Shell
 
