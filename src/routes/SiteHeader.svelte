@@ -78,6 +78,7 @@
             <div class="site-search-panel">
               <Input
                 label="Search docs"
+                hideLabel
                 placeholder="Components and guides"
                 bind:value={query}
                 autocomplete="off"

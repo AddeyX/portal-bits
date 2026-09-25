@@ -8,7 +8,7 @@ Contracts for the public components. The export list is `src/lib/index.ts`. Bits
 | IconButton    | An accessible name is required. Size and variant follow Button where they apply.                                     | Button                 |
 | Badge         | Noninteractive label. Neutral, spotlight, and status variants only where evidenced.                                  | Semantic HTML          |
 | Avatar        | Image source, alt text, deterministic fallback, size.                                                                | Bits UI Avatar         |
-| Input         | Native input props, stable id, invalid and disabled states.                                                          | Native input           |
+| Input         | Visible label; `hideLabel` keeps it for assistive tech only. Native input props, stable id, invalid, disabled.       | Native input           |
 | Toggle        | Bindable pressed state, disabled, accessible name.                                                                   | Bits UI Toggle         |
 | ToggleGroup   | Single selection, bindable value, named items, keyboard navigation.                                                  | Bits UI ToggleGroup    |
 | Switch        | Bindable checked state, label, disabled.                                                                             | Bits UI Switch         |

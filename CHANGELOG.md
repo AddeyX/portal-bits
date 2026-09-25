@@ -27,6 +27,9 @@ Notable changes, newest first.
 
 ### Changed
 
+- Input shows its `label` above the field, like Select. Pass `hideLabel` for search fields whose context is already visible. Placeholders are examples, not labels.
+- Shell spotlight actions are named for their card, such as "Explore Orbit Studio".
+- The Button docs snippet matches its preview.
 - PortalShell collapse lays out the main column once, then slides it with a transform. Reduced motion skips the slide.
 - The gallery bar places the logo on the left and Home, Docs, and GitHub in the middle. Component examples each have a docs page, with a sidebar grouped in the library's own sections.
 

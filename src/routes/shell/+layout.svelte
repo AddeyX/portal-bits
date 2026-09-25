@@ -123,6 +123,7 @@
             {#snippet trigger()}<Search size={17} />{/snippet}
             <Input
               label="Search pages"
+              hideLabel
               placeholder="Search foundations, components…"
               bind:value={search}
             />

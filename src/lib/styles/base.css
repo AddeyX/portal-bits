@@ -180,7 +180,9 @@
 }
 .p-input-icon {
   position: absolute;
-  inset: 0 auto 0 14px;
+  left: 14px;
+  bottom: 0;
+  height: 40px;
   display: flex;
   align-items: center;
   color: var(--portal-muted);
@@ -838,7 +840,8 @@
   width: 100%;
   min-width: 0;
 }
-.p-select-label {
+.p-select-label,
+.p-input-label {
   display: block;
   margin-bottom: 8px;
   color: var(--portal-ink);

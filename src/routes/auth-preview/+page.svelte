@@ -38,13 +38,7 @@
         error = 'This demo cannot save drafts. Try again to repeat the local action.';
       }}
     >
-      <Input
-        label="Draft title"
-        bind:value={title}
-        placeholder="Draft title"
-        required
-        name="title"
-      />
+      <Input label="Draft title" bind:value={title} required name="title" />
       <Select
         label="Category"
         bind:value={category}

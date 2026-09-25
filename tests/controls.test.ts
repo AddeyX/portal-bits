@@ -44,4 +44,11 @@ describe('public control contracts', () => {
     expect(input).toHaveValue('wrong');
     expect(input).toHaveAttribute('aria-invalid', 'true');
   });
+  it('input labels are visible unless hidden, and name the field either way', () => {
+    render(Input, { label: 'Email' });
+    expect(screen.getByText('Email')).toHaveClass('p-input-label');
+    render(Input, { label: 'Search apps', hideLabel: true });
+    expect(screen.getByRole('textbox', { name: 'Search apps' })).toBeInTheDocument();
+    expect(screen.getByText('Search apps')).toHaveClass('p-sr-only');
+  });
 });

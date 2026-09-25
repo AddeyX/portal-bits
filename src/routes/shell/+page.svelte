@@ -78,7 +78,7 @@
           bind:favorite={favorites[app.id]}
         >
           {#snippet action()}
-            <Button size={32} onclick={() => explore(app)}
+            <Button size={32} aria-label={`Explore ${app.title}`} onclick={() => explore(app)}
               >Explore <ArrowUpRight size={13} /></Button
             >
           {/snippet}
@@ -155,7 +155,12 @@
     <div class="collection-toolbar">
       <ToggleGroup label="Filter collection" items={categories} bind:value={category} />
       <div class="collection-tools">
-        <Input label="Search collection" placeholder="Search collection" bind:value={query}>
+        <Input
+          label="Search collection"
+          hideLabel
+          placeholder="Search collection"
+          bind:value={query}
+        >
           {#snippet icon()}<Search size={16} />{/snippet}
         </Input>
         <ToggleGroup

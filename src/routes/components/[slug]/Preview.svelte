@@ -125,7 +125,7 @@
       <Button size={48}>Large</Button>
     </div>
   </div>
-  <pre>{`<Button variant="green" size={40} onclick={save}>
+  <pre>{`<Button variant="primary" onclick={save}>
   Save changes
 </Button>`}</pre>
   <p class="api-line">
@@ -147,26 +147,23 @@
 {:else if slug === 'input'}
   <div class="doc-preview">
     <div class="demo-field">
-      <Input label="Component search example" placeholder="Search something good…" bind:value>
+      <Input label="Search components" placeholder="Button, Dialog…" bind:value>
         {#snippet icon()}<Search size={16} />{/snippet}
       </Input>
       <p aria-live="polite">
         {value ? `Searching for “${value}”` : 'Type to try the bound value.'}
       </p>
-      <Input
-        label="Invalid email example"
-        value="not-an-email"
-        invalid
-        aria-describedby="email-error"
-      />
+      <Input label="Email" value="not-an-email" invalid aria-describedby="email-error" />
       <p id="email-error">Enter an email address, such as alex@example.com.</p>
-      <Input label="Disabled input example" value="Not editable" disabled />
+      <Input label="Workspace" value="Demo workspace" disabled />
     </div>
   </div>
-  <pre>{`<Input label="Search apps" bind:value placeholder="Search…" />`}</pre>
+  <pre>{`<Input label="Email" type="email" bind:value />
+<Input label="Search apps" hideLabel bind:value placeholder="Search…" />`}</pre>
   <p class="api-line">
-    Required <code>label</code> · Bindable <code>value</code> · <code>invalid</code> · Optional icon snippet
-    · Native input props.
+    Required <code>label</code>, visible unless <code>hideLabel</code> · Bindable <code>value</code>
+    ·
+    <code>invalid</code> · Optional icon snippet · Native input props.
   </p>
 {:else if slug === 'select'}
   <div class="doc-preview">
