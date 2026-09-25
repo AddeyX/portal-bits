@@ -799,10 +799,11 @@ pre {
 .site-search-trigger:focus-visible {
   color: var(--portal-ink);
 }
-.p-popover:has(.site-search-panel):focus-visible,
-.site-search-trigger:focus-visible,
-.site-search-panel :focus-visible {
+.p-popover:has(.site-search-panel):focus-visible {
   outline: none;
+}
+.site-search-trigger:focus-visible {
+  outline-offset: 0;
 }
 .site-search-panel {
   display: flex;
@@ -830,7 +831,10 @@ pre {
 }
 .site-search-list a:hover,
 .site-search-list a:focus-visible {
-  background: var(--portal-canvas);
+  background: var(--portal-soft);
+}
+.site-search-list a:focus-visible {
+  outline-offset: -2px;
 }
 .site-search-title {
   color: var(--portal-ink);
@@ -991,7 +995,7 @@ pre {
 .docs-group-label,
 .docs-subgroup {
   margin: 18px 10px 6px;
-  color: var(--portal-subtle);
+  color: var(--portal-muted);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1043,7 +1047,7 @@ pre {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--portal-subtle);
+  color: var(--portal-muted);
 }
 .doc-index ul {
   list-style: none;

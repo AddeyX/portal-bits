@@ -13,6 +13,10 @@
   --portal-surface: #fff;
   --portal-soft: #f2f4f9;
   --portal-border: #edeff3;
+  --portal-control-border: #878e98; /* Contrast adaptation of source #edeff3 for control edges. */
+  --portal-inverse: #181818;
+  --portal-on-inverse: #fff;
+  --portal-inverse-hover: #353535;
   --portal-focus: var(--portal-accent-focus, #008746);
   --portal-error: #bf2424;
   --portal-radius: 16px;
@@ -44,6 +48,10 @@
   --portal-surface: #1c2023;
   --portal-soft: #272d31;
   --portal-border: #343b41;
+  --portal-control-border: #6f7883;
+  --portal-inverse: #f4f5f7;
+  --portal-on-inverse: #181818;
+  --portal-inverse-hover: #d6dae0;
   --portal-focus: var(--portal-accent-focus, #19e783);
   --portal-error: #ff8a8a;
   --portal-shadow-control: 0 4px 8px rgb(0 0 0 / 25%), 0 0 0 1px rgb(255 255 255 / 9%);

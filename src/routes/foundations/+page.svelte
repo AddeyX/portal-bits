@@ -66,8 +66,9 @@
       </div>
       <p class="note">
         Source muted text is #9da3ac. This kit uses #686e78 for small text on light surfaces to
-        improve contrast. Dark preview is an adaptation. It is not inspired by a measured dark
-        theme.
+        improve contrast. Input, Select, Checkbox, and Switch edges use #878e98 instead of the
+        source #edeff3 so each control is visible at 3:1; dividers keep #edeff3. Dark preview is an
+        adaptation. It is not inspired by a measured dark theme.
       </p>
     </div>
   </section>

@@ -14,7 +14,7 @@ Contracts for the public components. The export list is `src/lib/index.ts`. Bits
 | Switch        | Bindable checked state, label, disabled.                                                                             | Bits UI Switch         |
 | Dialog        | Bindable open state, title, optional description, trigger and content snippets.                                      | Bits UI Dialog         |
 | Popover       | Bindable open state, trigger and content snippets, positioning props.                                                | Bits UI Popover        |
-| Tooltip       | Text or content, trigger snippet, keyboard-accessible trigger.                                                       | Bits UI Tooltip        |
+| Tooltip       | Text or content, trigger snippet, keyboard-accessible trigger, `theme` for the portaled content.                     | Bits UI Tooltip        |
 | AppCard       | Title, category, description, image and alt, optional action. Favorite is an independent control.                    | Composition            |
 | SectionHeader | Heading, description, optional action snippet.                                                                       | Semantic HTML          |
 | EmptyState    | Title, description, optional icon and action snippets.                                                               | Semantic HTML          |
@@ -22,7 +22,7 @@ Contracts for the public components. The export list is `src/lib/index.ts`. Bits
 | MobileNav     | Narrow-width navigation.                                                                                             | Native nav and anchors |
 | TopBar        | Search, notification, and favorite triggers, plus an optional account capsule.                                       | Composition            |
 | FloatingNav   | White pill bar. Brand, items, and optional actions. Narrow widths disclose the same links.                           | Semantic nav           |
-| PortalShell   | Responsive layout. Snippets supply branding, navigation, toolbar, and page content.                                  | Composition            |
+| PortalShell   | Responsive layout. Snippets supply branding, navigation, toolbar, and page content. `brandHref` and `brandLabel`.    | Composition            |
 | AuthFrame     | Centered compact or reading panel with required brand link and children snippets.                                    | Semantic HTML          |
 | Checkbox      | Bindable boolean, required label snippet, disabled, required, invalid, and form name.                                | Bits UI Checkbox       |
 | Select        | Visible label, bindable string, options, optional empty placeholder, and native form props.                          | Native select          |

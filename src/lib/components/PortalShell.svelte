@@ -10,6 +10,8 @@
     active,
     collapsed = $bindable(false),
     brand,
+    brandHref = '/',
+    brandLabel,
     summary,
     footer,
     topbar,
@@ -19,6 +21,8 @@
     active: string;
     collapsed?: boolean;
     brand?: Snippet;
+    brandHref?: string;
+    brandLabel?: string;
     summary?: Snippet;
     footer?: Snippet;
     topbar?: Snippet;
@@ -30,7 +34,7 @@
   <a class="p-skip-link" href="#main-content">Skip to content</a>
   <aside class="p-sidebar">
     <div class="p-brand">
-      <a href="/" aria-label="portal-bits home"
+      <a href={brandHref} aria-label={brandLabel ?? (collapsed ? 'Home' : undefined)}
         ><Aperture size={27} />{#if !collapsed}{#if brand}{@render brand()}{:else}<span
               >portal<span class="p-brand-light">bits</span></span
             >{/if}{/if}</a

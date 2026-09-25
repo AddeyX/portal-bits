@@ -10,8 +10,18 @@ Notable changes, newest first.
 - Docs search in a popover. Matching text is bold and accent-colored. The search icon fades out on Home.
 - `/shell` keeps the representative application shell.
 
+### Added
+
+- PortalShell `brandHref` and `brandLabel` set the brand link's destination and name. The link takes its name from the visible brand, or `Home` when collapsed.
+- Tooltip `theme` scopes its portaled content, like Dialog and Popover.
+- `--portal-control-border` and the `--portal-inverse` token set.
+
 ### Fixed
 
+- Docs search shows keyboard focus on its trigger, field, and results.
+- Input, Select, Checkbox, and the off Switch have 3:1 edges. This is a contrast adaptation; dividers keep the source border.
+- Primary buttons and tooltips invert in the dark theme instead of disappearing into the surface.
+- Docs group labels and the sidebar collapse icon meet contrast minimums.
 - On narrow screens, docs navigation opens from a Browse docs control instead of a sticky sidebar that covered the page.
 - Shell spotlight cards scroll in a row until their section fits three readable cards.
 
