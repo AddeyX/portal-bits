@@ -40,42 +40,43 @@
     Layers,
     Component,
   } from '@lucide/svelte';
+  import { galleryAsset, galleryHref } from '../../../demo/paths';
   let { slug }: { slug: string } = $props();
   const stories = [
     {
       id: 'field',
       label: 'A field guide to small ideas',
-      image: '/art/field.svg',
-      href: '/components/article-card',
+      image: galleryAsset('/art/field.svg'),
+      href: galleryHref('/components/article-card'),
     },
     {
       id: 'orbit',
       label: 'Make space for your next project',
-      image: '/art/orbit.svg',
-      href: '/components/article-card',
+      image: galleryAsset('/art/orbit.svg'),
+      href: galleryHref('/components/article-card'),
     },
     {
       id: 'tempo',
       label: 'Find a rhythm that works',
-      image: '/art/tempo.svg',
-      href: '/components/article-card',
+      image: galleryAsset('/art/tempo.svg'),
+      href: galleryHref('/components/article-card'),
     },
   ];
   const features = [
     {
       title: 'Start with a spark',
       description: 'Collect the little ideas worth returning to.',
-      image: '/art/forma.svg',
+      image: galleryAsset('/art/forma.svg'),
     },
     {
       title: 'Room to explore',
       description: 'Give each direction the space it needs to grow.',
-      image: '/art/common.svg',
+      image: galleryAsset('/art/common.svg'),
     },
     {
       title: 'Bring it together',
       description: 'Turn a few good pieces into something you can share.',
-      image: '/art/gather.svg',
+      image: galleryAsset('/art/gather.svg'),
     },
   ];
   let consent = $state(false);
@@ -101,9 +102,9 @@
     dialogOpen = false;
   }
   const nav = [
-    { href: '/shell', label: 'Overview', icon: LayoutGrid },
-    { href: '/foundations', label: 'Foundations', icon: Layers },
-    { href: '/components', label: 'Components', icon: Component, count: '29' },
+    { href: galleryHref('/shell'), label: 'Overview', icon: LayoutGrid },
+    { href: galleryHref('/foundations'), label: 'Foundations', icon: Layers },
+    { href: galleryHref('/components'), label: 'Components', icon: Component, count: '29' },
   ];
 </script>
 
@@ -114,7 +115,9 @@
         >{saved ? 'Changes saved' : 'Save changes'}{#if saved}<Check size={15} />{/if}</Button
       >
       <Button>Secondary</Button>
-      <Button variant="green" href="/foundations">Get started <ArrowUpRight size={15} /></Button>
+      <Button variant="green" href={galleryHref('/foundations')}
+        >Get started <ArrowUpRight size={15} /></Button
+      >
       <Button disabled>Disabled</Button>
       <Button variant="quiet" onclick={() => (saved = !saved)}>Try again</Button>
       <Button variant="quiet" disabled>Unavailable</Button>
@@ -190,18 +193,20 @@
   <div class="doc-preview">
     <div class="demo-field">
       <Checkbox bind:checked={consent}>
-        {#snippet label()}I agree to the <a href="/auth-preview?size=reading">demo terms</a
+        {#snippet label()}I agree to the <a href={galleryHref('/auth-preview?size=reading')}
+            >demo terms</a
           >.{/snippet}
       </Checkbox>
       <Checkbox disabled>
-        {#snippet label()}Disabled choice; <a href="/auth-preview?size=reading">demo terms</a> remain
-          available.{/snippet}
+        {#snippet label()}Disabled choice; <a href={galleryHref('/auth-preview?size=reading')}
+            >demo terms</a
+          > remain available.{/snippet}
       </Checkbox>
       <p aria-live="polite">{consent ? 'Agreed' : 'Not agreed'}</p>
     </div>
   </div>
   <pre>{`<Checkbox bind:checked>
-  {#snippet label()}I agree to the <a href="/terms">terms</a>.{/snippet}
+  {#snippet label()}I agree to the <a href="#terms">terms</a>.{/snippet}
 </Checkbox>`}</pre>
   <p class="api-line">
     Bindable boolean. The label snippet is required. Links inside the label stay usable.
@@ -336,7 +341,7 @@
         title="Orbit Studio"
         category="Creative"
         description="Your next idea starts here."
-        image="/art/orbit.svg"
+        image={galleryAsset('/art/orbit.svg')}
         imageAlt="Orbit geometric poster"
         bind:favorite
       />
@@ -352,8 +357,8 @@
     <div class="doc-narrow">
       <ArticleCard
         title="A field guide to small ideas"
-        href="/components/carousel"
-        image="/art/field.svg"
+        href={galleryHref('/components/carousel')}
+        image={galleryAsset('/art/field.svg')}
         imageAlt="Geometric illustration"
       />
     </div>
@@ -429,7 +434,7 @@
   <div class="doc-preview">
     <RowList aria-label="Example records">
       <Row>
-        <a href="/auth-preview?size=reading">Field notes</a>
+        <a href={galleryHref('/auth-preview?size=reading')}>Field notes</a>
         <Badge>Draft</Badge>
         <Button variant="quiet" onclick={() => (saved = !saved)}>{saved ? 'Saved' : 'Save'}</Button>
       </Row>
@@ -461,7 +466,7 @@
       The shell is the application frame. Open it on its own so the sidebar, toolbar, and mobile
       navigation can use the viewport.
     </p>
-    <Button href="/shell" variant="primary">Open the shell</Button>
+    <Button href={galleryHref('/shell')} variant="primary">Open the shell</Button>
   </div>
   <pre>{`<PortalShell items={navigation} active={pathname} bind:collapsed>
   {#snippet topbar()}
@@ -475,7 +480,7 @@
 {:else if slug === 'sidebar-nav'}
   <div class="doc-preview">
     <div class="chrome-slice">
-      <SidebarNav items={nav} active="/components" />
+      <SidebarNav items={nav} active={galleryHref('/components')} />
     </div>
   </div>
   <pre>{`<SidebarNav items={navigation} active={pathname} />`}</pre>
@@ -486,7 +491,7 @@
       Mobile navigation is fixed to the bottom of the shell below 767px. The shell preview shows it
       when the viewport is narrow.
     </p>
-    <Button href="/shell">Open the shell</Button>
+    <Button href={galleryHref('/shell')}>Open the shell</Button>
   </div>
   <pre>{`<MobileNav items={navigation} active={pathname} />`}</pre>
   <p class="api-line">Same items as the sidebar. The narrow breakpoint is an adaptation.</p>
@@ -513,8 +518,8 @@
       layout.
     </p>
     <div class="demo-row">
-      <Button href="/auth-preview">Compact</Button>
-      <Button href="/auth-preview?size=reading">Reading</Button>
+      <Button href={galleryHref('/auth-preview')}>Compact</Button>
+      <Button href={galleryHref('/auth-preview?size=reading')}>Reading</Button>
     </div>
   </div>
   <pre>{`<AuthFrame brandHref="/" size="compact">
@@ -527,8 +532,8 @@
 {:else if slug === 'floating-nav'}
   <div class="doc-preview">
     <FloatingNav label="Example">
-      {#snippet brand()}<a href="/">Home</a>{/snippet}
-      {#snippet items()}<a href="/components" aria-current="page">Docs</a>{/snippet}
+      {#snippet brand()}<a href={galleryHref('/')}>Home</a>{/snippet}
+      {#snippet items()}<a href={galleryHref('/get-started')} aria-current="page">Docs</a>{/snippet}
       {#snippet actions()}<a href="https://github.com/AddeyX/portal-bits">GitHub</a>{/snippet}
     </FloatingNav>
   </div>

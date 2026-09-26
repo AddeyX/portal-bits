@@ -7,10 +7,11 @@
   import { page } from '$app/state';
   import type { Snippet } from 'svelte';
   import { galleryTitle, isDocsPath } from '../demo/catalog';
+  import { galleryPath } from '../demo/paths';
   import SiteHeader from './SiteHeader.svelte';
   import DocsFrame from './DocsFrame.svelte';
   let { children }: { children: Snippet } = $props();
-  let path = $derived(page.url.pathname);
+  let path = $derived(galleryPath(page.url.pathname));
   let bare = $derived(path === '/auth-preview' || path === '/shell' || path.startsWith('/shell/'));
   let docs = $derived(isDocsPath(path));
   let current = $derived(galleryTitle(path));

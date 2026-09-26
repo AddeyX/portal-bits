@@ -194,12 +194,14 @@ export const componentDocs: ComponentDoc[] = [
 ];
 
 export const guideLinks = [
+  { href: '/get-started', label: 'Get started' },
   { href: '/foundations', label: 'Foundations' },
   { href: '/motion', label: 'Motion' },
 ] as const;
 
 export function isDocsPath(pathname: string) {
   return (
+    pathname === '/get-started' ||
     pathname === '/foundations' ||
     pathname === '/motion' ||
     pathname === '/components' ||
@@ -210,6 +212,7 @@ export function isDocsPath(pathname: string) {
 export function galleryTitle(pathname: string) {
   if (pathname === '/') return 'Home';
   if (pathname === '/shell') return 'Shell';
+  if (pathname === '/get-started') return 'Get started';
   if (pathname === '/foundations') return 'Foundations';
   if (pathname === '/motion') return 'Motion';
   if (pathname === '/auth-preview') return 'Auth preview';

@@ -23,7 +23,7 @@ Developers who consume the Svelte components and inspect their states, APIs, and
 - Bits UI supplies interaction primitives.
 - Visual decisions must be traceable to the DOM analysis.
 - Demo content is neutral and synthetic.
-- The package name is `portal-bits`. It publishes to the public npm registry. Deployment is not chosen.
+- The package name is `portal-bits`. It publishes to the public npm registry. The gallery deploys to GitHub Pages. Font files in the package are a later decision.
 
 ## Evidence on Hand
 

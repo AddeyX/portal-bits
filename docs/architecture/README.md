@@ -20,10 +20,10 @@ Svelte and Bits UI stay peer dependencies. [ADR 0004](../decisions/0004-svelte-a
 
 ## Gallery
 
-`src/routes` owns the gallery pages. `src/gallery.css` owns gallery-only styles. `src/demo` owns demo content. `static/art` owns local demo images.
+`src/routes` owns the gallery pages. `src/gallery.css` owns gallery-only styles. `src/demo` owns demo content. `static/art` owns local demo images. `@sveltejs/adapter-static` prerenders those pages into `build/`.
 
 - `/` is the gallery home. `FloatingNav` places the logo on the left and Home, Docs, and GitHub in the middle. Docs pages add a search icon on the right; it fades out on Home. That search is a gallery adaptation: fuzzysort over component and guide copy, shown in a popover.
-- `/components` lists the components. `/components/[slug]` shows one component, its example, and the props that matter.
+- `/get-started` is the first docs page. It covers install, a first component, styles, and where to go next. `/components` lists the components. `/components/[slug]` shows one component, its example, and the props that matter.
 - `/foundations` and `/motion` share that docs sidebar. At 800px and narrower, the sidebar becomes a Browse docs disclosure that names the current page and scrolls with the page. This is an adaptation.
 - The docs article is 760px at most. Inline padding is 16px, top padding is 32px below 640px and 64px from there up, and bottom padding is 96px. Those values were measured on the Bits UI docs page. Bits UI also reserves a right-hand table of contents; this gallery does not, so the space beside the article is wider. That missing column is an adaptation. While the sidebar sits beside the article, the left inset is shorter by half the sidebar width, which centers the column in the page. At 800px and narrower the sidebar stacks and that shift is absent.
 - `/shell` shows the library inside a representative shell. That shell does not display a package version.
@@ -43,4 +43,4 @@ Account values and network data stay outside the shell. The shell does not call 
 
 ## Outside this shape
 
-Gallery routes and demo content stay out of the package exports. The package publishes to the public npm registry as `portal-bits`. [ADR 0003](../decisions/0003-publish-to-npm.md) records why. This scope does not add a monorepo, a second documentation site, or deployment.
+Gallery routes and demo content stay out of the package exports. The package publishes to the public npm registry as `portal-bits`. [ADR 0003](../decisions/0003-publish-to-npm.md) records why. Pushes to `main` deploy the gallery to GitHub Pages. [ADR 0005](../decisions/0005-deploy-the-gallery-to-github-pages.md) records why. This scope does not add a monorepo or a second documentation site.

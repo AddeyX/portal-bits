@@ -19,3 +19,4 @@ Add a numbered file when a real decision is made.
 - [0002 Publish to GitHub Packages](0002-publish-to-github-packages.md) — superseded
 - [0003 Publish to npm](0003-publish-to-npm.md)
 - [0004 Svelte and Bits UI as peers](0004-svelte-and-bits-ui-as-peers.md)
+- [0005 Deploy the gallery to GitHub Pages](0005-deploy-the-gallery-to-github-pages.md)

@@ -4,6 +4,11 @@ Notable changes, newest first.
 
 ## [Unreleased]
 
+### Added
+
+- The gallery deploys to GitHub Pages on every push to `main`.
+- Docs open on Get started, with install steps, a first component, and where to go next.
+
 ## [0.4.0] - 2026-09-25
 
 ### Added

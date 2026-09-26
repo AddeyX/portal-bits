@@ -8,7 +8,7 @@ Active
 
 ## What it does
 
-Run the gallery to inspect the components, foundations, and motion. Install `portal-bits` from the public npm registry. The install steps are in [docs/guides/install-the-library.md](docs/guides/install-the-library.md).
+Run the gallery to inspect the components, foundations, and motion. Pushes to `main` publish that gallery to GitHub Pages. Install `portal-bits` from the public npm registry. The install steps are in [docs/guides/install-the-library.md](docs/guides/install-the-library.md). The deploy steps are in [docs/guides/deploy-the-gallery.md](docs/guides/deploy-the-gallery.md).
 
 ## Quick start
 
@@ -26,7 +26,7 @@ Vite serves the gallery on `127.0.0.1`.
 - `tests/` holds the Vitest tests.
 - `static/` holds gallery images.
 - `scripts/` holds package checks. The consumer script is not in the repo yet.
-- `.github/` holds issue forms and the pull request template.
+- `.github/` holds issue forms, the pull request template, and the package and gallery workflows.
 
 ## Development
 

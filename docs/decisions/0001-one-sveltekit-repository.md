@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted. The publishing limit is superseded by [ADR 0002](0002-publish-to-github-packages.md). The registry in that decision is superseded by [ADR 0003](0003-publish-to-npm.md).
+Accepted. The publishing limit is superseded by [ADR 0002](0002-publish-to-github-packages.md). The registry in that decision is superseded by [ADR 0003](0003-publish-to-npm.md). The deployment limit is superseded by [ADR 0005](0005-deploy-the-gallery-to-github-pages.md).
 
 ## Context
 

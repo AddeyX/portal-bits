@@ -22,4 +22,4 @@ A consumer installs `portal-bits` from the public registry and still installs `s
 
 Publishing needs an npm account. The maintainer publishes the first version with interactive two-factor authentication, then authorizes `.github/workflows/publish.yml` to run `npm stage publish`. Later releases become public only after `npm stage approve` or an approval on the Staged Packages tab. The maintainer steps are in [the publish guide](../guides/publish-the-package.md).
 
-Deployment and font files stay a later decision.
+Font files in the package stay a later decision. Gallery deployment is decided in [ADR 0005](0005-deploy-the-gallery-to-github-pages.md).

@@ -11,7 +11,7 @@ describe('gallery home', () => {
     ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Explore docs' })).toHaveAttribute(
       'href',
-      '/components',
+      '/get-started',
     );
   });
 });

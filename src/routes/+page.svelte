@@ -2,6 +2,7 @@
   import { ArrowRight } from '@lucide/svelte';
   import { AppCard, Badge, Button, ToggleGroup } from '$lib';
   import { apps } from '../demo/data';
+  import { galleryAsset, galleryHref } from '../demo/paths';
   let view = $state('grid');
   let favorite = $state(false);
   const featured = apps[0];
@@ -15,7 +16,7 @@
       A measured design language, made reusable. Typed Svelte components you can inspect, then take
       with you.
     </p>
-    <Button href="/components" variant="primary" size={48}
+    <Button href={galleryHref('/get-started')} variant="primary" size={48}
       >Explore docs <ArrowRight size={16} /></Button
     >
   </section>
@@ -41,7 +42,7 @@
           title={featured.title}
           category={featured.category}
           description={featured.description}
-          image={featured.image}
+          image={galleryAsset(featured.image)}
           imageAlt={`${featured.title} geometric poster`}
           bind:favorite
         />

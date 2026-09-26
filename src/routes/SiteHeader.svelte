@@ -6,9 +6,10 @@
   import { fade } from 'svelte/transition';
   import { FloatingNav, Input, Popover } from '$lib';
   import { isDocsPath } from '../demo/catalog';
+  import { galleryHref, galleryPath } from '../demo/paths';
   import { searchDocs, type SearchRun } from '../demo/search';
 
-  let path = $derived(page.url.pathname);
+  let path = $derived(galleryPath(page.url.pathname));
   let docs = $derived(isDocsPath(path));
   let home = $derived(path === '/');
   let open = $state(false);
@@ -22,7 +23,7 @@
 
   function follow(href: string) {
     closeSearch();
-    void goto(href);
+    void goto(galleryHref(href));
   }
 
   function followTop(event: KeyboardEvent) {
@@ -51,7 +52,7 @@
     {#snippet brand()}
       <a
         class="site-brand"
-        href="/"
+        href={galleryHref('/')}
         aria-label="portal-bits home"
         aria-current={home ? 'page' : undefined}
       >
@@ -60,8 +61,8 @@
       </a>
     {/snippet}
     {#snippet items()}
-      <a href="/" aria-current={home ? 'page' : undefined}>Home</a>
-      <a href="/components" aria-current={docs ? 'page' : undefined}>Docs</a>
+      <a href={galleryHref('/')} aria-current={home ? 'page' : undefined}>Home</a>
+      <a href={galleryHref('/get-started')} aria-current={docs ? 'page' : undefined}>Docs</a>
       <a href="https://github.com/AddeyX/portal-bits" rel="noreferrer" target="_blank"
         >GitHub<span class="p-sr-only"> (opens in a new tab)</span></a
       >
@@ -92,7 +93,10 @@
                 <ul class="site-search-list" aria-label="Search results">
                   {#each results as hit (hit.href)}
                     <li>
-                      <a href={hit.href} onclick={(event) => followClick(event, hit.href)}>
+                      <a
+                        href={galleryHref(hit.href)}
+                        onclick={(event) => followClick(event, hit.href)}
+                      >
                         <span class="site-search-title">{@render textRuns(hit.titleRuns)}</span>
                         <span class="site-search-meta">{@render textRuns(hit.groupRuns)}</span>
                         <span class="site-search-copy">{@render textRuns(hit.descriptionRuns)}</span

@@ -8,7 +8,7 @@
 - Demo content stays synthetic, with no wallet, chain, or account calls.
 - Public exports are library components, tokens, and styles.
 - Svelte and Bits UI stay peer dependencies.
-- The package publishes to the public npm registry as `portal-bits`. Deployment and font files are a later decision.
+- The package publishes to the public npm registry as `portal-bits`. The gallery deploys to GitHub Pages. Font files in the package are a later decision.
 
 ## Context
 
@@ -25,6 +25,7 @@ Read context based on task. Do not read every project document by default.
 - Motion patterns → `docs/reference/motion.md`
 - Docs rules and map → `docs/README.md`
 - Running the gallery → `docs/guides/run-the-gallery.md`
+- Deploying the gallery → `docs/guides/deploy-the-gallery.md`
 
 ## Completion
 

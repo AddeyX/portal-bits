@@ -13,6 +13,7 @@
     Wind,
   } from '@lucide/svelte';
   import { apps } from '../../demo/data';
+  import { galleryAsset, galleryHref } from '../../demo/paths';
   import {
     SectionHeader,
     Button,
@@ -27,14 +28,15 @@
   } from '$lib';
   let category = $state('all');
   let view = $state('grid');
+  const galleryApps = apps.map((app) => ({ ...app, image: galleryAsset(app.image) }));
   let query = $state('');
   let favorites = $state<Record<string, boolean>>(
     Object.fromEntries(apps.map((app) => [app.id, false])),
   );
-  let selected = $state<(typeof apps)[number] | null>(null);
+  let selected = $state<(typeof galleryApps)[number] | null>(null);
   let detailOpen = $state(false);
   let filtered = $derived(
-    apps.filter(
+    galleryApps.filter(
       (a) =>
         (!category || category === 'all' || a.category === category) &&
         `${a.title} ${a.category}`.toLowerCase().includes(query.toLowerCase()),
@@ -47,7 +49,7 @@
     { value: 'Tools', label: 'Tools' },
     { value: 'Social', label: 'Social' },
   ];
-  function explore(app: (typeof apps)[number]) {
+  function explore(app: (typeof galleryApps)[number]) {
     selected = app;
     detailOpen = true;
   }
@@ -59,7 +61,9 @@
       <h1>Everything feels connected.</h1>
       <p>A measured design language, made reusable.</p>
     </div>
-    <a href="/components" class="intro-link">Explore components <ArrowUpRight size={17} /></a>
+    <a href={galleryHref('/components')} class="intro-link"
+      >Explore components <ArrowUpRight size={17} /></a
+    >
   </header>
   <section class="gallery-surface spotlight-surface">
     <SectionHeader
@@ -70,7 +74,7 @@
         >{/snippet}
     </SectionHeader>
     <div class="spotlight-grid">
-      {#each apps.slice(0, 3) as app (app.id)}
+      {#each galleryApps.slice(0, 3) as app (app.id)}
         <AppCard
           {...app}
           spotlight
@@ -91,7 +95,7 @@
     </div>
   </section>
   <section class="building-row" aria-label="Library sections">
-    <a href="/foundations">
+    <a href={galleryHref('/foundations')}>
       <span class="building-icon mint"><Layers size={21} /></span>
       <div>
         <h2>Foundations</h2>
@@ -99,7 +103,7 @@
       </div>
       <ArrowUpRight size={18} />
     </a>
-    <a href="/components">
+    <a href={galleryHref('/components')}>
       <span class="building-icon lavender"><Component size={21} /></span>
       <div>
         <h2>29 components</h2>
@@ -107,7 +111,7 @@
       </div>
       <ArrowUpRight size={18} />
     </a>
-    <a href="/motion">
+    <a href={galleryHref('/motion')}>
       <span class="building-icon peach"><Wind size={21} /></span>
       <div>
         <h2>Small moments</h2>
@@ -211,7 +215,7 @@
   </section>
   <footer class="gallery-footer">
     <span>Built on Bits UI.</span>
-    <a href="/foundations">See what was measured <ArrowRight size={14} /></a>
+    <a href={galleryHref('/foundations')}>See what was measured <ArrowRight size={14} /></a>
   </footer>
 </div>
 <Dialog

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { accentForeground } from '$lib/internal/color';
   import { page } from '$app/state';
+  import { galleryHref } from '../../demo/paths';
   import type { Snippet } from 'svelte';
   import {
     LayoutGrid,
@@ -68,24 +69,24 @@
     };
   });
   const nav = [
-    { href: '/shell', label: 'Overview', icon: LayoutGrid },
-    { href: '/foundations', label: 'Foundations', icon: Layers },
-    { href: '/components', label: 'Components', icon: Component, count: '29' },
-    { href: '/motion', label: 'Motion', icon: Wind },
+    { href: galleryHref('/shell'), label: 'Overview', icon: LayoutGrid },
+    { href: galleryHref('/foundations'), label: 'Foundations', icon: Layers },
+    { href: galleryHref('/components'), label: 'Components', icon: Component, count: '29' },
+    { href: galleryHref('/motion'), label: 'Motion', icon: Wind },
   ];
   let found = $derived(nav.filter((n) => n.label.toLowerCase().includes(search.toLowerCase())));
   let current = $derived(nav.find((n) => n.href === page.url.pathname)?.label ?? 'Overview');
 </script>
 
 <div class="p-theme" data-portal-theme={theme}>
-  <PortalShell items={nav} active={page.url.pathname}>
+  <PortalShell items={nav} active={page.url.pathname} brandHref={galleryHref('/')}>
     {#snippet summary()}
       <div class="kit-summary">
         <div class="kit-summary-top">
           <span>Your building blocks</span><Component size={20} />
         </div>
         <p>A familiar feel.<br />An open foundation.</p>
-        <Button href="/components" variant="green" size={32}
+        <Button href={galleryHref('/components')} variant="green" size={32}
           >Explore kit <ArrowUpRight size={14} /></Button
         >
       </div>
@@ -166,7 +167,7 @@
             <p class="panel-copy">
               Demo content is fictional. Inter stands in for licensed Roobert.
             </p>
-            <Button href="/foundations" size={32}
+            <Button href={galleryHref('/foundations')} size={32}
               >View foundations <ArrowUpRight size={14} /></Button
             >
           </Popover>

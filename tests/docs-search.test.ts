@@ -10,6 +10,7 @@ describe('searchDocs', () => {
   it('lists guides and components in catalog order when the query is blank', () => {
     const results = searchDocs('  ');
     expect(results.map((hit) => hit.href)).toEqual([
+      '/get-started',
       '/foundations',
       '/motion',
       ...componentDocs.map((item) => `/components/${item.slug}`),

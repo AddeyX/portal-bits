@@ -1,5 +1,6 @@
 <script lang="ts">
   import { componentDocs, componentGroups } from '../../demo/catalog';
+  import { galleryHref } from '../../demo/paths';
 </script>
 
 <article class="doc-article">
@@ -15,7 +16,7 @@
         <ul>
           {#each componentDocs.filter((item) => item.group === group) as item (item.slug)}
             <li>
-              <a href={`/components/${item.slug}`}>
+              <a href={galleryHref(`/components/${item.slug}`)}>
                 <strong>{item.title}</strong>
                 <span>{item.description}</span>
               </a>

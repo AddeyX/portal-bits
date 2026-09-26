@@ -2,16 +2,18 @@
   import { page } from '$app/state';
   import { AuthFrame, SectionHeader, Input, Checkbox, Select, Button, Alert } from '$lib';
   import { Aperture } from '@lucide/svelte';
-  let size: 'compact' | 'reading' = $derived(
-    page.url.searchParams.get('size') === 'reading' ? 'reading' : 'compact',
-  );
+  import { galleryHref } from '../../demo/paths';
+  let size = $state<'compact' | 'reading'>('compact');
+  $effect(() => {
+    size = page.url.searchParams.get('size') === 'reading' ? 'reading' : 'compact';
+  });
   let title = $state('');
   let category = $state('');
   let agreed = $state(false);
   let error = $state('');
 </script>
 
-<AuthFrame {size} brandHref="/components">
+<AuthFrame {size} brandHref={galleryHref('/components')}>
   {#snippet brand()}<Aperture size={27} /><span>Example Studio</span>{/snippet}
   {#if size === 'reading'}
     <SectionHeader
@@ -26,7 +28,7 @@
       The brand above returns to the component gallery. This preview uses Inter as its font
       fallback.
     </p>
-    <a href="/auth-preview">Back to the form</a>
+    <a href={galleryHref('/auth-preview')}>Back to the form</a>
   {:else}
     <SectionHeader
       title="Create a draft"
@@ -51,7 +53,8 @@
         ]}
       />
       <Checkbox bind:checked={agreed} required name="terms">
-        {#snippet label()}I agree to the <a href="/auth-preview?size=reading">demo terms</a
+        {#snippet label()}I agree to the <a href={galleryHref('/auth-preview?size=reading')}
+            >demo terms</a
           >.{/snippet}
       </Checkbox>
       {#if error}<Alert message={error} />{/if}

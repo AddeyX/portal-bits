@@ -43,7 +43,7 @@
   "devDependencies": {
     "@fontsource/inter": "latest",
     "@internationalized/date": "^3.8.1",
-    "@sveltejs/adapter-auto": "latest",
+    "@sveltejs/adapter-static": "^3.0.10",
     "@sveltejs/kit": "2.70.3",
     "@sveltejs/package": "latest",
     "@sveltejs/vite-plugin-svelte": "latest",

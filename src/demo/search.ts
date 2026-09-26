@@ -25,6 +25,12 @@ type Entry = {
 
 const entries: Entry[] = [
   {
+    href: '/get-started',
+    title: 'Get started',
+    description: 'Install the library, load its styles, and render a component.',
+    group: 'Guides',
+  },
+  {
     href: '/foundations',
     title: 'Foundations',
     description: 'The small decisions that hold the library together.',
