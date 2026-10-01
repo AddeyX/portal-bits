@@ -23,4 +23,6 @@
 | [glossary.md](glossary.md)         | Canonical vocabulary                                  |
 | [principles.md](principles.md)     | Product guardrails                                    |
 | [dom-analysis.md](dom-analysis.md) | Measured values, reached from [reference](reference/) |
-| [superpowers/](superpowers/)       | Planning record for the 2026-09-23 design             |
+| [superpowers/](superpowers/)       | Design records and implementation plans               |
+
+The [docs website implementation plan](superpowers/plans/2026-10-01-docs-website.md) maps the twelve reviewed documentation gaps to twelve commits, with acceptance checks and verification for each.
