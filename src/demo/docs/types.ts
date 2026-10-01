@@ -4,3 +4,14 @@ export type SourceFile = {
   code: string;
   highlightedHtml?: string;
 };
+
+export type PreviewSettings = Record<string, string | number | boolean>;
+
+export type PreviewControl =
+  | { key: string; label: string; kind: 'boolean' }
+  | {
+      key: string;
+      label: string;
+      kind: 'choice';
+      options: { label: string; value: string | number }[];
+    };

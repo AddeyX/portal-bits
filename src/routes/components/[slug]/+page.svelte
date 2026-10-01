@@ -6,5 +6,7 @@
 <article class="doc-article">
   <h1>{data.entry.title}</h1>
   <p class="doc-lede">{data.entry.description}</p>
-  <Preview slug={data.entry.slug} />
+  {#key data.entry.slug}
+    <Preview slug={data.entry.slug} />
+  {/key}
 </article>

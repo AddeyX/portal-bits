@@ -1090,6 +1090,124 @@ pre {
     padding: 16px;
   }
 }
+.demo-stack {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+.demo-status {
+  margin: 0;
+  color: var(--portal-muted);
+  font-size: 13px;
+  line-height: 20px;
+}
+.demo-error {
+  color: var(--portal-error);
+}
+.doc-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 16px 24px;
+  margin: 0;
+  padding: 20px 0 0;
+  border: 0;
+  border-top: 1px solid var(--portal-border);
+  min-width: 0;
+}
+.doc-controls legend {
+  float: left;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--portal-muted);
+}
+.doc-control {
+  display: grid;
+  gap: 6px;
+  max-width: 240px;
+  font-size: 13px;
+  line-height: 20px;
+}
+.doc-control--switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  align-self: flex-end;
+}
+.doc-control select {
+  height: 36px;
+  min-width: 140px;
+  padding: 0 12px;
+  border: 1px solid var(--portal-control-border);
+  border-radius: 10px;
+  background: var(--portal-surface);
+  color: var(--portal-ink);
+  font: inherit;
+}
+.doc-control select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.doc-control select:focus-visible {
+  outline: 2px solid var(--portal-ink);
+  outline-offset: 2px;
+}
+.doc-control-reason {
+  margin: 0;
+  color: var(--portal-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+.doc-more {
+  margin-top: 16px;
+  border: 1px solid var(--portal-border);
+  border-radius: 16px;
+  background: var(--portal-surface);
+}
+.doc-more > summary {
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 16px;
+}
+.doc-more > summary:focus-visible {
+  outline: 2px solid var(--portal-ink);
+  outline-offset: 2px;
+}
+.doc-example {
+  padding: 4px 20px 20px;
+}
+.doc-example + .doc-example {
+  border-top: 1px solid var(--portal-border);
+  padding-top: 20px;
+}
+.doc-example h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.doc-example .panel-copy {
+  margin: 0;
+}
+.doc-example-stage {
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--portal-canvas);
+}
+.doc-example-stage[data-layout='wide'] {
+  place-items: stretch;
+}
 .doc-index section + section {
   margin-top: 28px;
 }
