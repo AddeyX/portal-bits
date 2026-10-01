@@ -211,82 +211,9 @@
     </details>
   {/if}
 
-  <ExampleSource {files} />
-
-  <p class="api-line">
-    {#if slug === 'button'}
-      <code>variant</code> primary | secondary | green | quiet · <code>size</code> 32 | 40 | 48 · Native
-      button and link props are forwarded. Quiet stays inline; size does not apply.
-    {:else if slug === 'icon-button'}
-      An accessible name is required. Size and variant follow Button where they apply. Quiet is
-      inline text, so it is not offered here.
-    {:else if slug === 'input'}
-      Required <code>label</code>, visible unless <code>hideLabel</code> · Bindable
-      <code>value</code> · <code>invalid</code> · Optional icon snippet · Native input props.
-    {:else if slug === 'select'}
-      Visible <code>label</code>, bindable string <code>value</code>, and <code>options</code>.
-      Styling is an adaptation of Input.
-    {:else if slug === 'checkbox'}
-      Bindable boolean. The label snippet is required. Links inside the label stay usable, even when
-      the checkbox is disabled.
-    {:else if slug === 'toggle'}
-      Bindable <code>pressed</code> state and a required accessible name.
-    {:else if slug === 'toggle-group'}
-      Single selection supports deselection. Arrow keys move focus. Space selects. Compact shows
-      only icons, so give each item an icon; its label stays the accessible name.
-    {:else if slug === 'switch'}
-      Bindable <code>checked</code> state, a label, and disabled.
-    {:else if slug === 'avatar'}
-      Required <code>alt</code>. Missing or failed media uses the fallback.
-    {:else if slug === 'badge'}
-      Variants: neutral, spotlight, success. The badge is not a control.
-    {:else if slug === 'dialog'}
-      Bindable <code>open</code>, a title, and trigger plus children snippets.
-    {:else if slug === 'popover'}
-      Bindable <code>open</code>, trigger and children snippets, plus side, align, and offset.
-    {:else if slug === 'tooltip'}
-      Required text and a children snippet. The trigger is keyboard accessible.
-    {:else if slug === 'app-card'}
-      Image fallback, optional action snippet or link, favorite binding, and a spotlight variant.
-      Spotlight replaces the category badge and hides the description.
-    {:else if slug === 'article-card'}
-      One native link. Missing media keeps the title and uses a placeholder.
-    {:else if slug === 'feature-card'}
-      Media, heading, and description. The card itself is not a control.
-    {:else if slug === 'carousel'}
-      Focus the viewport to use arrow keys, Home, or End. Navigation is immediate, including with
-      reduced motion. Responsive layout is an adaptation.
-    {:else if slug === 'section-header'}
-      Heading, optional description, and an optional action snippet.
-    {:else if slug === 'empty-state'}
-      Title, description, and optional icon and action snippets.
-    {:else if slug === 'alert'}
-      A message string or short inline children. Mount it when the action fails.
-    {:else if slug === 'row-list'}
-      An unordered list. Sorting and pagination stay with the consumer. This layout is an
-      adaptation.
-    {:else if slug === 'row'}
-      Place Row inside RowList. Cells wrap, and the hairline stays under the whole row.
-    {:else if slug === 'portal-shell'}
-      Snippets: brand, summary, footer, topbar, children. The consumer supplies the active URL. The
-      source shows the whole shell; the gallery links to it because it needs the full viewport.
-    {:else if slug === 'sidebar-nav'}
-      <code>NavItem</code>: href, label, optional icon, optional count.
-    {:else if slug === 'mobile-nav'}
-      Same items as the sidebar. The narrow breakpoint is an adaptation.
-    {:else if slug === 'top-bar'}
-      Optional breadcrumb and an actions snippet for search, notices, and account controls.
-    {:else if slug === 'auth-frame'}
-      Required brand link and children. <code>size</code> is compact or reading. Both are adaptations.
-    {:else if slug === 'floating-nav'}
-      Required <code>label</code>, <code>brand</code>, and <code>items</code> snippets. Optional
-      <code>actions</code>. Below 640px of component width, Menu opens the same links in a panel.
-      That threshold, the selected-link fill, Escape, and outside dismissal are adaptations.
-    {:else if slug === 'color-selector'}
-      Five presets, a gradient, and hex input. Preset dimensions are an adaptation. Reduced motion
-      still reaches the chosen color.
-    {/if}
-  </p>
+  <div id="usage">
+    <ExampleSource {files} />
+  </div>
 {:else}
   <p class="panel-copy">This component does not have a preview yet.</p>
 {/if}

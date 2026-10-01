@@ -11,6 +11,7 @@ Notable changes, newest first.
 - Component previews and the Get started specimen sit in a shared stage. Small specimens are centered. Carousel, SectionHeader, RowList, Row, TopBar, and FloatingNav use the wide stage.
 - Get started lists the supported Svelte and Bits UI ranges, a package-manager command, and separate layout and page examples. Each example can be copied. A blocked clipboard keeps the source selectable and says that the copy failed.
 - The gallery deploys to GitHub Pages on every push to `main`.
+- Every component page ends with an API reference: props and snippets in tables with type, default, required, and binding, then forwarded attributes, limits, and related components. A test compares each reference with the component declarations. Tables scroll inside a labeled region at narrow widths.
 - Docs open on Get started, with install steps, a first component, and where to go next.
 
 ## [0.4.0] - 2026-09-25

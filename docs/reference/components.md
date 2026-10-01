@@ -2,33 +2,41 @@
 
 Contracts for the public components. The export list is `src/lib/index.ts`. Bits UI is the foundation only where a component needs its behavior. Static display components stay semantic HTML.
 
-| Export        | Contract                                                                                                             | Foundation             |
-| ------------- | -------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| Button        | `variant`: primary, secondary, green, or quiet. `size`: 32, 40, or 48. Disabled. Native button props. Child snippet. | Bits UI Button         |
-| IconButton    | An accessible name is required. Size and variant follow Button where they apply.                                     | Button                 |
-| Badge         | Noninteractive label. Neutral, spotlight, and status variants only where evidenced.                                  | Semantic HTML          |
-| Avatar        | Image source, alt text, deterministic fallback, size. `decorative` hides it when nearby text names the same thing.   | Bits UI Avatar         |
-| Input         | Visible label; `hideLabel` keeps it for assistive tech only. Native input props, stable id, invalid, disabled.       | Native input           |
-| Toggle        | Bindable pressed state, disabled, accessible name.                                                                   | Bits UI Toggle         |
-| ToggleGroup   | Single selection, bindable value, named items, keyboard navigation.                                                  | Bits UI ToggleGroup    |
-| Switch        | Bindable checked state, label, disabled.                                                                             | Bits UI Switch         |
-| Dialog        | Bindable open state, title, optional description, trigger and content snippets.                                      | Bits UI Dialog         |
-| Popover       | Bindable open state, trigger and content snippets, positioning props.                                                | Bits UI Popover        |
-| Tooltip       | Text or content, trigger snippet, keyboard-accessible trigger, `theme` for the portaled content.                     | Bits UI Tooltip        |
-| AppCard       | Title, category, description, image and alt, optional action. Favorite is an independent control.                    | Composition            |
-| SectionHeader | Heading, description, optional action snippet.                                                                       | Semantic HTML          |
-| EmptyState    | Title, description, optional icon and action snippets.                                                               | Semantic HTML          |
-| SidebarNav    | Items with href, label, icon snippet, and active indication.                                                         | Native nav and anchors |
-| MobileNav     | Narrow-width navigation.                                                                                             | Native nav and anchors |
-| TopBar        | Search, notification, and favorite triggers, plus an optional account capsule.                                       | Composition            |
-| FloatingNav   | White pill bar. Brand, items, and optional actions. Narrow widths disclose the same links.                           | Semantic nav           |
-| PortalShell   | Responsive layout. Snippets supply branding, navigation, toolbar, and page content. `brandHref` and `brandLabel`.    | Composition            |
-| AuthFrame     | Centered compact or reading panel with required brand link and children snippets.                                    | Semantic HTML          |
-| Checkbox      | Bindable boolean, required label snippet, disabled, required, invalid, and form name.                                | Bits UI Checkbox       |
-| Select        | Visible label, bindable string, options, optional empty placeholder, and native form props.                          | Native select          |
-| Alert         | Message string or inline children snippet, announced in a paragraph.                                                 | Semantic HTML          |
-| RowList       | Unordered list of consumer-supplied rows.                                                                            | Semantic HTML          |
-| Row           | Wrapping list item with consumer-supplied cells and a bottom hairline.                                               | Semantic HTML          |
+The gallery lists every prop, default, binding, snippet, forwarded attribute, and limit at `/components/<slug>#api-reference`. That reference comes from the component declarations and a test compares them. This page keeps the summary and the rules that cross components. A default shown here is the value in the declaration.
+
+| Export        | Contract                                                                                                                                  | Foundation             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| Button        | `variant`: primary, secondary (default), green, or quiet. `size`: 32, 40 (default), or 48. Native props. Children snippet.                | Bits UI Button         |
+| IconButton    | `label` is the required accessible name. Every Button prop is accepted.                                                                   | Button                 |
+| Badge         | Noninteractive `span`. `variant`: neutral (default), spotlight, or success.                                                               | Semantic HTML          |
+| Avatar        | `src`, required `alt`, `fallback`, `size` (40). `decorative` hides it when nearby text names the same thing. No attributes are forwarded. | Bits UI Avatar         |
+| Input         | Required `label`; `hideLabel` keeps it for assistive tech only. Bindable `value`, `invalid`, `icon` snippet, native input props.          | Native input           |
+| Toggle        | Required `label`, bindable `pressed`. Other Bits UI Toggle props are forwarded.                                                           | Bits UI Toggle         |
+| ToggleGroup   | Required `label` and `items`, bindable `value` for one selected item, `disabled`, `compact`.                                              | Bits UI ToggleGroup    |
+| Switch        | Required `label`, bindable `checked`. Other Bits UI Switch props are forwarded.                                                           | Bits UI Switch         |
+| Dialog        | Bindable `open`, required `title`, `description`, `trigger` and `children` snippets, `triggerLabel`, `triggerClass`, `theme`.             | Bits UI Dialog         |
+| Popover       | Bindable `open`, required `label` and `trigger` snippet, `children`, `align`, `side`, `sideOffset`, `theme`, `triggerClass`.              | Bits UI Popover        |
+| Tooltip       | Required `text`, which also names the trigger. `children` is the icon inside a fixed icon-button trigger. `theme` scopes the content.     | Bits UI Tooltip        |
+| AppCard       | Title, category, description, image and alt, bindable `favorite`, `spotlight`, `href`, `action` and `children` snippets.                  | Composition            |
+| ArticleCard   | `title`, `href`, `image`, `imageAlt`, `actionLabel` (Read), `headingLevel` (3). One native link.                                          | Composition            |
+| FeatureCard   | `title`, `description`, `image`, `imageAlt`, `headingLevel` (3). Not a control.                                                           | Semantic HTML          |
+| Carousel      | `label`, `items` with unique `id` and `label`, a required `item` snippet, and `layout` (responsive).                                      | Semantic HTML          |
+| ColorSelector | Bindable hex `value` (`#19e783`) and `open`, `label`, `theme`, `onValueChange`.                                                           | Popover                |
+| SectionHeader | Required `title`, `description`, optional `action` snippet. The heading is an `h2`.                                                       | Semantic HTML          |
+| EmptyState    | Required `title`, `description`, optional `icon` and `action` snippets. The heading is an `h3`.                                           | Semantic HTML          |
+| SidebarNav    | `items` of `NavItem`, `active` href, and `collapsed`. The icon is a component, not a snippet.                                             | Native nav and anchors |
+| MobileNav     | `items` and `active`. It shows the icon and label, not `count`.                                                                           | Native nav and anchors |
+| TopBar        | `breadcrumb` and an `actions` snippet. It owns no account or notification state.                                                          | Semantic HTML          |
+| FloatingNav   | White pill bar. Required `label`, `brand`, and `items`; optional `actions` and bindable `open`. Narrow widths disclose the same links.    | Semantic nav           |
+| PortalShell   | `items`, `active`, bindable `collapsed`, `brandHref`, `brandLabel`, and `brand`, `summary`, `footer`, `topbar`, `children` snippets.      | Composition            |
+| AuthFrame     | Centered compact or reading panel with required `brandHref`, `brand`, and `children`.                                                     | Semantic HTML          |
+| Checkbox      | Bindable boolean, required `label` snippet, disabled, required, invalid, and form name.                                                   | Bits UI Checkbox       |
+| Select        | Visible label, bindable string, options, optional empty placeholder, and native form props.                                               | Native select          |
+| Alert         | Message string or inline children snippet, announced in a paragraph.                                                                      | Semantic HTML          |
+| RowList       | Unordered list of consumer-supplied rows.                                                                                                 | Semantic HTML          |
+| Row           | Wrapping list item with consumer-supplied cells and a bottom hairline.                                                                    | Semantic HTML          |
+
+Components that wrap a Bits UI primitive forward the props their gallery reference names. Bits UI options the reference does not name are not part of the wrapper contract, even when the primitive supports them. Dialog and Popover wrap only the root `open` state. Public data attributes are not documented; do not depend on them or on internal `p-` classes.
 
 `NavItem` is the public navigation-item type: `href`, `label`, optional `icon`, optional `count`.
 
