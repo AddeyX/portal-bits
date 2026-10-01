@@ -2,7 +2,6 @@ export type SourceFile = {
   name: string;
   language: 'svelte' | 'typescript' | 'css' | 'bash';
   code: string;
-  highlightedHtml?: string;
 };
 
 export type PreviewSettings = Record<string, string | number | boolean>;

@@ -18,6 +18,11 @@ afterEach(() => {
   restoreClipboard();
 });
 
+/** The install command's code element, whose text stays whole when it is highlighted. */
+function terminal(container: HTMLElement) {
+  return container.querySelector('.doc-code code')!;
+}
+
 const file = {
   name: 'Terminal',
   language: 'bash' as const,
@@ -43,24 +48,26 @@ describe('CodeBlock', () => {
       configurable: true,
       value: { writeText },
     });
-    render(CodeBlock, { file });
+    const { container } = render(CodeBlock, { file });
     await fireEvent.click(screen.getByRole('button', { name: 'Copy Terminal' }));
     expect(await screen.findByRole('status')).toHaveTextContent(
       'Copy failed. Select and copy the code.',
     );
-    const source = screen.getByText(file.code);
+    const source = container.querySelector('code')!;
+    expect(source).toHaveTextContent(file.code);
     expect(source).toBeVisible();
     expect(getComputedStyle(source).userSelect).not.toBe('none');
   });
 
   it('announces failure when the clipboard is missing', async () => {
     Reflect.deleteProperty(navigator, 'clipboard');
-    render(CodeBlock, { file });
+    const { container } = render(CodeBlock, { file });
     await fireEvent.click(screen.getByRole('button', { name: 'Copy Terminal' }));
     expect(await screen.findByRole('status')).toHaveTextContent(
       'Copy failed. Select and copy the code.',
     );
-    expect(screen.getByText(file.code)).toBeVisible();
+    expect(container.querySelector('code')).toHaveTextContent(file.code);
+    expect(container.querySelector('code')).toBeVisible();
   });
 });
 
@@ -84,7 +91,7 @@ describe('Get started', () => {
       configurable: true,
       value: { writeText },
     });
-    render(GetStarted);
+    const { container } = render(GetStarted);
     expect(document.getElementById('installation')).toHaveTextContent('Installation');
     expect(document.getElementById('basic-usage')).toHaveTextContent('Basic usage');
     expect(document.getElementById('styles')).toHaveTextContent('Styles');
@@ -95,7 +102,8 @@ describe('Get started', () => {
     const select = screen.getByRole('combobox', { name: 'Package manager' });
     for (const [value, command] of Object.entries(installCommands)) {
       await fireEvent.change(select, { target: { value } });
-      expect(screen.getByText(command)).toBeVisible();
+      expect(terminal(container)).toHaveTextContent(command);
+      expect(terminal(container)).toBeVisible();
       await fireEvent.click(screen.getByRole('button', { name: 'Copy Terminal' }));
       expect(writeText).toHaveBeenLastCalledWith(command);
     }
@@ -103,8 +111,9 @@ describe('Get started', () => {
 
   it('keeps the install command selectable when the clipboard is missing', async () => {
     Reflect.deleteProperty(navigator, 'clipboard');
-    render(GetStarted);
-    expect(screen.getByText(installCommands.npm)).toBeVisible();
+    const { container } = render(GetStarted);
+    expect(terminal(container)).toHaveTextContent(installCommands.npm);
+    expect(terminal(container)).toBeVisible();
     await fireEvent.click(screen.getByRole('button', { name: 'Copy Terminal' }));
     expect(await screen.findByRole('status')).toHaveTextContent(
       'Copy failed. Select and copy the code.',

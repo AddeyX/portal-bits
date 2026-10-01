@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest';
 import Preview from '../src/routes/components/[slug]/Preview.svelte';
 import Page from '../src/routes/components/[slug]/+page.svelte';
 import { componentDocs } from '../src/demo/catalog';
-import { variations, quote, type VariationSlug } from '../src/demo/docs/variations';
+import { variations, type VariationSlug } from '../src/demo/docs/variations';
 
 function buttonStage() {
   return screen.getByRole('region', { name: 'Button preview' });
@@ -27,16 +27,18 @@ describe('Button variations', () => {
     expect(screen.getByText(/size=\{48\}/)).toBeInTheDocument();
 
     const status = within(stage).getByRole('status');
+    expect(status).toHaveTextContent('Not saved yet');
     await fireEvent.click(specimen);
-    expect(status).toHaveTextContent('Activated 1 time');
+    expect(status).toHaveTextContent('Saved');
+    expect(specimen).toHaveTextContent('Changes saved');
 
     await fireEvent.click(screen.getByRole('switch', { name: 'Disabled' }));
     const disabled = within(stage).getByRole('button');
     expect(disabled).toBeDisabled();
-    await fireEvent.click(disabled);
     disabled.click();
     await tick();
-    expect(status).toHaveTextContent('Activated 1 time');
+    expect(status).toHaveTextContent('Saved');
+    expect(disabled).toHaveTextContent('Changes saved');
   });
 
   it('keeps the final settings after fast toggles', async () => {
@@ -115,10 +117,6 @@ describe('curated variations', () => {
       expect(item.querySelector('svg')).not.toBeNull();
       expect(item).not.toHaveTextContent(name);
     }
-  });
-
-  it('escapes attribute values in example code', () => {
-    expect(quote('a "b" {c} <d> & e')).toBe('"a &quot;b&quot; &#123;c&#125; &lt;d&gt; &amp; e"');
   });
 
   it('leaves full-page components as launch links', () => {

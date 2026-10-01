@@ -6,3 +6,4 @@ build/
 .impeccable/review/
 .agents/skills/github-bootstrap/
 temp/
+src/demo/docs/generated/

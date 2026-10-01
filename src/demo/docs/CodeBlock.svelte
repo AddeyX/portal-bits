@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { highlightSegments } from './highlight';
   import type { SourceFile } from './types';
 
   let { file, collapsible = false }: { file: SourceFile; collapsible?: boolean } = $props();
@@ -47,17 +48,25 @@
     }
   }
 
+  const codeId = $props.id();
   const fileKey = $derived(`${file.language}:${file.name}:${file.code}`);
 </script>
 
 {#key fileKey}
   {@const model = new CopyModel(file)}
+  <!-- Build-time segments for exactly this source. They render as text, never as markup. -->
+  {@const segments = highlightSegments(file.code, file.language)}
   <div class="doc-code" {@attach () => () => model.destroy()}>
     <div class="doc-code-toolbar">
       <p class="doc-code-name">{file.name}</p>
       <div class="doc-code-actions">
         {#if collapsible}
-          <button type="button" onclick={() => (model.expanded = !model.expanded)}>
+          <button
+            type="button"
+            aria-expanded={model.expanded}
+            aria-controls={codeId}
+            onclick={() => (model.expanded = !model.expanded)}
+          >
             {model.expanded ? 'Collapse' : 'Expand'}
             {file.name}
           </button>
@@ -67,7 +76,11 @@
         </button>
       </div>
     </div>
-    <pre class:doc-code-collapsed={collapsible && !model.expanded}><code>{file.code}</code></pre>
+    <pre id={codeId} class:doc-code-collapsed={collapsible && !model.expanded}><code
+        >{#if segments}{#each segments as segment, index (index)}<span style={segment.style}
+              >{segment.text}</span
+            >{/each}{:else}{file.code}{/if}</code
+      ></pre>
     {#if model.status}
       <p class="doc-code-status" role="status" aria-live="polite">{model.status}</p>
     {/if}
@@ -109,6 +122,8 @@
 
   .doc-code pre {
     max-width: 100%;
+    overflow: auto;
+    tab-size: 2;
   }
 
   .doc-code code {
