@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Button } from '$lib';
   import CodeBlock from '../../demo/docs/CodeBlock.svelte';
+  import PreviewStage from '../../demo/docs/PreviewStage.svelte';
   import { installCommands, packageFacts } from '../../demo/docs/install';
   import { layoutSample, pageSample } from '../../demo/get-started-sample';
   import { galleryHref } from '../../demo/paths';
@@ -59,7 +60,9 @@
   <h2 id="basic-usage">Basic usage</h2>
   <p>Import a component in a page and render it. Load the styles from the layout.</p>
   <div class="doc-preview">
-    <Button variant="primary">Save changes</Button>
+    <PreviewStage label="Button preview">
+      <Button variant="primary">Save changes</Button>
+    </PreviewStage>
   </div>
   <CodeBlock file={pageFile} />
   <h2 id="styles">Styles</h2>

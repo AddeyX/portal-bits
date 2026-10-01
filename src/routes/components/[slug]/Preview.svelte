@@ -40,6 +40,7 @@
     Layers,
     Component,
   } from '@lucide/svelte';
+  import PreviewStage from '../../../demo/docs/PreviewStage.svelte';
   import { galleryAsset, galleryHref } from '../../../demo/paths';
   let { slug }: { slug: string } = $props();
   const stories = [
@@ -110,23 +111,25 @@
 
 {#if slug === 'button'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <Button variant="primary" onclick={() => (saved = !saved)}
-        >{saved ? 'Changes saved' : 'Save changes'}{#if saved}<Check size={15} />{/if}</Button
-      >
-      <Button>Secondary</Button>
-      <Button variant="green" href={galleryHref('/foundations')}
-        >Get started <ArrowUpRight size={15} /></Button
-      >
-      <Button disabled>Disabled</Button>
-      <Button variant="quiet" onclick={() => (saved = !saved)}>Try again</Button>
-      <Button variant="quiet" disabled>Unavailable</Button>
-    </div>
-    <div class="demo-row">
-      <Button size={32}>Small</Button>
-      <Button size={40}>Default</Button>
-      <Button size={48}>Large</Button>
-    </div>
+    <PreviewStage label="Button preview">
+      <div class="demo-row">
+        <Button variant="primary" onclick={() => (saved = !saved)}
+          >{saved ? 'Changes saved' : 'Save changes'}{#if saved}<Check size={15} />{/if}</Button
+        >
+        <Button>Secondary</Button>
+        <Button variant="green" href={galleryHref('/foundations')}
+          >Get started <ArrowUpRight size={15} /></Button
+        >
+        <Button disabled>Disabled</Button>
+        <Button variant="quiet" onclick={() => (saved = !saved)}>Try again</Button>
+        <Button variant="quiet" disabled>Unavailable</Button>
+      </div>
+      <div class="demo-row">
+        <Button size={32}>Small</Button>
+        <Button size={40}>Default</Button>
+        <Button size={48}>Large</Button>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Button variant="primary" onclick={save}>
   Save changes
@@ -137,11 +140,14 @@
   </p>
 {:else if slug === 'icon-button'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <IconButton label="Add item" onclick={() => (saved = !saved)}><Plus size={18} /></IconButton>
-      <IconButton label="Add item, small" size={32}><Plus size={16} /></IconButton>
-      <span>{saved ? 'Added' : 'Ready'}</span>
-    </div>
+    <PreviewStage label="IconButton preview">
+      <div class="demo-row">
+        <IconButton label="Add item" onclick={() => (saved = !saved)}><Plus size={18} /></IconButton
+        >
+        <IconButton label="Add item, small" size={32}><Plus size={16} /></IconButton>
+        <span>{saved ? 'Added' : 'Ready'}</span>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<IconButton label="Add item"><Plus /></IconButton>`}</pre>
   <p class="api-line">
@@ -149,17 +155,19 @@
   </p>
 {:else if slug === 'input'}
   <div class="doc-preview">
-    <div class="demo-field">
-      <Input label="Search components" placeholder="Button, Dialog…" bind:value>
-        {#snippet icon()}<Search size={16} />{/snippet}
-      </Input>
-      <p aria-live="polite">
-        {value ? `Searching for “${value}”` : 'Type to try the bound value.'}
-      </p>
-      <Input label="Email" value="not-an-email" invalid aria-describedby="email-error" />
-      <p id="email-error">Enter an email address, such as alex@example.com.</p>
-      <Input label="Workspace" value="Demo workspace" disabled />
-    </div>
+    <PreviewStage label="Input preview">
+      <div class="demo-field">
+        <Input label="Search components" placeholder="Button, Dialog…" bind:value>
+          {#snippet icon()}<Search size={16} />{/snippet}
+        </Input>
+        <p aria-live="polite">
+          {value ? `Searching for “${value}”` : 'Type to try the bound value.'}
+        </p>
+        <Input label="Email" value="not-an-email" invalid aria-describedby="email-error" />
+        <p id="email-error">Enter an email address, such as alex@example.com.</p>
+        <Input label="Workspace" value="Demo workspace" disabled />
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Input label="Email" type="email" bind:value />
 <Input label="Search apps" hideLabel bind:value placeholder="Search…" />`}</pre>
@@ -170,19 +178,21 @@
   </p>
 {:else if slug === 'select'}
   <div class="doc-preview">
-    <div class="demo-field">
-      <Select
-        label="Record category"
-        bind:value={category}
-        placeholder="Choose a category"
-        options={[
-          { value: 'notes', label: 'Notes' },
-          { value: 'drafts', label: 'Drafts' },
-          { value: 'archived', label: 'Archived', disabled: true },
-        ]}
-      />
-      <p aria-live="polite">{category || 'No category'}</p>
-    </div>
+    <PreviewStage label="Select preview">
+      <div class="demo-field">
+        <Select
+          label="Record category"
+          bind:value={category}
+          placeholder="Choose a category"
+          options={[
+            { value: 'notes', label: 'Notes' },
+            { value: 'drafts', label: 'Drafts' },
+            { value: 'archived', label: 'Archived', disabled: true },
+          ]}
+        />
+        <p aria-live="polite">{category || 'No category'}</p>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Select label="Category" bind:value placeholder="Choose a category" options={options} />`}</pre>
   <p class="api-line">
@@ -191,19 +201,21 @@
   </p>
 {:else if slug === 'checkbox'}
   <div class="doc-preview">
-    <div class="demo-field">
-      <Checkbox bind:checked={consent}>
-        {#snippet label()}I agree to the <a href={galleryHref('/auth-preview?size=reading')}
-            >demo terms</a
-          >.{/snippet}
-      </Checkbox>
-      <Checkbox disabled>
-        {#snippet label()}Disabled choice; <a href={galleryHref('/auth-preview?size=reading')}
-            >demo terms</a
-          > remain available.{/snippet}
-      </Checkbox>
-      <p aria-live="polite">{consent ? 'Agreed' : 'Not agreed'}</p>
-    </div>
+    <PreviewStage label="Checkbox preview">
+      <div class="demo-field">
+        <Checkbox bind:checked={consent}>
+          {#snippet label()}I agree to the <a href={galleryHref('/auth-preview?size=reading')}
+              >demo terms</a
+            >.{/snippet}
+        </Checkbox>
+        <Checkbox disabled>
+          {#snippet label()}Disabled choice; <a href={galleryHref('/auth-preview?size=reading')}
+              >demo terms</a
+            > remain available.{/snippet}
+        </Checkbox>
+        <p aria-live="polite">{consent ? 'Agreed' : 'Not agreed'}</p>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Checkbox bind:checked>
   {#snippet label()}I agree to the <a href="#terms">terms</a>.{/snippet}
@@ -213,27 +225,31 @@
   </p>
 {:else if slug === 'toggle'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <Toggle label="Favorite example" bind:pressed>
-        <Heart size={17} fill={pressed ? 'currentColor' : 'none'} />
-      </Toggle>
-      <span>{pressed ? 'Added to favorites' : 'Save a favorite'}</span>
-    </div>
+    <PreviewStage label="Toggle preview">
+      <div class="demo-row">
+        <Toggle label="Favorite example" bind:pressed>
+          <Heart size={17} fill={pressed ? 'currentColor' : 'none'} />
+        </Toggle>
+        <span>{pressed ? 'Added to favorites' : 'Save a favorite'}</span>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Toggle label="Favorite" bind:pressed><Heart /></Toggle>`}</pre>
   <p class="api-line">Bindable <code>pressed</code> state and a required accessible name.</p>
 {:else if slug === 'toggle-group'}
   <div class="doc-preview">
-    <ToggleGroup
-      label="Example category"
-      bind:value={selected}
-      items={[
-        { value: 'all', label: 'All' },
-        { value: 'apps', label: 'Apps' },
-        { value: 'collections', label: 'Collections' },
-      ]}
-    />
-    <p aria-live="polite">{selected || 'Nothing selected'}</p>
+    <PreviewStage label="ToggleGroup preview">
+      <ToggleGroup
+        label="Example category"
+        bind:value={selected}
+        items={[
+          { value: 'all', label: 'All' },
+          { value: 'apps', label: 'Apps' },
+          { value: 'collections', label: 'Collections' },
+        ]}
+      />
+      <p aria-live="polite">{selected || 'Nothing selected'}</p>
+    </PreviewStage>
   </div>
   <pre>{`<ToggleGroup label="Category" items={categories} bind:value />`}</pre>
   <p class="api-line">
@@ -241,65 +257,73 @@
   </p>
 {:else if slug === 'switch'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <Switch label="Enable notifications" bind:checked />
-      <span>Notifications {checked ? 'on' : 'off'}</span>
-      <Switch label="Disabled switch" disabled />
-    </div>
+    <PreviewStage label="Switch preview">
+      <div class="demo-row">
+        <Switch label="Enable notifications" bind:checked />
+        <span>Notifications {checked ? 'on' : 'off'}</span>
+        <Switch label="Disabled switch" disabled />
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Switch label="Notifications" bind:checked />`}</pre>
   <p class="api-line">Bindable <code>checked</code> state, a label, and disabled.</p>
 {:else if slug === 'avatar'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <Avatar alt="Ada Morgan" size={32} />
-      <Avatar alt="Orbit Studio" size={40} />
-      <Avatar alt="Common Ground" size={56} />
-      <Avatar alt="Missing image fallback" src="/missing-avatar.png" fallback="MF" size={40} />
-    </div>
+    <PreviewStage label="Avatar preview">
+      <div class="demo-row">
+        <Avatar alt="Ada Morgan" size={32} />
+        <Avatar alt="Orbit Studio" size={40} />
+        <Avatar alt="Common Ground" size={56} />
+        <Avatar alt="Missing image fallback" src="/missing-avatar.png" fallback="MF" size={40} />
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Avatar alt="Ada Morgan" src={image} fallback="AM" size={40} />`}</pre>
   <p class="api-line">Required <code>alt</code>. Missing or failed media uses the fallback.</p>
 {:else if slug === 'badge'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <Badge>Neutral</Badge>
-      <Badge variant="spotlight">Featured</Badge>
-      <Badge variant="success">Available</Badge>
-    </div>
+    <PreviewStage label="Badge preview">
+      <div class="demo-row">
+        <Badge>Neutral</Badge>
+        <Badge variant="spotlight">Featured</Badge>
+        <Badge variant="success">Available</Badge>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Badge variant="spotlight">Featured</Badge>`}</pre>
   <p class="api-line">Variants: neutral, spotlight, success. The badge is not a control.</p>
 {:else if slug === 'dialog'}
   <div class="doc-preview">
-    <Dialog
-      title="Make yourself at home"
-      description="Edit your display name. This example stays in your browser."
-      bind:open={dialogOpen}
-    >
-      {#snippet trigger()}Edit profile <ArrowUpRight size={15} />{/snippet}
-      <form
-        onsubmit={(event) => {
-          event.preventDefault();
-          save();
-        }}
+    <PreviewStage label="Dialog preview">
+      <Dialog
+        title="Make yourself at home"
+        description="Edit your display name. This example stays in your browser."
+        bind:open={dialogOpen}
       >
-        <Input
-          label="Display name"
-          bind:value={name}
-          invalid={!!formError}
-          aria-describedby={formError ? 'name-error' : undefined}
-        />
-        {#if formError}<Alert id="name-error" message={formError} />{/if}
-        <div class="detail-actions">
-          <span class="panel-copy">Local demo only</span>
-          <Button variant="green" type="submit">Save profile</Button>
-        </div>
-      </form>
-    </Dialog>
-    <p aria-live="polite">
-      {saved ? `Profile saved as ${name}.` : 'Try Tab, Escape, and clicking outside.'}
-    </p>
+        {#snippet trigger()}Edit profile <ArrowUpRight size={15} />{/snippet}
+        <form
+          onsubmit={(event) => {
+            event.preventDefault();
+            save();
+          }}
+        >
+          <Input
+            label="Display name"
+            bind:value={name}
+            invalid={!!formError}
+            aria-describedby={formError ? 'name-error' : undefined}
+          />
+          {#if formError}<Alert id="name-error" message={formError} />{/if}
+          <div class="detail-actions">
+            <span class="panel-copy">Local demo only</span>
+            <Button variant="green" type="submit">Save profile</Button>
+          </div>
+        </form>
+      </Dialog>
+      <p aria-live="polite">
+        {saved ? `Profile saved as ${name}.` : 'Try Tab, Escape, and clicking outside.'}
+      </p>
+    </PreviewStage>
   </div>
   <pre>{`<Dialog title="Edit profile" bind:open>
   {#snippet trigger()}Edit profile{/snippet}
@@ -308,15 +332,17 @@
   <p class="api-line">Bindable <code>open</code>, a title, and trigger plus children snippets.</p>
 {:else if slug === 'popover'}
   <div class="doc-preview">
-    <Popover label="Filter settings" triggerClass="p-button p-button--secondary p-button--40">
-      {#snippet trigger()}<SlidersHorizontal size={15} /> Filters{/snippet}
-      <h3 class="panel-title">A little more control</h3>
-      <p class="panel-copy">Show notifications in your personal feed.</p>
-      <div class="demo-row">
-        <Switch label="Popover notifications" bind:checked />
-        <span>Notifications</span>
-      </div>
-    </Popover>
+    <PreviewStage label="Popover preview">
+      <Popover label="Filter settings" triggerClass="p-button p-button--secondary p-button--40">
+        {#snippet trigger()}<SlidersHorizontal size={15} /> Filters{/snippet}
+        <h3 class="panel-title">A little more control</h3>
+        <p class="panel-copy">Show notifications in your personal feed.</p>
+        <div class="demo-row">
+          <Switch label="Popover notifications" bind:checked />
+          <span>Notifications</span>
+        </div>
+      </Popover>
+    </PreviewStage>
   </div>
   <pre>{`<Popover label="Filters">
   {#snippet trigger()}Filters{/snippet}
@@ -327,25 +353,29 @@
   </p>
 {:else if slug === 'tooltip'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <Tooltip text="Every control supports keyboard navigation"><Info size={17} /></Tooltip>
-      <span>Focus the icon</span>
-    </div>
+    <PreviewStage label="Tooltip preview">
+      <div class="demo-row">
+        <Tooltip text="Every control supports keyboard navigation"><Info size={17} /></Tooltip>
+        <span>Focus the icon</span>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<Tooltip text="Keyboard navigation"><Info /></Tooltip>`}</pre>
   <p class="api-line">Required text and a children snippet. The trigger is keyboard accessible.</p>
 {:else if slug === 'app-card'}
   <div class="doc-preview">
-    <div class="doc-narrow">
-      <AppCard
-        title="Orbit Studio"
-        category="Creative"
-        description="Your next idea starts here."
-        image={galleryAsset('/art/orbit.svg')}
-        imageAlt="Orbit geometric poster"
-        bind:favorite
-      />
-    </div>
+    <PreviewStage label="AppCard preview">
+      <div class="doc-narrow">
+        <AppCard
+          title="Orbit Studio"
+          category="Creative"
+          description="Your next idea starts here."
+          image={galleryAsset('/art/orbit.svg')}
+          imageAlt="Orbit geometric poster"
+          bind:favorite
+        />
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<AppCard title="Orbit" category="Creative" image={cover}
   imageAlt="Orbit poster" bind:favorite />`}</pre>
@@ -354,41 +384,47 @@
   </p>
 {:else if slug === 'article-card'}
   <div class="doc-preview">
-    <div class="doc-narrow">
-      <ArticleCard
-        title="A field guide to small ideas"
-        href={galleryHref('/components/carousel')}
-        image={galleryAsset('/art/field.svg')}
-        imageAlt="Geometric illustration"
-      />
-    </div>
+    <PreviewStage label="ArticleCard preview">
+      <div class="doc-narrow">
+        <ArticleCard
+          title="A field guide to small ideas"
+          href={galleryHref('/components/carousel')}
+          image={galleryAsset('/art/field.svg')}
+          imageAlt="Geometric illustration"
+        />
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<ArticleCard title="Field notes" href="/notes"
   image={cover} imageAlt="Geometric artwork" />`}</pre>
   <p class="api-line">One native link. Missing media keeps the title and uses a placeholder.</p>
 {:else if slug === 'feature-card'}
   <div class="doc-preview">
-    <div class="feature-demo-grid">
-      {#each features as feature (feature.title)}
-        <FeatureCard {...feature} imageAlt="Colorful geometric illustration" />
-      {/each}
-    </div>
+    <PreviewStage label="FeatureCard preview">
+      <div class="feature-demo-grid">
+        {#each features as feature (feature.title)}
+          <FeatureCard {...feature} imageAlt="Colorful geometric illustration" />
+        {/each}
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<FeatureCard title="Room to explore"
   description="Give each idea space to grow." />`}</pre>
   <p class="api-line">Media, heading, and description. The card itself is not a control.</p>
 {:else if slug === 'carousel'}
   <div class="doc-preview">
-    <Carousel label="Studio journal" items={stories}>
-      {#snippet item(story)}
-        <ArticleCard
-          title={story.label}
-          href={story.href}
-          image={story.image}
-          imageAlt="Geometric illustration"
-        />
-      {/snippet}
-    </Carousel>
+    <PreviewStage label="Carousel preview" layout="wide">
+      <Carousel label="Studio journal" items={stories}>
+        {#snippet item(story)}
+          <ArticleCard
+            title={story.label}
+            href={story.href}
+            image={story.image}
+            imageAlt="Geometric illustration"
+          />
+        {/snippet}
+      </Carousel>
+    </PreviewStage>
   </div>
   <pre>{`<Carousel label="Journal" items={stories}>
   {#snippet item(story)}
@@ -401,45 +437,55 @@
   </p>
 {:else if slug === 'section-header'}
   <div class="doc-preview">
-    <SectionHeader title="Your collection" description="Made for you.">
-      {#snippet action()}<Badge variant="spotlight">Featured</Badge>{/snippet}
-    </SectionHeader>
+    <PreviewStage label="SectionHeader preview" layout="wide">
+      <SectionHeader title="Your collection" description="Made for you.">
+        {#snippet action()}<Badge variant="spotlight">Featured</Badge>{/snippet}
+      </SectionHeader>
+    </PreviewStage>
   </div>
   <pre>{`<SectionHeader title="Your collection" description="Made for you." />`}</pre>
   <p class="api-line">Heading, optional description, and an optional action snippet.</p>
 {:else if slug === 'empty-state'}
   <div class="doc-preview">
-    <EmptyState
-      title="Nothing saved yet"
-      description="Your collection starts with a single favorite."
-    >
-      {#snippet icon()}<Heart size={24} />{/snippet}
-    </EmptyState>
+    <PreviewStage label="EmptyState preview">
+      <EmptyState
+        title="Nothing saved yet"
+        description="Your collection starts with a single favorite."
+      >
+        {#snippet icon()}<Heart size={24} />{/snippet}
+      </EmptyState>
+    </PreviewStage>
   </div>
   <pre>{`<EmptyState title="Nothing saved" description="Try a favorite." />`}</pre>
   <p class="api-line">Title, description, and optional icon and action snippets.</p>
 {:else if slug === 'alert'}
   <div class="doc-preview">
-    <div class="demo-field">
-      <Button
-        onclick={() => (alertMessage = alertMessage ? '' : 'Enter a display name before saving.')}
-        >{alertMessage ? 'Clear alert' : 'Show alert'}</Button
-      >
-      {#if alertMessage}<Alert message={alertMessage} />{/if}
-    </div>
+    <PreviewStage label="Alert preview">
+      <div class="demo-field">
+        <Button
+          onclick={() => (alertMessage = alertMessage ? '' : 'Enter a display name before saving.')}
+          >{alertMessage ? 'Clear alert' : 'Show alert'}</Button
+        >
+        {#if alertMessage}<Alert message={alertMessage} />{/if}
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`{#if error}<Alert message={error} />{/if}`}</pre>
   <p class="api-line">A message string or short inline children. Mount it when the action fails.</p>
 {:else if slug === 'row-list'}
   <div class="doc-preview">
-    <RowList aria-label="Example records">
-      <Row>
-        <a href={galleryHref('/auth-preview?size=reading')}>Field notes</a>
-        <Badge>Draft</Badge>
-        <Button variant="quiet" onclick={() => (saved = !saved)}>{saved ? 'Saved' : 'Save'}</Button>
-      </Row>
-      <Row><span>A single cell can explain this record.</span></Row>
-    </RowList>
+    <PreviewStage label="RowList preview" layout="wide">
+      <RowList aria-label="Example records">
+        <Row>
+          <a href={galleryHref('/auth-preview?size=reading')}>Field notes</a>
+          <Badge>Draft</Badge>
+          <Button variant="quiet" onclick={() => (saved = !saved)}
+            >{saved ? 'Saved' : 'Save'}</Button
+          >
+        </Row>
+        <Row><span>A single cell can explain this record.</span></Row>
+      </RowList>
+    </PreviewStage>
   </div>
   <pre>{`<RowList aria-label="Drafts">
   <Row><span>Field notes</span><Button variant="quiet">Retry</Button></Row>
@@ -449,12 +495,14 @@
   </p>
 {:else if slug === 'row'}
   <div class="doc-preview">
-    <RowList aria-label="Wrapping record">
-      <Row>
-        <span>A longer synthetic record wraps naturally when the available space is narrow.</span>
-        <Badge>Ready</Badge>
-      </Row>
-    </RowList>
+    <PreviewStage label="Row preview" layout="wide">
+      <RowList aria-label="Wrapping record">
+        <Row>
+          <span>A longer synthetic record wraps naturally when the available space is narrow.</span>
+          <Badge>Ready</Badge>
+        </Row>
+      </RowList>
+    </PreviewStage>
   </div>
   <pre>{`<Row><span>Field notes</span><Badge>Draft</Badge></Row>`}</pre>
   <p class="api-line">
@@ -462,11 +510,13 @@
   </p>
 {:else if slug === 'portal-shell'}
   <div class="doc-preview">
-    <p class="panel-copy">
-      The shell is the application frame. Open it on its own so the sidebar, toolbar, and mobile
-      navigation can use the viewport.
-    </p>
-    <Button href={galleryHref('/shell')} variant="primary">Open the shell</Button>
+    <PreviewStage label="PortalShell preview">
+      <p class="panel-copy">
+        The shell is the application frame. Open it on its own so the sidebar, toolbar, and mobile
+        navigation can use the viewport.
+      </p>
+      <Button href={galleryHref('/shell')} variant="primary">Open the shell</Button>
+    </PreviewStage>
   </div>
   <pre>{`<PortalShell items={navigation} active={pathname} bind:collapsed>
   {#snippet topbar()}
@@ -479,31 +529,37 @@
   </p>
 {:else if slug === 'sidebar-nav'}
   <div class="doc-preview">
-    <div class="chrome-slice">
-      <SidebarNav items={nav} active={galleryHref('/components')} />
-    </div>
+    <PreviewStage label="SidebarNav preview">
+      <div class="chrome-slice">
+        <SidebarNav items={nav} active={galleryHref('/components')} />
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<SidebarNav items={navigation} active={pathname} />`}</pre>
   <p class="api-line"><code>NavItem</code>: href, label, optional icon, optional count.</p>
 {:else if slug === 'mobile-nav'}
   <div class="doc-preview">
-    <p class="panel-copy">
-      Mobile navigation is fixed to the bottom of the shell below 767px. The shell preview shows it
-      when the viewport is narrow.
-    </p>
-    <Button href={galleryHref('/shell')}>Open the shell</Button>
+    <PreviewStage label="MobileNav preview">
+      <p class="panel-copy">
+        Mobile navigation is fixed to the bottom of the shell below 767px. The shell preview shows
+        it when the viewport is narrow.
+      </p>
+      <Button href={galleryHref('/shell')}>Open the shell</Button>
+    </PreviewStage>
   </div>
   <pre>{`<MobileNav items={navigation} active={pathname} />`}</pre>
   <p class="api-line">Same items as the sidebar. The narrow breakpoint is an adaptation.</p>
 {:else if slug === 'top-bar'}
   <div class="doc-preview">
-    <div class="chrome-bar">
-      <TopBar breadcrumb="Components">
-        {#snippet actions()}
-          <Button size={32}><Bell size={15} /> Alerts</Button>
-        {/snippet}
-      </TopBar>
-    </div>
+    <PreviewStage label="TopBar preview" layout="wide">
+      <div class="chrome-bar">
+        <TopBar breadcrumb="Components">
+          {#snippet actions()}
+            <Button size={32}><Bell size={15} /> Alerts</Button>
+          {/snippet}
+        </TopBar>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<TopBar breadcrumb="Discover">
   {#snippet actions()}Your toolbar{/snippet}
@@ -513,14 +569,16 @@
   </p>
 {:else if slug === 'auth-frame'}
   <div class="doc-preview">
-    <p class="panel-copy">
-      AuthFrame has no application navigation. Preview the compact panel or the wider reading
-      layout.
-    </p>
-    <div class="demo-row">
-      <Button href={galleryHref('/auth-preview')}>Compact</Button>
-      <Button href={galleryHref('/auth-preview?size=reading')}>Reading</Button>
-    </div>
+    <PreviewStage label="AuthFrame preview">
+      <p class="panel-copy">
+        AuthFrame has no application navigation. Preview the compact panel or the wider reading
+        layout.
+      </p>
+      <div class="demo-row">
+        <Button href={galleryHref('/auth-preview')}>Open the compact layout</Button>
+        <Button href={galleryHref('/auth-preview?size=reading')}>Open the reading layout</Button>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<AuthFrame brandHref="/" size="compact">
   {#snippet brand()}Portal{/snippet}
@@ -531,11 +589,14 @@
   </p>
 {:else if slug === 'floating-nav'}
   <div class="doc-preview">
-    <FloatingNav label="Example">
-      {#snippet brand()}<a href={galleryHref('/')}>Home</a>{/snippet}
-      {#snippet items()}<a href={galleryHref('/get-started')} aria-current="page">Docs</a>{/snippet}
-      {#snippet actions()}<a href="https://github.com/AddeyX/portal-bits">GitHub</a>{/snippet}
-    </FloatingNav>
+    <PreviewStage label="FloatingNav preview" layout="wide">
+      <FloatingNav label="Example">
+        {#snippet brand()}<a href={galleryHref('/')}>Home</a>{/snippet}
+        {#snippet items()}<a href={galleryHref('/get-started')} aria-current="page">Docs</a
+          >{/snippet}
+        {#snippet actions()}<a href="https://github.com/AddeyX/portal-bits">GitHub</a>{/snippet}
+      </FloatingNav>
+    </PreviewStage>
   </div>
   <pre>{`<FloatingNav label="Primary">
   {#snippet brand()}<a href="/">Home</a>{/snippet}
@@ -549,10 +610,12 @@
   </p>
 {:else if slug === 'color-selector'}
   <div class="doc-preview">
-    <div class="demo-row">
-      <ColorSelector bind:value={accent} />
-      <span>{accent.toUpperCase()}</span>
-    </div>
+    <PreviewStage label="ColorSelector preview">
+      <div class="demo-row">
+        <ColorSelector bind:value={accent} />
+        <span>{accent.toUpperCase()}</span>
+      </div>
+    </PreviewStage>
   </div>
   <pre>{`<ColorSelector bind:value={accent} />`}</pre>
   <p class="api-line">

@@ -1063,8 +1063,32 @@ pre {
   background: var(--portal-surface);
   box-shadow: var(--portal-shadow-surface);
 }
-.doc-preview > p:last-child {
+.doc-preview-stage {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: 24px;
+  min-width: 0;
+  overflow: visible;
+}
+.doc-preview-stage > .doc-preview-content {
+  min-width: 0;
+  max-width: 100%;
+}
+.doc-preview-stage[data-layout='wide'] > .doc-preview-content {
+  width: 100%;
+}
+.doc-preview-content > :first-child {
+  margin-top: 0;
+}
+.doc-preview-content > :last-child {
   margin-bottom: 0;
+}
+@media (max-width: 639px) {
+  .doc-preview-stage {
+    min-height: 240px;
+    padding: 16px;
+  }
 }
 .doc-index section + section {
   margin-top: 28px;
