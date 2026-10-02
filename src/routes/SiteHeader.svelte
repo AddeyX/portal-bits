@@ -6,7 +6,7 @@
   import { fade } from 'svelte/transition';
   import { FloatingNav, Input, Popover } from '$lib';
   import { isDocsPath } from '../demo/catalog';
-  import { galleryHref, galleryPath } from '../demo/paths';
+  import { galleryDestination, galleryHref, galleryPath } from '../demo/paths';
   import { searchDocs, type SearchRun } from '../demo/search';
 
   let path = $derived(galleryPath(page.url.pathname));
@@ -23,7 +23,7 @@
 
   function follow(href: string) {
     closeSearch();
-    void goto(galleryHref(href));
+    void goto(galleryDestination(href));
   }
 
   function followTop(event: KeyboardEvent) {
@@ -94,12 +94,21 @@
                   {#each results as hit (hit.href)}
                     <li>
                       <a
-                        href={galleryHref(hit.href)}
+                        href={galleryDestination(hit.href)}
                         onclick={(event) => followClick(event, hit.href)}
                       >
-                        <span class="site-search-title">{@render textRuns(hit.titleRuns)}</span>
+                        <span class="site-search-title"
+                          >{@render textRuns(hit.titleRuns)}{#if hit.section}<span
+                              class="site-search-section"
+                            >
+                              · {@render textRuns(hit.sectionRuns)}</span
+                            >{/if}</span
+                        >
                         <span class="site-search-meta">{@render textRuns(hit.groupRuns)}</span>
-                        <span class="site-search-copy">{@render textRuns(hit.descriptionRuns)}</span
+                        <span class="site-search-copy"
+                          >{#if hit.excerptRuns.length}{@render textRuns(
+                              hit.excerptRuns,
+                            )}{:else}{@render textRuns(hit.descriptionRuns)}{/if}</span
                         >
                       </a>
                     </li>

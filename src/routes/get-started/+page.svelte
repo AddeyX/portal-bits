@@ -2,10 +2,19 @@
   import { Button } from '$lib';
   import CodeBlock from '../../demo/docs/CodeBlock.svelte';
   import PreviewStage from '../../demo/docs/PreviewStage.svelte';
-  import { installCommands, packageFacts } from '../../demo/docs/install';
+  import InlineText from '../../demo/docs/InlineText.svelte';
+  import { guideIntros, guidePage, guideSection } from '../../demo/docs/guides';
+  import { installCommands } from '../../demo/docs/install';
   import { layoutSample, pageSample } from '../../demo/get-started-sample';
   import { galleryHref } from '../../demo/paths';
   import type { SourceFile } from '../../demo/docs/types';
+
+  const page = guidePage('/get-started');
+  const intro = guideIntros['/get-started'] ?? [];
+  const installation = guideSection('/get-started', 'installation');
+  const basicUsage = guideSection('/get-started', 'basic-usage');
+  const styles = guideSection('/get-started', 'styles');
+  const typescript = guideSection('/get-started', 'typescript');
 
   let manager = $state<keyof typeof installCommands>('npm');
 
@@ -29,24 +38,15 @@
 </script>
 
 <article class="doc-article doc-guide">
-  <h1>Get started</h1>
-  <p class="doc-lede">Install the library, load its styles, and render a component.</p>
-  <p>
-    portal-bits is a Svelte 5 component library. Bits UI supplies the interaction. The components
-    ship with their measured styles. <code>svelte</code> and <code>bits-ui</code> stay peers.
-  </p>
-  <h2 id="installation">Installation</h2>
-  <p>
-    This repository is version {packageFacts.version}. It supports
-    <code>svelte@{packageFacts.peers.svelte}</code>
-    and <code>bits-ui@{packageFacts.peers['bits-ui']}</code>.
-  </p>
-  <p>
-    The command installs <code>portal-bits</code> together with the <code>svelte</code> and
-    <code>bits-ui</code> peers. A project that already uses Svelte should keep a
-    <code>svelte</code> release inside the supported range, and add <code>bits-ui</code> in its supported
-    range.
-  </p>
+  <h1>{page.title}</h1>
+  <p class="doc-lede">{page.description}</p>
+  {#each intro as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
+  <h2 id={installation.id}>{installation.title}</h2>
+  {#each installation.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
   <label class="doc-manager">
     Package manager
     <select bind:value={manager}>
@@ -57,30 +57,25 @@
     </select>
   </label>
   <CodeBlock file={command} />
-  <h2 id="basic-usage">Basic usage</h2>
-  <p>Import a component in a page and render it. Load the styles from the layout.</p>
+  <h2 id={basicUsage.id}>{basicUsage.title}</h2>
+  {#each basicUsage.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
   <div class="doc-preview">
     <PreviewStage label="Button preview">
       <Button variant="primary">Save changes</Button>
     </PreviewStage>
   </div>
   <CodeBlock file={pageFile} />
-  <h2 id="styles">Styles</h2>
-  <p>
-    Load the styles once, in the root layout. <code>styles.css</code> is the component styling, and
-    it already imports <code>tokens.css</code>. The layout example also imports
-    <code>tokens.css</code> so the token file stays visible. That second import is not a separate requirement.
-  </p>
-  <p>
-    <code>tokens.css</code> defines color, type, and space. <code>--portal-font</code> names Roobert,
-    then Inter, then a system font. The package ships no font files. This gallery bundles Inter.
-  </p>
+  <h2 id={styles.id}>{styles.title}</h2>
+  {#each styles.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
   <CodeBlock file={layoutFile} />
-  <h2 id="typescript">TypeScript</h2>
-  <p>
-    Types ship with the package. <code>NavItem</code> is a navigation item.
-    <code>SelectOption</code> is a select choice. Each component export types its own props.
-  </p>
+  <h2 id={typescript.id}>{typescript.title}</h2>
+  {#each typescript.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
   <h2>Next steps</h2>
   <ul>
     <li><a href={galleryHref('/components')}>Browse the components</a></li>

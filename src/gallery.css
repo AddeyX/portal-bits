@@ -839,6 +839,10 @@ pre {
   font-weight: 500;
   line-height: 20px;
 }
+.site-search-section {
+  color: var(--portal-muted);
+  font-weight: 400;
+}
 .site-search-meta,
 .site-search-copy,
 .site-search-empty {
@@ -1027,6 +1031,9 @@ pre {
   line-height: 1.05;
   font-weight: 500;
   letter-spacing: -1.4px;
+}
+.docs-main [id] {
+  scroll-margin-top: 96px;
 }
 .doc-lede {
   max-width: 38rem;

@@ -1,6 +1,15 @@
 <script lang="ts">
   import { SectionHeader, Button, Switch, Toggle, Dialog, Popover, Badge } from '$lib';
   import { Heart, Play, ArrowUpRight } from '@lucide/svelte';
+  import InlineText from '../../demo/docs/InlineText.svelte';
+  import { guidePage, guideSection } from '../../demo/docs/guides';
+
+  const page = guidePage('/motion');
+  const easing = guideSection('/motion', 'easing-curve');
+  const feedback = guideSection('/motion', 'feedback');
+  const press = guideSection('/motion', 'press-and-select');
+  const enter = guideSection('/motion', 'enter-and-exit');
+  const reduced = guideSection('/motion', 'reduced-motion');
   let end = $state(false);
   let checked = $state(false);
   let pressed = $state(false);
@@ -10,12 +19,12 @@
   <header class="page-intro">
     <div>
       <h1>Small moments. Lasting feel.</h1>
-      <p>Responsive feedback, a gentle arrival, and a little less friction.</p>
+      <p>{page.description}</p>
     </div>
     <Badge>Motion lab</Badge>
   </header>
-  <section class="gallery-surface">
-    <SectionHeader title="The easing curve" description="Quick to respond. Soft on arrival." />
+  <section class="gallery-surface" id={easing.id}>
+    <SectionHeader title={easing.title} description={easing.paragraphs[0]} />
     <div class="docs-content">
       <div class="motion-stage">
         <Button onclick={() => (end = !end)}><Play size={15} /> Replay</Button>
@@ -26,22 +35,18 @@
         <div><span>Easing</span><strong>cubic-bezier(.215, .61, .355, 1)</strong></div>
         <div><span>Evidence</span><strong>Sampled controls & list opacity</strong></div>
       </div>
-      <p class="note">
-        The moving dot visualizes the measured curve. It is a demonstration, not a motion copied
-        from the source.
-      </p>
+      {#each easing.paragraphs.slice(1) as paragraph (paragraph)}
+        <p class="note"><InlineText text={paragraph} /></p>
+      {/each}
     </div>
   </section>
-  <section class="gallery-surface">
-    <SectionHeader
-      title="Feedback you can feel"
-      description="Every interaction resolves to a clear state."
-    />
+  <section class="gallery-surface" id={feedback.id}>
+    <SectionHeader title={feedback.title} description={feedback.paragraphs[0]} />
     <div class="docs-content">
       <div class="demo-section">
         <div>
-          <h2>Press & select</h2>
-          <p>Color, shadow, and thumb travel. No unnecessary bounce.</p>
+          <h2 id={press.id}>{press.title}</h2>
+          <p><InlineText text={press.paragraphs[0] ?? ''} /></p>
         </div>
         <div>
           <div class="demo-row">
@@ -51,15 +56,15 @@
               ><Heart size={18} fill={pressed ? 'currentColor' : 'none'} /></Toggle
             ><Switch label="Motion switch" bind:checked />
           </div>
-          <p class="note">
-            Source curve; toggle fill, press shadow, and switch travel are adapted behaviors.
-          </p>
+          {#each press.paragraphs.slice(1) as paragraph (paragraph)}
+            <p class="note"><InlineText text={paragraph} /></p>
+          {/each}
         </div>
       </div>
       <div class="demo-section">
         <div>
-          <h2>Enter & exit</h2>
-          <p>Subtle travel, with focus managed by Bits UI.</p>
+          <h2 id={enter.id}>{enter.title}</h2>
+          <p><InlineText text={enter.paragraphs[0] ?? ''} /></p>
         </div>
         <div>
           <div class="demo-row">
@@ -81,19 +86,15 @@
               </p></Popover
             >
           </div>
-          <p class="note">
-            Entry: 300ms. Exit: 160ms. Distances, exit duration, and blur are adaptations; not
-            measured source values.
-          </p>
+          {#each enter.paragraphs.slice(1) as paragraph (paragraph)}
+            <p class="note"><InlineText text={paragraph} /></p>
+          {/each}
         </div>
       </div>
     </div>
   </section>
-  <section class="gallery-surface">
-    <SectionHeader
-      title="Motion should never get in the way"
-      description="Respect the person, not just the animation."
-    />
+  <section class="gallery-surface" id={reduced.id}>
+    <SectionHeader title={reduced.title} description={reduced.paragraphs[0]} />
     <div class="docs-content">
       <table class="source-table">
         <thead><tr><th>Condition</th><th>Behavior</th></tr></thead><tbody

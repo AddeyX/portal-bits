@@ -193,11 +193,27 @@ export const componentDocs: ComponentDoc[] = [
   },
 ];
 
-export const guideLinks = [
-  { href: '/get-started', label: 'Get started' },
-  { href: '/foundations', label: 'Foundations' },
-  { href: '/motion', label: 'Motion' },
-] as const;
+export type GuideDoc = { href: string; label: string; description: string };
+
+export const guideDocs: GuideDoc[] = [
+  {
+    href: '/get-started',
+    label: 'Get started',
+    description: 'Install the library, load its styles, and render a component.',
+  },
+  {
+    href: '/foundations',
+    label: 'Foundations',
+    description: 'The small decisions that hold the library together.',
+  },
+  {
+    href: '/motion',
+    label: 'Motion',
+    description: 'Responsive feedback, a gentle arrival, and a little less friction.',
+  },
+];
+
+export const guideLinks = guideDocs.map(({ href, label }) => ({ href, label }));
 
 export function isDocsPath(pathname: string) {
   return (
