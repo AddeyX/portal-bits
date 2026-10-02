@@ -1,5 +1,6 @@
 node_modules/
 .svelte-kit/
+.superpowers/sdd
 dist/
 build/
 .DS_Store
