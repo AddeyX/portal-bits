@@ -34,7 +34,9 @@
     "test": "vitest run",
     "test:consumer": "node scripts/check-consumer.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "docs:examples": "node scripts/build-doc-examples.mjs",
+    "docs:typecheck": "node scripts/typecheck-doc-examples.mjs"
   },
   "peerDependencies": {
     "bits-ui": "^2.19.3",
@@ -55,6 +57,7 @@
     "jsdom": "latest",
     "prettier": "^3.9.8",
     "prettier-plugin-svelte": "^4.1.1",
+    "shiki": "^4.5.0",
     "svelte": "5.57.1",
     "svelte-check": "latest",
     "typescript": "latest",

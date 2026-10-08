@@ -1,37 +1,81 @@
 <script lang="ts">
   import { Button } from '$lib';
-  import { stylesSample, usageSample } from '../../demo/get-started-sample';
+  import CodeBlock from '../../demo/docs/CodeBlock.svelte';
+  import PreviewStage from '../../demo/docs/PreviewStage.svelte';
+  import InlineText from '../../demo/docs/InlineText.svelte';
+  import { guideIntros, guidePage, guideSection } from '../../demo/docs/guides';
+  import { installCommands } from '../../demo/docs/install';
+  import { layoutSample, pageSample } from '../../demo/get-started-sample';
   import { galleryHref } from '../../demo/paths';
+  import type { SourceFile } from '../../demo/docs/types';
+
+  const page = guidePage('/get-started');
+  const intro = guideIntros['/get-started'] ?? [];
+  const installation = guideSection('/get-started', 'installation');
+  const basicUsage = guideSection('/get-started', 'basic-usage');
+  const styles = guideSection('/get-started', 'styles');
+  const typescript = guideSection('/get-started', 'typescript');
+
+  let manager = $state<keyof typeof installCommands>('npm');
+
+  const command = $derived<SourceFile>({
+    name: 'Terminal',
+    language: 'bash',
+    code: installCommands[manager],
+  });
+
+  const layoutFile: SourceFile = {
+    name: '+layout.svelte',
+    language: 'svelte',
+    code: layoutSample,
+  };
+
+  const pageFile: SourceFile = {
+    name: '+page.svelte',
+    language: 'svelte',
+    code: pageSample,
+  };
 </script>
 
 <article class="doc-article doc-guide">
-  <h1>Get started</h1>
-  <p class="doc-lede">Install the library, load its styles, and render a component.</p>
-  <p>
-    portal-bits is a Svelte 5 component library. Bits UI supplies the interaction. The components
-    ship with their measured styles. <code>svelte</code> and <code>bits-ui</code> stay peers.
-  </p>
-  <h2>Installation</h2>
-  <p>Install the package and both peers.</p>
-  <pre><code>npm install portal-bits svelte bits-ui</code></pre>
-  <h2>Basic usage</h2>
-  <p>Import a component in a Svelte file and render it.</p>
+  <h1>{page.title}</h1>
+  <p class="doc-lede">{page.description}</p>
+  {#each intro as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
+  <h2 id={installation.id}>{installation.title}</h2>
+  {#each installation.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
+  <label class="doc-manager">
+    Package manager
+    <select bind:value={manager}>
+      <option value="npm">npm</option>
+      <option value="pnpm">pnpm</option>
+      <option value="yarn">yarn</option>
+      <option value="bun">bun</option>
+    </select>
+  </label>
+  <CodeBlock file={command} />
+  <h2 id={basicUsage.id}>{basicUsage.title}</h2>
+  {#each basicUsage.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
   <div class="doc-preview">
-    <Button variant="primary">Save changes</Button>
+    <PreviewStage label="Button preview">
+      <Button variant="primary">Save changes</Button>
+    </PreviewStage>
   </div>
-  <pre><code>{usageSample}</code></pre>
-  <h2>Styles</h2>
-  <p>
-    Load both stylesheets once, in the root layout. <code>styles.css</code> is the component
-    styling. <code>tokens.css</code> is color, type, and space. The font token looks for Roobert, then
-    Inter, then the system font. This gallery uses Inter. The package does not ship font files.
-  </p>
-  <pre><code>{stylesSample}</code></pre>
-  <h2>TypeScript</h2>
-  <p>
-    Types ship with the package. <code>NavItem</code> is a navigation item.
-    <code>SelectOption</code> is a select choice. Each component export types its own props.
-  </p>
+  <CodeBlock file={pageFile} />
+  <h2 id={styles.id}>{styles.title}</h2>
+  {#each styles.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
+  <CodeBlock file={layoutFile} />
+  <h2 id={typescript.id}>{typescript.title}</h2>
+  {#each typescript.paragraphs as paragraph (paragraph)}
+    <p><InlineText text={paragraph} /></p>
+  {/each}
   <h2>Next steps</h2>
   <ul>
     <li><a href={galleryHref('/components')}>Browse the components</a></li>
@@ -39,3 +83,23 @@
     <li><a href={galleryHref('/motion')}>Read the motion notes</a></li>
   </ul>
 </article>
+
+<style>
+  .doc-manager {
+    display: grid;
+    gap: 8px;
+    max-width: 240px;
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .doc-manager select {
+    font: inherit;
+    color: inherit;
+    background: var(--portal-surface);
+    border: 1px solid var(--portal-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+</style>

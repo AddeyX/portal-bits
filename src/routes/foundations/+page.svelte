@@ -1,6 +1,14 @@
 <script lang="ts">
   import { SectionHeader, Badge, Button } from '$lib';
   import { ArrowUpRight } from '@lucide/svelte';
+  import InlineText from '../../demo/docs/InlineText.svelte';
+  import { guidePage, guideSection } from '../../demo/docs/guides';
+
+  const page = guidePage('/foundations');
+  const palette = guideSection('/foundations', 'palette');
+  const typography = guideSection('/foundations', 'typography');
+  const spacing = guideSection('/foundations', 'space-shape-depth');
+  const evidence = guideSection('/foundations', 'evidence');
   const colors = [
     { name: 'Action green', hex: '#19e783', token: '--portal-green' },
     { name: 'Ink', hex: '#181818', token: '--portal-ink' },
@@ -46,15 +54,12 @@
   <header class="page-intro">
     <div>
       <h1>Start with the essentials.</h1>
-      <p>The small decisions that hold the library together.</p>
+      <p>{page.description}</p>
     </div>
     <Badge variant="success">DOM-derived</Badge>
   </header>
-  <section class="gallery-surface">
-    <SectionHeader
-      title="A restrained palette"
-      description="Soft neutrals leave room for a very particular green."
-    />
+  <section class="gallery-surface" id={palette.id}>
+    <SectionHeader title={palette.title} description={palette.paragraphs[0]} />
     <div class="docs-content">
       <div class="swatch-grid">
         {#each colors as color (color.token)}<div>
@@ -64,19 +69,13 @@
             </div>
           </div>{/each}
       </div>
-      <p class="note">
-        Source muted text is #9da3ac. This kit uses #686e78 for small text on light surfaces to
-        improve contrast. Input, Select, Checkbox, and Switch edges use #878e98 instead of the
-        source #edeff3 so each control is visible at 3:1; dividers keep #edeff3. Dark preview is an
-        adaptation. It is not inspired by a measured dark theme.
-      </p>
+      {#each palette.paragraphs.slice(1) as paragraph (paragraph)}
+        <p class="note"><InlineText text={paragraph} /></p>
+      {/each}
     </div>
   </section>
-  <section class="gallery-surface">
-    <SectionHeader
-      title="Quietly expressive type"
-      description="Regular weight, close tracking, and a clear hierarchy."
-    />
+  <section class="gallery-surface" id={typography.id}>
+    <SectionHeader title={typography.title} description={typography.paragraphs[0]} />
     <div class="docs-content">
       {#each types as type (type.name)}<div class="type-row">
           <span>{type.name}</span><span
@@ -84,18 +83,13 @@
             >{type.text}</span
           ><code>{type.size}/{type.line} · {type.weight}</code>
         </div>{/each}
-      <p class="note">
-        The measured family is Roobert. This gallery bundles Inter under the SIL Open Font License
-        as a predictable fallback. Supply licensed Roobert through --portal-font for closer
-        typography.
-      </p>
+      {#each typography.paragraphs.slice(1) as paragraph (paragraph)}
+        <p class="note"><InlineText text={paragraph} /></p>
+      {/each}
     </div>
   </section>
-  <section class="gallery-surface">
-    <SectionHeader
-      title="Space, shape, depth"
-      description="Room to breathe. Just enough elevation."
-    />
+  <section class="gallery-surface" id={spacing.id}>
+    <SectionHeader title={spacing.title} description={spacing.paragraphs[0]} />
     <div class="docs-content">
       <div class="demo-row">
         {#each [4, 8, 12, 16, 24, 32] as space (space)}<div style="min-width:60px">
@@ -118,11 +112,8 @@
 --portal-ease: cubic-bezier(.215,.61,.355,1);`}</pre>
     </div>
   </section>
-  <section class="gallery-surface">
-    <SectionHeader
-      title="Evidence, not guesswork"
-      description="What was measured, and where the library makes a deliberate choice."
-    />
+  <section class="gallery-surface" id={evidence.id}>
+    <SectionHeader title={evidence.title} description={evidence.paragraphs[0]} />
     <div class="docs-content">
       <table class="source-table">
         <thead><tr><th>Pattern</th><th>Evidence</th><th>Library treatment</th></tr></thead><tbody

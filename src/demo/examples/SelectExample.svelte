@@ -1,0 +1,38 @@
+<script lang="ts">
+  import { Select, type SelectOption } from '$lib';
+  let {
+    invalid = false,
+    disabled = false,
+    required = false,
+  }: { invalid?: boolean; disabled?: boolean; required?: boolean } = $props();
+  const options: SelectOption[] = [
+    { value: 'notes', label: 'Notes' },
+    { value: 'drafts', label: 'Drafts' },
+    { value: 'archived', label: 'Archived', disabled: true },
+  ];
+  let category = $state('');
+</script>
+
+<div class="field">
+  <Select
+    label="Record category"
+    bind:value={category}
+    placeholder="Choose a category"
+    {options}
+    {invalid}
+    {required}
+    {disabled}
+    aria-describedby={invalid ? 'category-error' : undefined}
+  />
+  {#if invalid}<p id="category-error" class="error">Choose a category.</p>{/if}
+  <p aria-live="polite">{category || 'No category'}</p>
+</div>
+
+<style>
+  .field {
+    max-width: 340px;
+  }
+  .error {
+    color: var(--portal-error);
+  }
+</style>

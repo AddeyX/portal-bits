@@ -19,3 +19,13 @@ export function galleryHref(path: string) {
 export function galleryAsset(file: string) {
   return asset(file as '/favicon.svg');
 }
+
+/**
+ * Turn a base-free result such as `/get-started#installation` into a link. The route gets the
+ * Pages base. The fragment follows it. Only an id from the search index reaches this function.
+ */
+export function galleryDestination(href: string) {
+  const at = href.indexOf('#');
+  if (at < 0) return galleryHref(href);
+  return `${galleryHref(href.slice(0, at))}${href.slice(at)}`;
+}

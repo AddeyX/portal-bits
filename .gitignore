@@ -1,8 +1,10 @@
 node_modules/
 .svelte-kit/
+.superpowers/sdd
 dist/
 build/
 .DS_Store
 .impeccable/review/
 .agents/skills/github-bootstrap/
 temp/
+src/demo/docs/generated/

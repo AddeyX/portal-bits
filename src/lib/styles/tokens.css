@@ -19,6 +19,8 @@
   --portal-inverse-hover: #353535;
   --portal-focus: var(--portal-accent-focus, #008746);
   --portal-error: #bf2424;
+  --portal-on-error: #fff; /* Adaptation: text on the danger fill. */
+  --portal-error-hover: #a31d1d; /* Adaptation: danger fill hover. */
   --portal-radius: 16px;
   --portal-pill: 100px;
   --portal-space-1: 4px;
@@ -54,6 +56,8 @@
   --portal-inverse-hover: #d6dae0;
   --portal-focus: var(--portal-accent-focus, #19e783);
   --portal-error: #ff8a8a;
+  --portal-on-error: #181818;
+  --portal-error-hover: #ffa6a6;
   --portal-shadow-control: 0 4px 8px rgb(0 0 0 / 25%), 0 0 0 1px rgb(255 255 255 / 9%);
   --portal-shadow-icon: 0 1px 4px rgb(0 0 0 / 30%), 0 0 0 1px rgb(255 255 255 / 9%);
   --portal-shadow-surface: 0 3px 10px rgb(0 0 0 / 22%);
