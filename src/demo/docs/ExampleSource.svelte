@@ -37,9 +37,17 @@
   .doc-source-header {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px 12px;
+  }
+
+  .doc-source-header .doc-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: none;
+    color: var(--portal-muted);
   }
 
   h2 {

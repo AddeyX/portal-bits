@@ -1025,6 +1025,65 @@ pre {
   margin-left: max(0px, calc((100% - 760px) / 2 - var(--docs-sidebar) / 2));
   padding: 0;
 }
+.doc-article--toc {
+  position: relative;
+}
+.doc-toc {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .docs-main > .doc-article--toc {
+    margin-left: max(0px, calc((100% - 984px) / 2 - var(--docs-sidebar) / 2));
+  }
+  .doc-toc {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(100% + 40px);
+    width: 184px;
+  }
+}
+.doc-toc-inner {
+  position: sticky;
+  top: 112px;
+}
+.doc-toc p {
+  margin: 0 0 8px;
+  color: var(--portal-ink);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+}
+.doc-toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--portal-border);
+}
+.doc-toc a {
+  display: block;
+  margin-left: -1px;
+  padding: 4px 0 4px 13px;
+  border-left: 1px solid transparent;
+  color: var(--portal-muted);
+  font-size: 13px;
+  line-height: 18px;
+  text-decoration: none;
+  transition:
+    color var(--portal-duration) var(--portal-ease),
+    border-color var(--portal-duration) var(--portal-ease);
+}
+.doc-toc li[data-depth='2'] a {
+  padding-left: 25px;
+}
+.doc-toc a:hover {
+  color: var(--portal-ink);
+}
+.doc-toc a[aria-current='location'] {
+  border-left-color: var(--portal-ink);
+  color: var(--portal-ink);
+}
 .doc-article h1 {
   margin: 0;
   font-size: clamp(36px, 5vw, 56px);
@@ -1178,11 +1237,37 @@ pre {
   background: var(--portal-surface);
 }
 .doc-more > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   padding: 14px 20px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   border-radius: 16px;
+  list-style: none;
+}
+.doc-more > summary::-webkit-details-marker {
+  display: none;
+}
+/* A drawn chevron in the 1.5px Lucide stroke, rotated open. */
+.doc-more > summary::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 4px;
+  border-right: 1.5px solid var(--portal-muted);
+  border-bottom: 1.5px solid var(--portal-muted);
+  rotate: 45deg;
+  translate: 0 -2px;
+  transition:
+    rotate var(--portal-duration) var(--portal-ease),
+    translate var(--portal-duration) var(--portal-ease);
+}
+.doc-more[open] > summary::after {
+  rotate: 225deg;
+  translate: 0 2px;
 }
 .doc-more > summary:focus-visible {
   outline: 2px solid var(--portal-ink);
