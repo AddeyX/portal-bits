@@ -54,6 +54,7 @@ export const guidePages: DocPage[] = [
         paragraphs: [
           `This repository is version ${packageFacts.version}. It supports \`svelte@${packageFacts.peers.svelte}\` and \`bits-ui@${packageFacts.peers['bits-ui']}\`.`,
           'The command installs `portal-bits` together with the `svelte` and `bits-ui` peers. A project that already uses Svelte should keep a `svelte` release inside the supported range, and add `bits-ui` in its supported range.',
+          'The command also installs `@lucide/svelte` for the icons imported by the copyable examples. Those imports need a direct dependency in your project.',
         ],
       },
       {

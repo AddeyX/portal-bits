@@ -3,7 +3,7 @@
 /** The package name consumers import from. */
 export const packageName = 'portal-bits';
 
-const packages = `${packageName} svelte bits-ui`;
+const packages = `${packageName} svelte bits-ui @lucide/svelte`;
 
 /** @type {Record<'npm' | 'pnpm' | 'yarn' | 'bun', string>} */
 export const installCommands = {
@@ -40,7 +40,7 @@ export function toConsumerSource(source) {
   return source.replace(/(\bfrom\s+)(['"])\$lib\2/g, `$1$2${packageName}$2`);
 }
 
-/** Specifiers a consumer can resolve after installing the package and its documented peers. */
+/** Specifiers a consumer can resolve after running the documented install command. */
 const allowedSpecifiers = [
   /^portal-bits$/,
   /^portal-bits\/(styles|tokens)\.css$/,

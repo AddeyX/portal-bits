@@ -12,6 +12,7 @@ Notable changes, newest first.
 
 ### Fixed
 
+- Install commands include `@lucide/svelte` so copyable examples resolve their icon imports in pnpm consumer projects.
 - The component page lede sat 8px above the preview instead of 32px, because the API reference styles leaked onto it.
 - The Source header no longer stacks its file picker over the heading on phones.
 - More examples uses a drawn chevron instead of the browser's disclosure triangle.

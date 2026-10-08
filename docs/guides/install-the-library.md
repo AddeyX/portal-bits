@@ -6,11 +6,13 @@ A consumer installs this package plus the peer dependencies `svelte` and `bits-u
 
 The install command includes `svelte` and `bits-ui`. A project that already uses Svelte should keep a `svelte` release inside the supported range, and add `bits-ui` in its supported range.
 
+The command also installs `@lucide/svelte` for the icons imported by the copyable examples. Those imports need a direct dependency in your project.
+
 ```sh
-npm install portal-bits svelte bits-ui
-pnpm add portal-bits svelte bits-ui
-yarn add portal-bits svelte bits-ui
-bun add portal-bits svelte bits-ui
+npm install portal-bits svelte bits-ui @lucide/svelte
+pnpm add portal-bits svelte bits-ui @lucide/svelte
+yarn add portal-bits svelte bits-ui @lucide/svelte
+bun add portal-bits svelte bits-ui @lucide/svelte
 ```
 
 Load the styles once in the root layout. `styles.css` contains the component styling and already imports `tokens.css`. The layout also imports `tokens.css` so the token file stays visible. That second import is not a separate requirement.

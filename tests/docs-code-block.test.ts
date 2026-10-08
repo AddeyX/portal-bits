@@ -26,7 +26,7 @@ function terminal(container: HTMLElement) {
 const file = {
   name: 'Terminal',
   language: 'bash' as const,
-  code: 'npm install portal-bits svelte bits-ui',
+  code: 'npm install portal-bits svelte bits-ui @lucide/svelte',
 };
 
 describe('CodeBlock', () => {
@@ -76,10 +76,10 @@ describe('install commands', () => {
     expect(packageFacts.version).toBe('0.4.0');
     expect(packageFacts.peers).toEqual({ svelte: '^5.33.0', 'bits-ui': '^2.19.3' });
     expect(installCommands).toEqual({
-      npm: 'npm install portal-bits svelte bits-ui',
-      pnpm: 'pnpm add portal-bits svelte bits-ui',
-      yarn: 'yarn add portal-bits svelte bits-ui',
-      bun: 'bun add portal-bits svelte bits-ui',
+      npm: 'npm install portal-bits svelte bits-ui @lucide/svelte',
+      pnpm: 'pnpm add portal-bits svelte bits-ui @lucide/svelte',
+      yarn: 'yarn add portal-bits svelte bits-ui @lucide/svelte',
+      bun: 'bun add portal-bits svelte bits-ui @lucide/svelte',
     });
   });
 });
