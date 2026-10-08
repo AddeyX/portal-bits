@@ -60,7 +60,7 @@ describe('component reference coverage', () => {
     expect(references.map((item) => item.slug).sort()).toEqual(
       componentDocs.map((doc) => doc.slug).sort(),
     );
-    expect(references).toHaveLength(29);
+    expect(references).toHaveLength(38);
   });
 
   it.each(componentDocs)('$slug resolves, and a missing slug fails loudly', ({ slug }) => {

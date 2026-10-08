@@ -11,6 +11,11 @@ import {
   readIconButton,
   readMedia,
   readPopover,
+  readRadioGroup,
+  readSlider,
+  readDropdownMenu,
+  separatorOrientations,
+  alertDialogTones,
   badgeVariants,
   articleActions,
   carouselLayouts,
@@ -73,6 +78,24 @@ import ColorSelectorExample from './ColorSelectorExample.svelte';
 import colorSelectorSource from './ColorSelectorExample.svelte?raw';
 import FloatingNavExample from './FloatingNavExample.svelte';
 import floatingNavSource from './FloatingNavExample.svelte?raw';
+import TextareaExample from './TextareaExample.svelte';
+import textareaSource from './TextareaExample.svelte?raw';
+import SliderExample from './SliderExample.svelte';
+import sliderSource from './SliderExample.svelte?raw';
+import RadioGroupExample from './RadioGroupExample.svelte';
+import radioGroupSource from './RadioGroupExample.svelte?raw';
+import TabsExample from './TabsExample.svelte';
+import tabsSource from './TabsExample.svelte?raw';
+import AccordionExample from './AccordionExample.svelte';
+import accordionSource from './AccordionExample.svelte?raw';
+import ProgressExample from './ProgressExample.svelte';
+import progressSource from './ProgressExample.svelte?raw';
+import SeparatorExample from './SeparatorExample.svelte';
+import separatorSource from './SeparatorExample.svelte?raw';
+import DropdownMenuExample from './DropdownMenuExample.svelte';
+import dropdownMenuSource from './DropdownMenuExample.svelte?raw';
+import AlertDialogExample from './AlertDialogExample.svelte';
+import alertDialogSource from './AlertDialogExample.svelte?raw';
 
 export type ExampleProps = Record<string, string | number | boolean>;
 
@@ -273,6 +296,65 @@ export const examples: Record<string, ExampleEntry> = {
     component: FloatingNavExample,
     source: floatingNavSource,
     props: (settings) => ({ actions: enabled(settings, 'actions') }),
+  },
+  textarea: {
+    title: 'Textarea',
+    component: TextareaExample,
+    source: textareaSource,
+    props: fieldProps,
+  },
+  slider: {
+    title: 'Slider',
+    component: SliderExample,
+    source: sliderSource,
+    props: (settings) => ({ ...readSlider(settings) }),
+  },
+  'radio-group': {
+    title: 'RadioGroup',
+    component: RadioGroupExample,
+    source: radioGroupSource,
+    props: (settings) => ({ ...readRadioGroup(settings) }),
+  },
+  tabs: {
+    title: 'Tabs',
+    component: TabsExample,
+    source: tabsSource,
+    props: (settings) => ({ disabled: enabled(settings, 'disabled') }),
+  },
+  accordion: {
+    title: 'Accordion',
+    component: AccordionExample,
+    source: accordionSource,
+    props: (settings) => ({ multiple: enabled(settings, 'multiple') }),
+  },
+  progress: {
+    title: 'Progress',
+    component: ProgressExample,
+    source: progressSource,
+    props: (settings) => ({
+      indeterminate: enabled(settings, 'indeterminate'),
+      showValue: enabled(settings, 'showValue'),
+    }),
+  },
+  separator: {
+    title: 'Separator',
+    component: SeparatorExample,
+    source: separatorSource,
+    props: (settings) => ({
+      orientation: pick(settings, 'orientation', separatorOrientations, 'horizontal'),
+    }),
+  },
+  'dropdown-menu': {
+    title: 'DropdownMenu',
+    component: DropdownMenuExample,
+    source: dropdownMenuSource,
+    props: (settings) => ({ ...readDropdownMenu(settings) }),
+  },
+  'alert-dialog': {
+    title: 'AlertDialog',
+    component: AlertDialogExample,
+    source: alertDialogSource,
+    props: (settings) => ({ tone: pick(settings, 'tone', alertDialogTones, 'danger') }),
   },
 };
 

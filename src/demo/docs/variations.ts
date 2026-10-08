@@ -40,6 +40,9 @@ function flag(key: string, label: string): PreviewControl {
   return { key, label, kind: 'boolean' };
 }
 
+const capitalize = (value: string | number) =>
+  String(value).charAt(0).toUpperCase() + String(value).slice(1);
+
 const media = ['image', 'fallback'] as const;
 const mediaControl = choice('media', 'Media', media, (value) =>
   value === 'image' ? 'Image' : 'Fallback',
@@ -118,6 +121,33 @@ export function readPopover(settings: PreviewSettings) {
     align: pick(settings, 'align', popoverAligns, 'end'),
   };
 }
+
+export const sliderSteps = [1, 5, 10] as const;
+export function readSlider(settings: PreviewSettings) {
+  return {
+    step: pick(settings, 'step', sliderSteps, 1),
+    disabled: enabled(settings, 'disabled'),
+  };
+}
+
+export const radioOrientations = ['vertical', 'horizontal'] as const;
+export function readRadioGroup(settings: PreviewSettings) {
+  return {
+    orientation: pick(settings, 'orientation', radioOrientations, 'vertical'),
+    disabled: enabled(settings, 'disabled'),
+    hints: enabled(settings, 'hints'),
+  };
+}
+
+export function readDropdownMenu(settings: PreviewSettings) {
+  return {
+    align: pick(settings, 'align', popoverAligns, 'end'),
+    shortcuts: enabled(settings, 'shortcuts'),
+  };
+}
+
+export const separatorOrientations = ['horizontal', 'vertical'] as const;
+export const alertDialogTones = ['danger', 'neutral'] as const;
 
 export function readMedia(settings: PreviewSettings) {
   return pick(settings, 'media', media, 'image');
@@ -226,6 +256,41 @@ export const variations = {
   'auth-frame': { defaults: {}, controls: [] },
   'floating-nav': { defaults: { actions: true }, controls: [flag('actions', 'Actions')] },
   'color-selector': { defaults: {}, controls: [] },
+  textarea: { defaults: fieldDefaults, controls: fieldControls },
+  slider: {
+    defaults: { step: 1, disabled: false },
+    controls: [choice('step', 'Step', sliderSteps), flag('disabled', 'Disabled')],
+  },
+  'radio-group': {
+    defaults: { orientation: 'vertical', disabled: false, hints: true },
+    controls: [
+      choice('orientation', 'Orientation', radioOrientations, capitalize),
+      flag('hints', 'Hints'),
+      flag('disabled', 'Disabled'),
+    ],
+  },
+  tabs: { defaults: { disabled: false }, controls: [flag('disabled', 'Disable a tab')] },
+  accordion: { defaults: { multiple: false }, controls: [flag('multiple', 'Open many')] },
+  progress: {
+    defaults: { indeterminate: false, showValue: true },
+    controls: [flag('indeterminate', 'Indeterminate'), flag('showValue', 'Show value')],
+    unavailable: (settings): Record<string, string> =>
+      enabled(settings, 'indeterminate')
+        ? { showValue: 'An indeterminate bar has no value to show.' }
+        : {},
+  },
+  separator: {
+    defaults: { orientation: 'horizontal' },
+    controls: [choice('orientation', 'Orientation', separatorOrientations, capitalize)],
+  },
+  'dropdown-menu': {
+    defaults: { align: 'end', shortcuts: true },
+    controls: [choice('align', 'Align', popoverAligns), flag('shortcuts', 'Shortcuts')],
+  },
+  'alert-dialog': {
+    defaults: { tone: 'danger' },
+    controls: [choice('tone', 'Tone', alertDialogTones, capitalize)],
+  },
 } satisfies Record<string, Variation>;
 
 export type VariationSlug = keyof typeof variations;

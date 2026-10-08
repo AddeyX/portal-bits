@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Checkbox } from 'bits-ui';
   import type { ComponentProps, Snippet } from 'svelte';
+  import { Check } from '@lucide/svelte';
   const uid = $props.id();
   let {
     checked = $bindable(false),
@@ -37,7 +38,7 @@
     aria-invalid={invalid || undefined}
     class={`p-checkbox ${className}`}
   >
-    <span aria-hidden="true">{checked ? '✓' : ''}</span>
+    {#if checked}<Check size={13} strokeWidth={3} aria-hidden="true" />{/if}
   </Checkbox.Root>
   <label id={`${uid}-label`} for={id} class="p-checkbox-label">{@render label()}</label>
   {#if required && !name}

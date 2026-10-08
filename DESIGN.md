@@ -284,9 +284,18 @@ The shapes follow a two-part rule. Things you press or type into are pills: butt
 - **FloatingNav:** a white 56px pill bar with a control lift. The active link is an ink pill with white text.
 - **Mobile:** a bottom bar of icon-over-label links; the active link turns green, using `--portal-accent-text` or focus green by default.
 
+### Disclosure and progress
+
+- **Tabs:** the segmented track; the selected tab lifts onto white. Panels sit 16px below.
+- **Accordion:** hairline rows, 56px triggers in 15px medium text, and a 28px round chevron that turns ink when open. Content opens with a height animation.
+- **Slider and Progress:** a soft-mist track with a hairline ring and an action-green fill. The slider thumb is a 20px white circle with the icon lift.
+- **RadioGroup:** the Checkbox geometry as a circle, filled action green with an ink dot.
+
+All four are adaptations; none was measured.
+
 ### Overlays
 
-Dialogs and popovers enter by rising 8px and scaling from 98.5% over 300ms, and exit in 160ms. Tooltips are ink pills with 8px corners. All three accept a `theme` so their portaled content matches the page.
+Dialogs and popovers enter by rising 8px and scaling from 98.5% over 300ms, and exit in 160ms. Tooltips are ink pills with 8px corners. DropdownMenu uses the popover surface with 36px rows and 10px row corners. AlertDialog is a Dialog with Cancel and a confirm button; its danger tone fills with error red (an adaptation). All of these accept a `theme` so their portaled content matches the page.
 
 ## Do's and Don'ts
 

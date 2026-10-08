@@ -35,8 +35,17 @@ The gallery lists every prop, default, binding, snippet, forwarded attribute, an
 | Alert         | Message string or inline children snippet, announced in a paragraph.                                                                      | Semantic HTML          |
 | RowList       | Unordered list of consumer-supplied rows.                                                                                                 | Semantic HTML          |
 | Row           | Wrapping list item with consumer-supplied cells and a bottom hairline.                                                                    | Semantic HTML          |
+| Textarea      | Required `label`, `hideLabel`, `invalid`, bindable `value`, `rows` (4), native textarea props.                                            | Native textarea        |
+| Slider        | Required `label`, bindable `value` (0), `min`, `max`, `step`, `disabled`, `name`, and `format` for the visible value and value text.      | Bits UI Slider         |
+| RadioGroup    | Required `label` and `options`, bindable `value`, `name`, `required`, `disabled`, `invalid`, `orientation` (vertical).                    | Bits UI RadioGroup     |
+| Tabs          | Required `label` and `items` with a `content` snippet, bindable `value` (first enabled item), `activationMode`.                           | Bits UI Tabs           |
+| Accordion     | Required `items` with a `content` snippet, bindable `value` as a string array, `multiple`, `headingLevel` (3).                            | Bits UI Accordion      |
+| Progress      | Required `label`, `value` (`null` is indeterminate), `max` (100), `showValue`.                                                            | Bits UI Progress       |
+| Separator     | `orientation` (horizontal) and `decorative` (true).                                                                                       | Bits UI Separator      |
+| DropdownMenu  | Required `label`, `items` of `MenuEntry`, and `trigger` snippet. Bindable `open`, `align`, `side`, `theme`, `triggerClass`.               | Bits UI DropdownMenu   |
+| AlertDialog   | Required `title`, `description`, `confirmLabel`. `cancelLabel`, `tone`, `onConfirm`, bindable `open`, `trigger` snippet, `theme`.         | Bits UI AlertDialog    |
 
-Components that wrap a Bits UI primitive forward the props their gallery reference names. Bits UI options the reference does not name are not part of the wrapper contract, even when the primitive supports them. Dialog and Popover wrap only the root `open` state. Public data attributes are not documented; do not depend on them or on internal `p-` classes.
+Components that wrap a Bits UI primitive forward the props their gallery reference names. Bits UI options the reference does not name are not part of the wrapper contract, even when the primitive supports them. Dialog, Popover, DropdownMenu, and AlertDialog wrap only the root `open` state. Public data attributes are not documented; do not depend on them or on internal `p-` classes.
 
 `NavItem` is the public navigation-item type: `href`, `label`, optional `icon`, optional `count`.
 
@@ -178,3 +187,16 @@ An empty collection has no viewport or controls. A single item has no pagination
 </Carousel>
 <FeatureCard title="Room to explore" description="Give each idea space to grow." />
 ```
+
+## Primitives added after 0.4
+
+Textarea, Slider, RadioGroup, Tabs, Accordion, Progress, Separator, DropdownMenu, and AlertDialog fill the gaps against the Bits UI set. Nothing about them was measured on the source surface, so every visual value is an adaptation built from measured tokens:
+
+- Tabs reuse the segmented track and the lifted selected segment.
+- RadioGroup reuses the Checkbox geometry, with an ink dot on action green.
+- Slider and Progress use a soft-mist track with a hairline ring and an action-green fill.
+- DropdownMenu reuses the popover surface; its rows take the 10px nav-link corner.
+- AlertDialog reuses Dialog. Its danger button uses `--portal-error` with `--portal-on-error`, both adaptations.
+- Textarea takes the 16px surface corner instead of the 32px field pill, because a pill does not hold several lines.
+
+Combobox, Pagination, the date components, ContextMenu, and Menubar are planned but not built.

@@ -60,6 +60,23 @@ export const bitsUiDocs: Record<string, { name: string; href: string }> = {
   dialog: { name: 'Dialog', href: 'https://bits-ui.com/docs/components/dialog' },
   popover: { name: 'Popover', href: 'https://bits-ui.com/docs/components/popover' },
   tooltip: { name: 'Tooltip', href: 'https://bits-ui.com/docs/components/tooltip' },
+  slider: { name: 'Slider', href: 'https://bits-ui.com/docs/components/slider' },
+  'radio-group': {
+    name: 'Radio Group',
+    href: 'https://bits-ui.com/docs/components/radio-group',
+  },
+  tabs: { name: 'Tabs', href: 'https://bits-ui.com/docs/components/tabs' },
+  accordion: { name: 'Accordion', href: 'https://bits-ui.com/docs/components/accordion' },
+  progress: { name: 'Progress', href: 'https://bits-ui.com/docs/components/progress' },
+  separator: { name: 'Separator', href: 'https://bits-ui.com/docs/components/separator' },
+  'dropdown-menu': {
+    name: 'Dropdown Menu',
+    href: 'https://bits-ui.com/docs/components/dropdown-menu',
+  },
+  'alert-dialog': {
+    name: 'Alert Dialog',
+    href: 'https://bits-ui.com/docs/components/alert-dialog',
+  },
 };
 
 export const references: ComponentReference[] = [
@@ -772,6 +789,262 @@ export const references: ComponentReference[] = [
       'The Menu and Close button text is English text inside the component.',
     ],
     related: ['top-bar', 'portal-shell'],
+  },
+  {
+    slug: 'textarea',
+    props: [
+      prop('label', 'string', 'The visible label, tied to the field with `for`.', {
+        required: true,
+      }),
+      prop('hideLabel', 'boolean', 'Keeps the label for assistive technology only.', {
+        def: 'false',
+      }),
+      prop('invalid', 'boolean', 'Sets `aria-invalid`. Render the error text yourself.', {
+        def: 'false',
+      }),
+      prop('value', 'string', 'The field value.', { def: '""', bindable: true }),
+      prop('rows', 'number', 'Visible text lines before the field scrolls.', { def: '4' }),
+      prop('id', 'string', 'The textarea id. A stable id is generated when you omit it.', {
+        def: 'Generated id',
+      }),
+      className,
+    ],
+    snippets: [],
+    forwards: [
+      'Native textarea attributes except `value`: `name`, `placeholder`, `maxlength`, `disabled`, `required`, `aria-*`, and handlers. They land on the `textarea` element.',
+    ],
+    limitations: [
+      'The 16px corner and 96px minimum height are an adaptation. Single-line fields keep the measured 32px pill.',
+      'The field resizes vertically only. It does not grow with its content.',
+    ],
+    related: ['input', 'select'],
+  },
+  {
+    slug: 'slider',
+    props: [
+      prop('label', 'string', 'The visible label. It names the thumb.', { required: true }),
+      prop('value', 'number', 'The current value.', { def: '0', bindable: true }),
+      prop('min', 'number', 'The lowest value.', { def: '0' }),
+      prop('max', 'number', 'The highest value.', { def: '100' }),
+      prop('step', 'number', 'The amount one arrow key press moves.', { def: '1' }),
+      prop('disabled', 'boolean', 'Stops pointer and keyboard changes.', { def: 'false' }),
+      prop('name', 'string', 'Submits the value with a form under this name.'),
+      prop(
+        'format',
+        '(value: number) => string',
+        'Formats the visible value and `aria-valuetext`, such as `40%`.',
+        { def: 'String(value)' },
+      ),
+      className,
+    ],
+    snippets: [],
+    forwards: [],
+    limitations: [
+      'One thumb only. Ranges with two thumbs are not supported.',
+      'Horizontal only. The track, thumb, and halo are an adaptation; no slider was measured.',
+      'Only the props listed here reach Bits UI `Slider.Root`.',
+    ],
+    related: ['progress', 'input'],
+  },
+  {
+    slug: 'radio-group',
+    props: [
+      prop('label', 'string', 'The visible group label. It names the radio group.', {
+        required: true,
+      }),
+      prop(
+        'options',
+        'RadioOption[]',
+        'Choices as `{ value, label, description?, disabled? }`. A description becomes the hint.',
+        { required: true },
+      ),
+      prop('value', 'string', 'The selected value. Empty means nothing is selected.', {
+        def: '""',
+        bindable: true,
+      }),
+      prop('name', 'string', 'Submits the value with a form under this name.'),
+      prop('required', 'boolean', 'Requires a choice before the form submits.', { def: 'false' }),
+      prop('disabled', 'boolean', 'Disables every option.', { def: 'false' }),
+      prop('invalid', 'boolean', 'Sets `aria-invalid` and a red edge on each control.', {
+        def: 'false',
+      }),
+      prop('orientation', "'vertical' | 'horizontal'", 'Stack or row. Arrow keys follow it.', {
+        def: 'vertical',
+      }),
+      className,
+    ],
+    snippets: [],
+    forwards: [],
+    limitations: [
+      'The control borrows the Checkbox geometry and the action green. It is an adaptation.',
+      'Option labels are plain text. Use Checkbox when a label needs a link.',
+    ],
+    related: ['checkbox', 'toggle-group', 'select'],
+  },
+  {
+    slug: 'tabs',
+    props: [
+      prop('label', 'string', 'Names the tab list.', { required: true }),
+      prop(
+        'items',
+        'TabItem[]',
+        'Tabs as `{ value, label, content, disabled? }`. `content` is a Snippet for the panel.',
+        { required: true },
+      ),
+      prop('value', 'string', 'The selected tab.', {
+        def: 'First enabled item',
+        bindable: true,
+      }),
+      prop(
+        'activationMode',
+        "'automatic' | 'manual'",
+        'Automatic selects on arrow keys. Manual waits for Enter or Space.',
+        { def: 'automatic' },
+      ),
+      className,
+    ],
+    snippets: [],
+    forwards: [],
+    limitations: [
+      'The list reuses the measured segmented track. Using it for tabs is an adaptation.',
+      'Horizontal only. Inactive panels stay mounted and hidden, so their state survives a switch.',
+    ],
+    related: ['toggle-group', 'accordion'],
+  },
+  {
+    slug: 'accordion',
+    props: [
+      prop(
+        'items',
+        'AccordionItem[]',
+        'Sections as `{ value, title, content, disabled? }`. `content` is a Snippet.',
+        { required: true },
+      ),
+      prop('value', 'string[]', 'The open sections. Single mode keeps at most one.', {
+        def: '[]',
+        bindable: true,
+      }),
+      prop('multiple', 'boolean', 'Lets several sections stay open.', { def: 'false' }),
+      prop('headingLevel', '2 | 3 | 4 | 5 | 6', 'The heading level around each trigger.', {
+        def: '3',
+      }),
+      className,
+    ],
+    snippets: [],
+    forwards: [],
+    limitations: [
+      '`value` is always an array, in both modes, so switching `multiple` keeps one type.',
+      'The hairline rows, round chevron, and height animation are an adaptation.',
+      'Reduced motion removes the height animation. The open state still changes.',
+    ],
+    related: ['tabs', 'row-list'],
+  },
+  {
+    slug: 'progress',
+    props: [
+      prop('label', 'string', 'The visible label. It names the progress bar.', {
+        required: true,
+      }),
+      prop('value', 'number | null', 'Progress toward `max`. `null` means indeterminate.', {
+        def: 'null',
+      }),
+      prop('max', 'number', 'The value that means done.', { def: '100' }),
+      prop('showValue', 'boolean', 'Shows the rounded percentage beside the label.', {
+        def: 'true',
+      }),
+      className,
+    ],
+    snippets: [],
+    forwards: [],
+    limitations: [
+      'The track and sweep are an adaptation. Reduced motion swaps the sweep for a slow fade.',
+      'Values outside 0 to `max` are clamped for display.',
+    ],
+    related: ['slider', 'alert'],
+  },
+  {
+    slug: 'separator',
+    props: [
+      prop('orientation', "'horizontal' | 'vertical'", 'Direction of the hairline.', {
+        def: 'horizontal',
+      }),
+      prop(
+        'decorative',
+        'boolean',
+        'Hides the line from assistive technology. Set it to false when the line separates content.',
+        { def: 'true' },
+      ),
+      className,
+    ],
+    snippets: [],
+    forwards: [],
+    limitations: [
+      'A vertical separator needs a parent with a height, such as a flex row.',
+      'It uses the hairline token. The 1px line is an adaptation of the measured borders.',
+    ],
+    related: ['row-list', 'section-header'],
+  },
+  {
+    slug: 'dropdown-menu',
+    props: [
+      prop('label', 'string', 'Names the trigger with `aria-label`.', { required: true }),
+      prop(
+        'items',
+        'MenuEntry[]',
+        "Items as `{ label, onSelect?, icon?, shortcut?, tone?, disabled? }`, or `{ type: 'separator' }`.",
+        { required: true },
+      ),
+      prop('open', 'boolean', 'Whether the menu is open.', { def: 'false', bindable: true }),
+      prop('align', "'start' | 'center' | 'end'", 'Alignment against the trigger.', {
+        def: 'end',
+      }),
+      prop('side', "'top' | 'right' | 'bottom' | 'left'", 'Preferred side of the trigger.', {
+        def: 'bottom',
+      }),
+      theme,
+      prop('triggerClass', 'string', 'Replaces the trigger classes.', {
+        def: 'Secondary 40px icon button',
+      }),
+    ],
+    snippets: [
+      prop('trigger', 'Snippet', 'The trigger content, usually an icon.', { required: true }),
+    ],
+    forwards: [],
+    limitations: [
+      'Items are actions. Checkbox items, radio items, and submenus are not supported.',
+      '`shortcut` is a visible hint only. The menu does not bind the key.',
+      'The item rows and danger tone are an adaptation of the popover surface.',
+    ],
+    related: ['popover', 'alert-dialog'],
+  },
+  {
+    slug: 'alert-dialog',
+    props: [
+      prop('open', 'boolean', 'Whether the dialog is open.', { def: 'false', bindable: true }),
+      prop('title', 'string', 'The question. It names the dialog.', { required: true }),
+      prop('description', 'string', 'What happens when the person confirms.', { required: true }),
+      prop('confirmLabel', 'string', 'The confirm button text. Name the action.', {
+        required: true,
+      }),
+      prop('cancelLabel', 'string', 'The cancel button text.', { def: 'Cancel' }),
+      prop('tone', "'neutral' | 'danger'", 'Danger paints the confirm button red.', {
+        def: 'neutral',
+      }),
+      prop('onConfirm', '() => void', 'Runs when the person confirms. The dialog then closes.'),
+      prop('triggerLabel', 'string', 'Sets `aria-label` on the trigger.'),
+      prop('triggerClass', 'string', 'Replaces the trigger classes.', {
+        def: 'Secondary 40px button',
+      }),
+      theme,
+    ],
+    snippets: [prop('trigger', 'Snippet', 'The trigger content. Without it, bind `open`.')],
+    forwards: [],
+    limitations: [
+      'Escape and Cancel close it. A click outside does not, unlike Dialog.',
+      'Cancel takes focus when it opens, so the safe choice is the default.',
+      'The danger fill is an adaptation that uses the error token.',
+    ],
+    related: ['dialog', 'dropdown-menu'],
   },
 ];
 

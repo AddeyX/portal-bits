@@ -11,6 +11,7 @@ export const componentGroups = [
   'Selection',
   'Identity',
   'Overlays',
+  'Disclosure',
   'Cards',
   'Content',
   'Chrome',
@@ -42,6 +43,18 @@ export const componentDocs: ComponentDoc[] = [
     description: 'A native single-choice menu styled like the text field.',
   },
   {
+    slug: 'textarea',
+    title: 'Textarea',
+    group: 'Inputs',
+    description: 'A labeled multiline field that grows with its rows.',
+  },
+  {
+    slug: 'slider',
+    title: 'Slider',
+    group: 'Inputs',
+    description: 'A number in a range, with a visible value and arrow-key steps.',
+  },
+  {
     slug: 'checkbox',
     title: 'Checkbox',
     group: 'Selection',
@@ -64,6 +77,12 @@ export const componentDocs: ComponentDoc[] = [
     title: 'Switch',
     group: 'Selection',
     description: 'A labeled on or off switch, including a disabled state.',
+  },
+  {
+    slug: 'radio-group',
+    title: 'RadioGroup',
+    group: 'Selection',
+    description: 'One choice from a short, visible list, with optional hints.',
   },
   {
     slug: 'avatar',
@@ -94,6 +113,30 @@ export const componentDocs: ComponentDoc[] = [
     title: 'Tooltip',
     group: 'Overlays',
     description: 'A short hint on hover and keyboard focus.',
+  },
+  {
+    slug: 'dropdown-menu',
+    title: 'DropdownMenu',
+    group: 'Overlays',
+    description: 'A list of actions behind one trigger, with typeahead and arrow keys.',
+  },
+  {
+    slug: 'alert-dialog',
+    title: 'AlertDialog',
+    group: 'Overlays',
+    description: 'A confirmation that holds focus until the person decides.',
+  },
+  {
+    slug: 'tabs',
+    title: 'Tabs',
+    group: 'Disclosure',
+    description: 'Panels of one view behind a segmented list.',
+  },
+  {
+    slug: 'accordion',
+    title: 'Accordion',
+    group: 'Disclosure',
+    description: 'Stacked sections that open in place, one or many at a time.',
   },
   {
     slug: 'app-card',
@@ -136,6 +179,18 @@ export const componentDocs: ComponentDoc[] = [
     title: 'Alert',
     group: 'Content',
     description: 'A message announced when an action needs attention.',
+  },
+  {
+    slug: 'progress',
+    title: 'Progress',
+    group: 'Content',
+    description: 'How far a task has come, or that it is still working.',
+  },
+  {
+    slug: 'separator',
+    title: 'Separator',
+    group: 'Content',
+    description: 'A hairline between groups, decorative or announced.',
   },
   {
     slug: 'row-list',

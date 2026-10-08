@@ -6,6 +6,17 @@ Notable changes, newest first.
 
 ### Added
 
+- Nine primitives: Textarea, Slider, RadioGroup, Tabs, Accordion, Progress, Separator, DropdownMenu, and AlertDialog. Each has a docs page with variations, source, and an API reference. Their visual values are adaptations built from the existing tokens. New exported types: `TabItem`, `AccordionItem`, `RadioOption`, and `MenuEntry`.
+- `--portal-on-error` and `--portal-error-hover` for the danger button. Both are adaptations.
+- Component pages have an "On this page" rail at 1280px and wider, and previous and next links at the end.
+
+### Fixed
+
+- The component page lede sat 8px above the preview instead of 32px, because the API reference styles leaked onto it.
+- The Source header no longer stacks its file picker over the heading on phones.
+- More examples uses a drawn chevron instead of the browser's disclosure triangle.
+- Checkbox draws its check with the Lucide icon instead of a text glyph.
+
 - Docs search finds guide sections and component APIs, not only page titles. A result links to its section, such as Get started, Installation, or Input, API reference, and shows the matching text in bold. Queries match prop names, defaults, binding names, limits, and example source. Aliases such as setup and a11y work. Results are capped at 12, and an empty query still lists one result per page. Guide headings now have fragment links.
 - Component pages open on one specimen with variation controls below it, instead of a variant matrix. Controls change only existing props, and the example code follows them. Less common cases, such as a link Button, sit under More examples. Size is disabled for quiet Button and says why.
 - Every component page shows complete, copyable consumer source: `+layout.svelte`, an `App.svelte` that passes the selected settings, and the full example. A file selector switches between them, and Copy copies the raw file. Static example source is highlighted at build time with Shiki, a dev dependency. The browser receives no highlighter. Long source expands from a button and long lines scroll inside the block.
