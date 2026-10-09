@@ -31,7 +31,7 @@ The gallery lists every prop, default, binding, snippet, forwarded attribute, an
 | PortalShell   | `items`, `active`, bindable `collapsed`, `brandHref`, `brandLabel`, and `brand`, `summary`, `footer`, `topbar`, `children` snippets.      | Composition            |
 | AuthFrame     | Centered compact or reading panel with required `brandHref`, `brand`, and `children`.                                                     | Semantic HTML          |
 | Checkbox      | Bindable boolean, required `label` snippet, disabled, required, invalid, and form name.                                                   | Bits UI Checkbox       |
-| Select        | Visible label, bindable string, options, optional empty placeholder, and native form props.                                               | Native select          |
+| Select        | Visible label, bindable string, options, optional empty placeholder, and form name.                                                       | Bits UI Select         |
 | Alert         | Message string or inline children snippet, announced in a paragraph.                                                                      | Semantic HTML          |
 | RowList       | Unordered list of consumer-supplied rows.                                                                                                 | Semantic HTML          |
 | Row           | Wrapping list item with consumer-supplied cells and a bottom hairline.                                                                    | Semantic HTML          |
@@ -73,9 +73,13 @@ Bits UI owns keyboard interaction and boolean state. `checked` is bindable and d
 
 ### Select
 
-A native single-choice select, styled like `Input`, with a required visible `label`. A generated stable id associates the label; consumers may supply `id`. `value` is a bindable string that defaults to empty. `options` uses the exported `SelectOption` type: `{ value: string; label: string; disabled?: boolean }`. Option values must be unique. Reserve the empty value for the placeholder when one is supplied.
+A single-choice dropdown styled like `Input`, with a required visible `label`. Bits UI owns the list, keyboard, and typeahead. A generated stable id associates the label; consumers may supply `id`. `value` is a bindable string that defaults to empty. `options` uses the exported `SelectOption` type: `{ value: string; label: string; disabled?: boolean }`. Option values must be unique. Reserve the empty value for the placeholder when one is supplied.
 
-`placeholder` adds an enabled empty option so the selection can return to empty. Without a placeholder, an empty value leaves no option selected. `disabled`, `required`, `name`, and other native attributes retain native behavior. An empty required selection fails validation. `invalid` sets `aria-invalid`. Keyboard opening, typeahead, and form participation remain native. Search, multiple selection, and custom popups are outside this contract.
+`placeholder` adds an enabled empty option so the selection can return to empty, and shows that text in the trigger until a choice is made. Without a placeholder, an empty value leaves no option selected. `disabled` disables the trigger. `required` participates in native form validation even without `name`. `name` submits the selected value. `form` points at a form by id. An empty required selection fails validation. `invalid` sets `aria-invalid` on the trigger. `theme` scopes the portaled menu, which does not inherit the page theme.
+
+The trigger is 40px tall, like `Input`, with the label and chevron on one centered line. The menu reuses the dropdown surface, radius, and item height. Those measurements are adaptations. Search and multiple selection are outside this contract.
+
+`sizing` sets the trigger width. `stable`, the default, fills the field and never narrows below the longest option or placeholder, so a new choice does not move the layout. `dynamic` fits the selected label and eases between widths with the motion tokens; reduced motion snaps instead. The dynamic motion is an adaptation. In both modes, menu options stay on one line, and the menu grows past the trigger to fit the longest option, up to the viewport width.
 
 ### Alert
 

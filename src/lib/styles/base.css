@@ -852,7 +852,110 @@
   line-height: 20px;
 }
 .p-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 14px 0 16px;
+  line-height: 20px;
+  text-align: start;
   cursor: pointer;
+}
+/* Stable: every label shares one grid cell, so the trigger is as wide as the longest. */
+.p-select-value {
+  display: grid;
+  grid-template-columns: minmax(0, auto);
+  min-width: 0;
+  overflow: hidden;
+}
+.p-select-value > span {
+  grid-area: 1 / 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.p-select-sizer {
+  visibility: hidden;
+}
+/* Dynamic: the trigger follows the selected label and eases between widths. */
+.p-select--dynamic {
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
+}
+.p-select--dynamic .p-select-value {
+  display: block;
+  transition: width var(--portal-duration) var(--portal-ease);
+}
+.p-select--dynamic .p-select-text {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: top;
+}
+.p-select-placeholder {
+  color: var(--portal-muted);
+}
+.p-select-chevron {
+  display: flex;
+  flex-shrink: 0;
+  margin-right: 2px;
+  color: var(--portal-muted);
+  transition: transform 160ms var(--portal-ease);
+}
+.p-select[data-state='open'] .p-select-chevron {
+  transform: rotate(180deg);
+}
+.p-select-menu {
+  z-index: var(--portal-z-popover);
+  width: max-content;
+  min-width: min(var(--bits-select-anchor-width), calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  max-height: var(--bits-select-content-available-height);
+  overflow: auto;
+  padding: 6px;
+  border-radius: var(--portal-radius);
+  background: var(--portal-surface);
+  color: var(--portal-ink);
+  box-shadow:
+    0 12px 40px rgb(0 0 0 / 12%),
+    var(--portal-shadow-surface);
+  transform-origin: var(--bits-select-content-transform-origin);
+  outline: none;
+}
+.p-select-menu[data-state='open'] {
+  animation: p-enter 200ms var(--portal-ease);
+}
+.p-select-menu[data-state='closed'] {
+  animation: p-exit 120ms ease-in;
+}
+.p-select-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 36px 0 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--portal-ink);
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+.p-select-item[data-highlighted] {
+  background: var(--portal-soft);
+}
+.p-select-item[data-disabled] {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+.p-select-check {
+  position: absolute;
+  right: 10px;
+  display: inline-flex;
+  color: var(--portal-ink);
 }
 .p-alert {
   margin: var(--portal-space-2) 0;
@@ -1398,8 +1501,13 @@
     transform: none;
   }
   .p-accordion-content,
-  .p-menu {
+  .p-menu,
+  .p-select-menu {
     animation: none !important;
+  }
+  .p-select-chevron,
+  .p-select--dynamic .p-select-value {
+    transition: none !important;
   }
 }
 @keyframes p-progress-pulse {

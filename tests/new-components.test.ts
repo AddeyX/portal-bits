@@ -43,7 +43,7 @@ describe('task and record component contracts', () => {
     expect(input.checkValidity()).toBe(true);
   });
   it('uses visible select label, keeps empty option available, and validates it', async () => {
-    render(library.Select, {
+    const { container } = render(library.Select, {
       label: 'Category',
       name: 'category',
       required: true,
@@ -54,16 +54,49 @@ describe('task and record component contracts', () => {
         { value: 'music', label: 'Music', disabled: true },
       ],
     });
-    const select = screen.getByRole('combobox', { name: 'Category' }) as HTMLSelectElement;
+    const select = screen.getByRole('combobox', { name: 'Category' });
+    const input = container.querySelector('input[name="category"]') as HTMLInputElement;
     expect(screen.getByLabelText('Category')).toBe(select);
-    expect(select.checkValidity()).toBe(false);
+    expect(input.checkValidity()).toBe(false);
     expect(select).toHaveAttribute('aria-invalid', 'true');
-    await fireEvent.change(select, { target: { value: 'art' } });
-    expect(select.checkValidity()).toBe(true);
-    await fireEvent.change(select, { target: { value: '' } });
-    expect(select.checkValidity()).toBe(false);
+    await fireEvent.pointerDown(select, { button: 0, ctrlKey: false, pointerType: 'mouse' });
     expect(screen.getByRole('option', { name: 'Choose category' })).not.toBeDisabled();
-    expect(screen.getByRole('option', { name: 'Music' })).toBeDisabled();
+    expect(screen.getByRole('option', { name: 'Music' })).toHaveAttribute('aria-disabled', 'true');
+    await fireEvent.pointerUp(screen.getByRole('option', { name: 'Art' }), {
+      pointerType: 'mouse',
+    });
+    expect(input).toHaveValue('art');
+    expect(input.checkValidity()).toBe(true);
+    await fireEvent.pointerDown(select, { button: 0, ctrlKey: false, pointerType: 'mouse' });
+    await fireEvent.pointerUp(screen.getByRole('option', { name: 'Choose category' }), {
+      pointerType: 'mouse',
+    });
+    expect(input).toHaveValue('');
+    expect(input.checkValidity()).toBe(false);
+  });
+  it('sizes the select trigger to the longest label unless sizing is dynamic', async () => {
+    const options = [
+      { value: 'art', label: 'Art' },
+      { value: 'research', label: 'Shared research notes' },
+    ];
+    const { rerender } = render(library.Select, {
+      label: 'Category',
+      placeholder: 'Pick',
+      options,
+    });
+    const select = screen.getByRole('combobox', { name: 'Category' });
+    const sizers = [...select.querySelectorAll('.p-select-sizer')];
+    expect(select).toHaveClass('p-select--stable');
+    expect(sizers.map((sizer) => sizer.textContent)).toEqual([
+      'Pick',
+      'Art',
+      'Shared research notes',
+    ]);
+    expect(sizers.every((sizer) => sizer.getAttribute('aria-hidden') === 'true')).toBe(true);
+    await rerender({ sizing: 'dynamic' });
+    expect(select).toHaveClass('p-select--dynamic');
+    expect(select.querySelector('.p-select-sizer')).toBeNull();
+    expect(select.querySelector('.p-select-text')).toHaveTextContent('Pick');
   });
   it('announces updated messages in a paragraph', async () => {
     const { rerender } = render(library.Alert, { message: 'Try again.' });
@@ -80,7 +113,11 @@ it('binds both controls, submits their values, and accepts parent updates', asyn
   const form = screen.getByRole('form') as HTMLFormElement;
   expect(new FormData(form).has('consent')).toBe(false);
   await fireEvent.click(screen.getByRole('checkbox'));
-  await fireEvent.change(screen.getByRole('combobox'), { target: { value: 'notes' } });
+  const category = screen.getByRole('combobox', { name: 'Category' });
+  await fireEvent.pointerDown(category, { button: 0, ctrlKey: false, pointerType: 'mouse' });
+  await fireEvent.pointerUp(screen.getByRole('option', { name: 'Notes' }), {
+    pointerType: 'mouse',
+  });
   expect(screen.getByRole('status')).toHaveTextContent('yes:notes');
   expect([...new FormData(form).entries()]).toEqual([
     ['consent', 'on'],
@@ -88,7 +125,7 @@ it('binds both controls, submits their values, and accepts parent updates', asyn
   ]);
   await fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
   expect(screen.getByRole('checkbox')).toHaveAttribute('aria-checked', 'false');
-  expect(screen.getByRole('combobox')).toHaveValue('');
+  expect(category).toHaveTextContent('Choose');
 });
 
 it('composes semantic records, inline alert snippets, and consumer branding', async () => {

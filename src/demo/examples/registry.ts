@@ -8,6 +8,7 @@ import {
   readButton,
   readContent,
   readField,
+  readSelect,
   readIconButton,
   readMedia,
   readPopover,
@@ -128,7 +129,12 @@ export const examples: Record<string, ExampleEntry> = {
     props: (settings) => ({ ...readIconButton(settings) }),
   },
   input: { title: 'Input', component: InputExample, source: inputSource, props: fieldProps },
-  select: { title: 'Select', component: SelectExample, source: selectSource, props: fieldProps },
+  select: {
+    title: 'Select',
+    component: SelectExample,
+    source: selectSource,
+    props: (settings) => ({ ...readSelect(settings) }),
+  },
   checkbox: {
     title: 'Checkbox',
     component: CheckboxExample,

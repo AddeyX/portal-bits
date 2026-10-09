@@ -6,10 +6,12 @@ Notable changes, newest first.
 
 ### Changed
 
+- Select opens a styled menu instead of the browser list. The trigger centers its label and chevron on the input line. The menu is an adaptation. Options stay on one line.
 - Docs source blocks use file tabs, Expand Code, and a copy icon. The surface follows the active theme tokens. Highlighting uses Serendipity Midnight, with those hues darkened for the light surface, which is an adaptation. The 16px radius and 320px collapsed height are gallery adaptations.
 
 ### Added
 
+- Select `sizing` keeps the trigger as wide as the longest option (`stable`, the default) or fits the selected label with an eased width change (`dynamic`, an adaptation).
 - Nine primitives: Textarea, Slider, RadioGroup, Tabs, Accordion, Progress, Separator, DropdownMenu, and AlertDialog. Each has a docs page with variations, source, and an API reference. Their visual values are adaptations built from the existing tokens. New exported types: `TabItem`, `AccordionItem`, `RadioOption`, and `MenuEntry`.
 - `--portal-on-error` and `--portal-error-hover` for the danger button. Both are adaptations.
 - Component pages have an "On this page" rail at 1280px and wider, and previous and next links at the end.

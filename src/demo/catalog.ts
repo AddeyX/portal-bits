@@ -40,7 +40,7 @@ export const componentDocs: ComponentDoc[] = [
     slug: 'select',
     title: 'Select',
     group: 'Inputs',
-    description: 'A native single-choice menu styled like the text field.',
+    description: 'A single-choice menu styled like the text field.',
   },
   {
     slug: 'textarea',

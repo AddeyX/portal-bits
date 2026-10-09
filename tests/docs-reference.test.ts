@@ -173,11 +173,11 @@ describe('pinned contracts', () => {
     expect(find('avatar', 'alt').required).toBe(true);
   });
 
-  it('Select is native single-choice', () => {
+  it('Select is a single-choice dropdown', () => {
     const text = referenceFor('select').limitations.join(' ');
-    expect(text).toMatch(/native/i);
     expect(text).toMatch(/single/i);
     expect(text).toMatch(/multiple/i);
+    expect(text).toMatch(/adaptation/i);
     expect(find('select', 'options').required).toBe(true);
     expect(find('select', 'options').type).toContain('SelectOption');
     expect(all('select').map((item) => item.name)).not.toContain('multiple');

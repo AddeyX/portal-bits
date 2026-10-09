@@ -57,6 +57,7 @@ export const bitsUiDocs: Record<string, { name: string; href: string }> = {
   },
   switch: { name: 'Switch', href: 'https://bits-ui.com/docs/components/switch' },
   checkbox: { name: 'Checkbox', href: 'https://bits-ui.com/docs/components/checkbox' },
+  select: { name: 'Select', href: 'https://bits-ui.com/docs/components/select' },
   dialog: { name: 'Dialog', href: 'https://bits-ui.com/docs/components/dialog' },
   popover: { name: 'Popover', href: 'https://bits-ui.com/docs/components/popover' },
   tooltip: { name: 'Tooltip', href: 'https://bits-ui.com/docs/components/tooltip' },
@@ -174,22 +175,41 @@ export const references: ComponentReference[] = [
         'string',
         'Adds an enabled empty option with this text, so the choice can return to empty.',
       ),
-      prop('invalid', 'boolean', 'Sets `aria-invalid`. Render the error text yourself.', {
-        def: 'false',
-      }),
-      prop('id', 'string', 'The select id. A stable id is generated when you omit it.', {
+      prop(
+        'invalid',
+        'boolean',
+        'Sets `aria-invalid` on the trigger. Render the error text yourself.',
+        {
+          def: 'false',
+        },
+      ),
+      prop('id', 'string', 'The trigger id. A stable id is generated when you omit it.', {
         def: 'Generated id',
       }),
+      prop('name', 'string', 'Submits the selected value under this name.'),
+      prop('required', 'boolean', 'Takes part in native form validation, even without `name`.', {
+        def: 'false',
+      }),
+      prop('disabled', 'boolean', 'Disables the trigger and every option.', { def: 'false' }),
+      prop('form', 'string', 'The id of the form that owns the control.'),
+      theme,
+      prop(
+        'sizing',
+        "'stable' | 'dynamic'",
+        'Stable fills the field and never narrows below the longest option. Dynamic fits the selected label and eases between widths.',
+        { def: 'stable' },
+      ),
       className,
     ],
     snippets: [],
     forwards: [
-      'Native select attributes except `value`, `multiple`, `children`, and `size`: `name`, `required`, `disabled`, `form`, `aria-*`, and handlers. They land on the `select` element.',
+      'Button attributes except `value` and `type`: `aria-*` and handlers. They land on the trigger. The trigger is `type="button"`.',
     ],
     limitations: [
-      'A native single-choice select. Multiple selection, search, and custom popups are not supported.',
+      'Single choice only. Multiple selection and search are not supported.',
       'Reserve the empty value for the placeholder. An option with an empty value collides with it.',
-      'Opening, typeahead, and form participation are the browser behavior. The styling is an adaptation of Input.',
+      'The menu, trigger spacing, chevron, and dynamic width motion are adaptations. They reuse the input height, menu surface, type, and motion tokens.',
+      'Menu options stay on one line. The menu grows past the trigger to fit the longest option, up to the viewport width.',
     ],
     related: ['input', 'toggle-group'],
   },

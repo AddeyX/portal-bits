@@ -4,10 +4,17 @@
     invalid = false,
     disabled = false,
     required = false,
-  }: { invalid?: boolean; disabled?: boolean; required?: boolean } = $props();
+    sizing = 'stable',
+  }: {
+    invalid?: boolean;
+    disabled?: boolean;
+    required?: boolean;
+    sizing?: 'stable' | 'dynamic';
+  } = $props();
   const options: SelectOption[] = [
     { value: 'notes', label: 'Notes' },
     { value: 'drafts', label: 'Drafts' },
+    { value: 'research', label: 'Shared research notes' },
     { value: 'archived', label: 'Archived', disabled: true },
   ];
   let category = $state('');
@@ -22,6 +29,7 @@
     {invalid}
     {required}
     {disabled}
+    {sizing}
     aria-describedby={invalid ? 'category-error' : undefined}
   />
   {#if invalid}<p id="category-error" class="error">Choose a category.</p>{/if}

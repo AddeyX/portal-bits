@@ -102,6 +102,11 @@ export function readField(settings: PreviewSettings) {
   };
 }
 
+export const selectSizings = ['stable', 'dynamic'] as const;
+export function readSelect(settings: PreviewSettings) {
+  return { ...readField(settings), sizing: pick(settings, 'sizing', selectSizings, 'stable') };
+}
+
 export const avatarSizes = [32, 40, 56] as const;
 export const avatarMedia = ['image', 'broken', 'none'] as const;
 export function readAvatar(settings: PreviewSettings) {
@@ -186,7 +191,10 @@ export const variations = {
     ],
   },
   input: { defaults: fieldDefaults, controls: fieldControls },
-  select: { defaults: fieldDefaults, controls: fieldControls },
+  select: {
+    defaults: { sizing: 'stable', ...fieldDefaults },
+    controls: [choice('sizing', 'Sizing', selectSizings, capitalize), ...fieldControls],
+  },
   checkbox: { defaults: fieldDefaults, controls: fieldControls },
   toggle: { defaults: { disabled: false }, controls: [flag('disabled', 'Disabled')] },
   'toggle-group': {
