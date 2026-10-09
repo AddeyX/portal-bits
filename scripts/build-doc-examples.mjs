@@ -29,7 +29,46 @@ const grammars = /** @type {const} */ ({
   css: 'css',
   bash: 'shellscript',
 });
-const theme = 'github-light';
+// Token colors only. The block fill comes from the portal tokens, not this file.
+const midnightFile = join(root, 'scripts/serendipity-midnight.json');
+const highlightTheme = 'Serendipity Midnight light/Serendipity Midnight';
+
+/**
+ * Same Midnight hues, darkened so each role stays readable on the light surface.
+ * Near-white text becomes ink. Blue, cyan, gold, and salmon stay distinct.
+ * This map is an adaptation.
+ */
+const lightForeground = {
+  '#707070': '#6a6f7e',
+  '#5ba2d0': '#1a5f96',
+  '#eeeeee': '#24262e',
+  '#e6e6e6': '#24262e',
+  '#b0e2fd': '#0e748c',
+  '#ee8679': '#c43d2e',
+  '#8d8f9e': '#5c6170',
+  '#dee0ef': '#3a3f50',
+  '#e3d891': '#8a6414',
+};
+
+/** @param {any} midnight */
+function lightThemeFrom(midnight) {
+  const theme = structuredClone(midnight);
+  theme.name = 'Serendipity Midnight light';
+  theme.type = 'light';
+  /** @param {string} color */
+  const map = (color) => {
+    const next = /** @type {Record<string, string>} */ (lightForeground)[color.toLowerCase()];
+    if (!next) throw new Error(`No light syntax color for ${color}`);
+    return next;
+  };
+  for (const rule of theme.tokenColors ?? []) {
+    const color = rule.settings?.foreground;
+    if (typeof color === 'string') rule.settings.foreground = map(color);
+  }
+  const foreground = theme.colors?.['editor.foreground'];
+  if (typeof foreground === 'string') theme.colors['editor.foreground'] = map(foreground);
+  return theme;
+}
 
 /** Slug and component name for every catalog entry. */
 async function readCatalog() {
@@ -85,16 +124,23 @@ function escapeHtml(text) {
   return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 }
 
+/** @param {string | undefined} color */
+function isColor(color) {
+  return typeof color === 'string' && /^#[0-9a-fA-F]{3,8}$/.test(color);
+}
+
 /**
- * @param {{ content: string, color?: string, fontStyle?: number }} token
+ * Light color is the default. Dark color is a variable the block reads under the dark theme.
+ * @param {{ content: string, htmlStyle?: Record<string, string> }} token
  */
-function tokenHtml({ content, color, fontStyle = 0 }) {
+function tokenHtml({ content, htmlStyle = {} }) {
   const text = escapeHtml(content);
   const styles = [];
-  if (color && /^#[0-9a-fA-F]{3,8}$/.test(color)) styles.push(`color:${color}`);
-  if (fontStyle & 1) styles.push('font-style:italic');
-  if (fontStyle & 2) styles.push('font-weight:bold');
-  if (fontStyle & 4) styles.push('text-decoration:underline');
+  if (isColor(htmlStyle.color)) styles.push(`--shiki-light:${htmlStyle.color}`);
+  if (isColor(htmlStyle['--shiki-dark'])) styles.push(`--shiki-dark:${htmlStyle['--shiki-dark']}`);
+  for (const name of ['font-style', 'font-weight', 'text-decoration']) {
+    if (htmlStyle[name]) styles.push(`${name}:${htmlStyle[name]}`);
+  }
   return styles.length ? `<span style="${styles.join(';')}">${text}</span>` : text;
 }
 
@@ -118,33 +164,42 @@ export async function buildDocExamples({ output = outputFile } = {}) {
   for (const source of sources) checkSource(source);
 
   const previous = await readTable(output);
+  const reusable = previous.theme === highlightTheme ? previous : {};
   /** @type {Record<string, Record<string, string>>} */
   const table = {};
   /** @type {{ language: SourceLanguage, code: string, filename: string }[]} */
   const missing = [];
   for (const { language = 'svelte', code, filename } of sources) {
     table[language] ??= {};
-    const known = Object.hasOwn(previous[language] ?? {}, code)
-      ? previous[language][code]
+    const known = Object.hasOwn(reusable[language] ?? {}, code)
+      ? reusable[language][code]
       : undefined;
     if (typeof known === 'string') table[language][code] = known;
     else missing.push({ language, code, filename });
   }
 
   if (missing.length) {
+    const midnight = JSON.parse(await readFile(midnightFile, 'utf8'));
+    const themes = { light: lightThemeFrom(midnight), dark: midnight };
+    if (`${themes.light.name}/${themes.dark.name}` !== highlightTheme) {
+      throw new Error(`Highlight themes are ${themes.light.name}/${themes.dark.name}`);
+    }
     const { createHighlighter, createJavaScriptRegexEngine } = await import('shiki');
     const highlighter = await createHighlighter({
-      themes: [theme],
+      themes: [themes.light, themes.dark],
       langs: Object.values(grammars),
       engine: createJavaScriptRegexEngine(),
     });
     try {
       for (const { language, code, filename } of missing) {
         try {
-          const lines = highlighter.codeToTokensBase(code, { lang: grammars[language], theme });
-          const text = lines.map((line) => line.map((token) => token.content).join('')).join('\n');
+          const { tokens } = highlighter.codeToTokens(code, {
+            lang: grammars[language],
+            themes,
+          });
+          const text = tokens.map((line) => line.map((token) => token.content).join('')).join('\n');
           if (text !== code) throw new Error('Highlighted text differs from the source');
-          table[language][code] = lines.map((line) => line.map(tokenHtml).join('')).join('\n');
+          table[language][code] = tokens.map((line) => line.map(tokenHtml).join('')).join('\n');
         } catch (error) {
           // The source stays readable and escaped. Only invalid source fails generation.
           console.warn(`Highlighting skipped for ${filename}: ${String(error)}`);
@@ -155,7 +210,7 @@ export async function buildDocExamples({ output = outputFile } = {}) {
     }
   }
 
-  const next = `${JSON.stringify(table)}\n`;
+  const next = `${JSON.stringify({ theme: highlightTheme, ...table })}\n`;
   let current = '';
   try {
     current = await readFile(output, 'utf8');

@@ -4,6 +4,10 @@ Notable changes, newest first.
 
 ## [Unreleased]
 
+### Changed
+
+- Docs source blocks use file tabs, Expand Code, and a copy icon. The surface follows the active theme tokens. Highlighting uses Serendipity Midnight, with those hues darkened for the light surface, which is an adaptation. The 16px radius and 320px collapsed height are gallery adaptations.
+
 ### Added
 
 - Nine primitives: Textarea, Slider, RadioGroup, Tabs, Accordion, Progress, Separator, DropdownMenu, and AlertDialog. Each has a docs page with variations, source, and an API reference. Their visual values are adaptations built from the existing tokens. New exported types: `TabItem`, `AccordionItem`, `RadioOption`, and `MenuEntry`.

@@ -242,7 +242,7 @@ describe('API reference page', () => {
     render(Page, { data: { entry: entry('button') } });
     const usage = document.getElementById('usage')!;
     expect(usage).toBeInTheDocument();
-    expect(within(usage).getByRole('combobox', { name: 'Source file' })).toBeInTheDocument();
+    expect(within(usage).getByRole('tablist', { name: 'Source files' })).toBeInTheDocument();
     const reference = document.getElementById('api-reference')!;
     expect(
       usage.compareDocumentPosition(reference) & Node.DOCUMENT_POSITION_FOLLOWING,

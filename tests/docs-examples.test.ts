@@ -87,7 +87,8 @@ describe('highlighting', () => {
     for (const { slug } of componentDocs) {
       const [, , example] = getExampleFiles(slug, {});
       const html = highlightSource(example.code, 'svelte');
-      expect(html, slug).toContain('<span style="color:');
+      expect(html, slug).toContain('--shiki-light:');
+      expect(html, slug).toContain('--shiki-dark:');
       expect(
         html!
           .replace(/<[^>]+>/g, '')
@@ -106,7 +107,8 @@ describe('highlighting', () => {
       const [, , example] = getExampleFiles(slug, {});
       const segments = highlightSegments(example.code, 'svelte')!;
       expect(segments.map((segment) => segment.text).join(''), slug).toBe(example.code);
-      expect(segments.some((segment) => segment.style?.startsWith('color:'))).toBe(true);
+      expect(segments.some((segment) => segment.style?.includes('--shiki-light:'))).toBe(true);
+      expect(segments.some((segment) => segment.style?.includes('--shiki-dark:'))).toBe(true);
     }
     expect(highlightSegments('<b>unknown</b>', 'svelte')).toBeUndefined();
   });
@@ -164,8 +166,8 @@ describe('component source', () => {
     expect(app.code).toContain('size={48}');
     expect(app.code).toContain('disabled={true}');
 
-    const picker = screen.getByRole('combobox', { name: 'Source file' });
-    await fireEvent.change(picker, { target: { value: 'App.svelte' } });
+    const tabs = screen.getByRole('tablist', { name: 'Source files' });
+    await fireEvent.click(within(tabs).getByRole('tab', { name: 'App.svelte' }));
     await fireEvent.click(screen.getByRole('button', { name: 'Copy App.svelte' }));
     expect(writeText).toHaveBeenLastCalledWith(app.code);
 
@@ -176,25 +178,29 @@ describe('component source', () => {
     expect(specimen).toHaveClass('p-button--green', 'p-button--48');
 
     const example = expected.find((file) => file.name === 'ButtonExample.svelte')!;
-    await fireEvent.change(picker, { target: { value: 'ButtonExample.svelte' } });
+    await fireEvent.click(within(tabs).getByRole('tab', { name: 'ButtonExample.svelte' }));
     await fireEvent.click(screen.getByRole('button', { name: 'Copy ButtonExample.svelte' }));
     expect(writeText).toHaveBeenLastCalledWith(example.code);
   });
 
   it('lists every file and expands long source with an accessible button', async () => {
     render(Preview, { slug: 'dialog' });
-    const picker = screen.getByRole('combobox', { name: 'Source file' });
-    expect(screen.queryByRole('button', { name: /^Expand / })).toBeNull();
+    const tabs = screen.getByRole('tablist', { name: 'Source files' });
+    expect(screen.queryByRole('button', { name: 'Expand Code' })).toBeNull();
     expect(
-      within(picker)
-        .getAllByRole('option')
-        .map((option) => option.textContent),
+      within(tabs)
+        .getAllByRole('tab')
+        .map((tab) => tab.textContent),
     ).toEqual(['+layout.svelte', 'App.svelte', 'DialogExample.svelte']);
-    await fireEvent.change(picker, { target: { value: 'DialogExample.svelte' } });
-    const expand = screen.getByRole('button', { name: /^Expand / });
+    expect(within(tabs).getByRole('tab', { name: 'App.svelte' })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
+    await fireEvent.click(within(tabs).getByRole('tab', { name: 'DialogExample.svelte' }));
+    const expand = screen.getByRole('button', { name: 'Expand Code' });
     expect(expand).toHaveAttribute('aria-expanded', 'false');
     await fireEvent.click(expand);
-    expect(screen.getByRole('button', { name: /^Collapse / })).toHaveAttribute(
+    expect(screen.getByRole('button', { name: 'Collapse Code' })).toHaveAttribute(
       'aria-expanded',
       'true',
     );
