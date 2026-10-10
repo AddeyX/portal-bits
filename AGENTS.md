@@ -9,6 +9,7 @@
 - Public exports are library components, tokens, and styles.
 - Svelte and Bits UI stay peer dependencies.
 - The package publishes to the public npm registry as `portal-bits`. The gallery deploys to GitHub Pages. Font files in the package are a later decision.
+- Do not commit changes unless explicitly communicated.
 
 ## Context
 
