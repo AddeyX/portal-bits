@@ -3,6 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import CodeBlock from '../src/demo/docs/CodeBlock.svelte';
 import { installCommands, packageFacts } from '../src/demo/docs/install';
 import GetStarted from '../src/routes/get-started/+page.svelte';
+import { choose, shown } from './helpers/select';
 
 const originalClipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
 
@@ -99,9 +100,9 @@ describe('Get started', () => {
     expect(screen.getByText(/svelte@\^5\.33\.0/)).toBeVisible();
     expect(screen.getByText(/bits-ui@\^2\.19\.3/)).toBeVisible();
 
-    const select = screen.getByRole('combobox', { name: 'Package manager' });
     for (const [value, command] of Object.entries(installCommands)) {
-      await fireEvent.change(select, { target: { value } });
+      await choose('Package manager', value);
+      expect(shown('Package manager')).toBe(value);
       expect(terminal(container)).toHaveTextContent(command);
       expect(terminal(container)).toBeVisible();
       await fireEvent.click(screen.getByRole('button', { name: 'Copy Terminal' }));

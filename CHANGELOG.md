@@ -7,6 +7,7 @@ Notable changes, newest first.
 ### Changed
 
 - Select opens a styled menu instead of the browser list. The trigger centers its label and chevron on the input line. The menu is an adaptation. Options stay on one line.
+- Gallery Variations controls and the Get started package manager picker use the library Select instead of native selects.
 - Docs source blocks use file tabs, Expand Code, and a copy icon. The surface follows the active theme tokens. Highlighting uses Serendipity Midnight, with those hues darkened for the light surface, which is an adaptation. The 16px radius and 320px collapsed height are gallery adaptations.
 
 ### Added

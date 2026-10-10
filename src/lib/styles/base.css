@@ -861,6 +861,9 @@
   text-align: start;
   cursor: pointer;
 }
+.p-select:disabled {
+  cursor: not-allowed;
+}
 /* Stable: every label shares one grid cell, so the trigger is as wide as the longest. */
 .p-select-value {
   display: grid;

@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/svelte';
 import { createRawSnippet } from 'svelte';
 import { describe, it, expect } from 'vitest';
 import * as library from '../src/lib/index';
+import { choose, shown } from './helpers/select';
 
 const label = createRawSnippet(() => ({
   render: () => '<span>Accept <a href="#terms">terms</a></span>',
@@ -113,11 +114,7 @@ it('binds both controls, submits their values, and accepts parent updates', asyn
   const form = screen.getByRole('form') as HTMLFormElement;
   expect(new FormData(form).has('consent')).toBe(false);
   await fireEvent.click(screen.getByRole('checkbox'));
-  const category = screen.getByRole('combobox', { name: 'Category' });
-  await fireEvent.pointerDown(category, { button: 0, ctrlKey: false, pointerType: 'mouse' });
-  await fireEvent.pointerUp(screen.getByRole('option', { name: 'Notes' }), {
-    pointerType: 'mouse',
-  });
+  await choose('Category', 'Notes');
   expect(screen.getByRole('status')).toHaveTextContent('yes:notes');
   expect([...new FormData(form).entries()]).toEqual([
     ['consent', 'on'],
@@ -125,7 +122,7 @@ it('binds both controls, submits their values, and accepts parent updates', asyn
   ]);
   await fireEvent.click(screen.getByRole('button', { name: 'Clear' }));
   expect(screen.getByRole('checkbox')).toHaveAttribute('aria-checked', 'false');
-  expect(category).toHaveTextContent('Choose');
+  expect(shown('Category')).toBe('Choose');
 });
 
 it('composes semantic records, inline alert snippets, and consumer branding', async () => {

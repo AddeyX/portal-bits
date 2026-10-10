@@ -5,6 +5,7 @@ import Preview from '../src/routes/components/[slug]/Preview.svelte';
 import Page from '../src/routes/components/[slug]/+page.svelte';
 import { componentDocs } from '../src/demo/catalog';
 import { variations, type VariationSlug } from '../src/demo/docs/variations';
+import { choose, shown } from './helpers/select';
 
 function buttonStage() {
   return screen.getByRole('region', { name: 'Button preview' });
@@ -16,11 +17,9 @@ describe('Button variations', () => {
     const stage = buttonStage();
     expect(within(stage).getAllByRole('button')).toHaveLength(1);
 
-    const variant = screen.getByRole('combobox', { name: 'Variant' });
-    const size = screen.getByRole('combobox', { name: 'Size' });
-    expect(stage).not.toContainElement(variant);
-    await fireEvent.change(variant, { target: { value: 'green' } });
-    await fireEvent.change(size, { target: { value: '48' } });
+    expect(stage).not.toContainElement(screen.getByRole('combobox', { name: 'Variant' }));
+    await choose('Variant', 'green');
+    await choose('Size', '48px');
 
     const specimen = within(stage).getByRole('button');
     expect(specimen).toHaveClass('p-button--green', 'p-button--48');
@@ -45,24 +44,20 @@ describe('Button variations', () => {
     render(Preview, { slug: 'button' });
     const toggle = screen.getByRole('switch', { name: 'Disabled' });
     for (let i = 0; i < 5; i++) toggle.click();
-    const variant = screen.getByRole('combobox', { name: 'Variant' });
-    fireEvent.change(variant, { target: { value: 'secondary' } });
-    fireEvent.change(variant, { target: { value: 'quiet' } });
-    fireEvent.change(variant, { target: { value: 'green' } });
-    await tick();
+    await choose('Variant', 'secondary');
+    await choose('Variant', 'quiet');
+    await choose('Variant', 'green');
 
     expect(toggle).toHaveAttribute('aria-checked', 'true');
     const specimen = within(buttonStage()).getByRole('button');
     expect(specimen).toBeDisabled();
     expect(specimen).toHaveClass('p-button--green');
-    expect(variant).toHaveValue('green');
+    expect(shown('Variant')).toBe('green');
   });
 
   it('disables Size for quiet and explains why', async () => {
     render(Preview, { slug: 'button' });
-    await fireEvent.change(screen.getByRole('combobox', { name: 'Variant' }), {
-      target: { value: 'quiet' },
-    });
+    await choose('Variant', 'quiet');
     const size = screen.getByRole('combobox', { name: 'Size' });
     expect(size).toBeDisabled();
     expect(size).toHaveAccessibleDescription(/does not apply/i);
@@ -102,9 +97,7 @@ describe('curated variations', () => {
 
   it('keeps numeric option values as numbers', async () => {
     render(Preview, { slug: 'avatar' });
-    await fireEvent.change(screen.getByRole('combobox', { name: 'Size' }), {
-      target: { value: '56' },
-    });
+    await choose('Size', '56px');
     expect(screen.getByText(/size=\{56\}/)).toBeInTheDocument();
     expect(screen.queryByText(/size="56"/)).toBeNull();
   });
@@ -129,13 +122,11 @@ describe('curated variations', () => {
   it('resets settings when the slug changes', async () => {
     const entry = (slug: string) => componentDocs.find((doc) => doc.slug === slug)!;
     const { rerender } = render(Page, { data: { entry: entry('button') } });
-    await fireEvent.change(screen.getByRole('combobox', { name: 'Variant' }), {
-      target: { value: 'green' },
-    });
-    expect(screen.getByRole('combobox', { name: 'Variant' })).toHaveValue('green');
+    await choose('Variant', 'green');
+    expect(shown('Variant')).toBe('green');
     await rerender({ data: { entry: entry('icon-button') } });
-    expect(screen.getByRole('combobox', { name: 'Variant' })).toHaveValue('secondary');
+    expect(shown('Variant')).toBe('secondary');
     await rerender({ data: { entry: entry('button') } });
-    expect(screen.getByRole('combobox', { name: 'Variant' })).toHaveValue('primary');
+    expect(shown('Variant')).toBe('primary');
   });
 });

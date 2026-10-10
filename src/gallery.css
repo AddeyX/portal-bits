@@ -1195,6 +1195,7 @@ pre {
 .doc-control {
   display: grid;
   gap: 6px;
+  min-width: 140px;
   max-width: 240px;
   font-size: 13px;
   line-height: 20px;
@@ -1203,26 +1204,9 @@ pre {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 36px;
+  min-width: 0;
+  min-height: 40px;
   align-self: flex-end;
-}
-.doc-control select {
-  height: 36px;
-  min-width: 140px;
-  padding: 0 12px;
-  border: 1px solid var(--portal-control-border);
-  border-radius: 10px;
-  background: var(--portal-surface);
-  color: var(--portal-ink);
-  font: inherit;
-}
-.doc-control select:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-.doc-control select:focus-visible {
-  outline: 2px solid var(--portal-ink);
-  outline-offset: 2px;
 }
 .doc-control-reason {
   margin: 0;

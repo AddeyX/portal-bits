@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Button } from '$lib';
+  import { Button, Select } from '$lib';
   import CodeBlock from '../../demo/docs/CodeBlock.svelte';
   import PreviewStage from '../../demo/docs/PreviewStage.svelte';
   import InlineText from '../../demo/docs/InlineText.svelte';
@@ -16,7 +16,9 @@
   const styles = guideSection('/get-started', 'styles');
   const typescript = guideSection('/get-started', 'typescript');
 
-  let manager = $state<keyof typeof installCommands>('npm');
+  type Manager = keyof typeof installCommands;
+  const managers = Object.keys(installCommands) as Manager[];
+  let manager = $state<Manager>('npm');
 
   const command = $derived<SourceFile>({
     name: 'Terminal',
@@ -47,15 +49,13 @@
   {#each installation.paragraphs as paragraph (paragraph)}
     <p><InlineText text={paragraph} /></p>
   {/each}
-  <label class="doc-manager">
-    Package manager
-    <select bind:value={manager}>
-      <option value="npm">npm</option>
-      <option value="pnpm">pnpm</option>
-      <option value="yarn">yarn</option>
-      <option value="bun">bun</option>
-    </select>
-  </label>
+  <div class="doc-manager">
+    <Select
+      label="Package manager"
+      options={managers.map((value) => ({ value, label: value }))}
+      bind:value={() => manager, (next) => (manager = next as Manager)}
+    />
+  </div>
   <CodeBlock file={command} />
   <h2 id={basicUsage.id}>{basicUsage.title}</h2>
   {#each basicUsage.paragraphs as paragraph (paragraph)}
@@ -86,20 +86,7 @@
 
 <style>
   .doc-manager {
-    display: grid;
-    gap: 8px;
     max-width: 240px;
     margin-top: 16px;
-    font-size: 14px;
-    line-height: 20px;
-  }
-
-  .doc-manager select {
-    font: inherit;
-    color: inherit;
-    background: var(--portal-surface);
-    border: 1px solid var(--portal-border);
-    border-radius: 8px;
-    padding: 8px 10px;
   }
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Switch } from '$lib';
+  import { Select, Switch } from '$lib';
   import type { PreviewControl, PreviewSettings } from './types';
 
   let {
@@ -32,18 +32,17 @@
       {@const reason = unavailable[control.key]}
       {#if control.kind === 'choice'}
         <div class="doc-control">
-          <label for={controlId}>{control.label}</label>
-          <select
+          <Select
             id={controlId}
-            value={String(settings[control.key])}
+            label={control.label}
+            options={control.options.map((option) => ({
+              value: String(option.value),
+              label: option.label,
+            }))}
+            bind:value={() => String(settings[control.key]), (raw) => choose(control, raw)}
             disabled={!!reason}
             aria-describedby={reason ? `${controlId}-reason` : undefined}
-            onchange={(event) => choose(control, event.currentTarget.value)}
-          >
-            {#each control.options as option (option.value)}
-              <option value={String(option.value)}>{option.label}</option>
-            {/each}
-          </select>
+          />
           {#if reason}<p class="doc-control-reason" id="{controlId}-reason">{reason}</p>{/if}
         </div>
       {:else}

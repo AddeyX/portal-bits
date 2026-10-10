@@ -11,6 +11,7 @@ import { consumerProblems, installCommands, layoutSource } from '../src/demo/doc
 import { highlightSegments, highlightSource } from '../src/demo/docs/highlight';
 import { examples, getExampleFiles } from '../src/demo/examples/registry';
 import { collectExampleSources } from '../scripts/build-doc-examples.mjs';
+import { choose } from './helpers/select';
 
 const exampleDirectory = join(__dirname, '../src/demo/examples');
 const originalClipboard = Object.getOwnPropertyDescriptor(navigator, 'clipboard');
@@ -147,12 +148,8 @@ describe('component source', () => {
     Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText } });
     render(Preview, { slug: 'button' });
 
-    await fireEvent.change(screen.getByRole('combobox', { name: 'Variant' }), {
-      target: { value: 'green' },
-    });
-    await fireEvent.change(screen.getByRole('combobox', { name: 'Size' }), {
-      target: { value: '48' },
-    });
+    await choose('Variant', 'green');
+    await choose('Size', '48px');
     await fireEvent.click(screen.getByRole('switch', { name: 'Disabled' }));
 
     const expected = getExampleFiles('button', {
