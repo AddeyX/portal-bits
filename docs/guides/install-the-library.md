@@ -1,6 +1,6 @@
 # Install the library
 
-The package name is `portal-bits`. The public npm registry hosts it. This repository's version is 0.4.0.
+The package name is `portal-bits`. The public npm registry hosts it. This repository's version is 0.5.0.
 
 A consumer installs this package plus the peer dependencies `svelte` and `bits-ui`. The supported ranges in this repository are `svelte@^5.33.0` and `bits-ui@^2.19.3`.
 

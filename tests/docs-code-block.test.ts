@@ -74,7 +74,7 @@ describe('CodeBlock', () => {
 
 describe('install commands', () => {
   it('builds one exact command for each package manager from package metadata', () => {
-    expect(packageFacts.version).toBe('0.4.0');
+    expect(packageFacts.version).toBe('0.5.0');
     expect(packageFacts.peers).toEqual({ svelte: '^5.33.0', 'bits-ui': '^2.19.3' });
     expect(installCommands).toEqual({
       npm: 'npm install portal-bits svelte bits-ui @lucide/svelte',

@@ -4,18 +4,29 @@ Notable changes, newest first.
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-10-09
+
+### Added
+
+- The gallery dev server mounts a local annotation inspector. Production builds omit it.
+- Select `sizing` keeps the trigger as wide as the longest option (`stable`, the default) or fits the selected label with an eased width change (`dynamic`, an adaptation).
+- Nine primitives: Textarea, Slider, RadioGroup, Tabs, Accordion, Progress, Separator, DropdownMenu, and AlertDialog. Each has a docs page with variations, source, and an API reference. Their visual values are adaptations built from the existing tokens. New exported types: `TabItem`, `AccordionItem`, `RadioOption`, and `MenuEntry`.
+- `--portal-on-error` and `--portal-error-hover` for the danger button. Both are adaptations.
+- Component pages have an "On this page" rail at 1280px and wider, and previous and next links at the end.
+- Docs search finds guide sections and component APIs, not only page titles. A result links to its section, such as Get started, Installation, or Input, API reference, and shows the matching text in bold. Queries match prop names, defaults, binding names, limits, and example source. Aliases such as setup and a11y work. Results are capped at 12, and an empty query still lists one result per page. Guide headings now have fragment links.
+- Every component page shows complete, copyable consumer source: `+layout.svelte`, an `App.svelte` that passes the selected settings, and the full example. A file selector switches between them, and Copy copies the raw file. Static example source is highlighted at build time with Shiki, a dev dependency. The browser receives no highlighter. Long source expands from a button and long lines scroll inside the block.
+- Get started lists the supported Svelte and Bits UI ranges, a package-manager command, and separate layout and page examples. Each example can be copied. A blocked clipboard keeps the source selectable and says that the copy failed.
+- The gallery deploys to GitHub Pages on every push to `main`.
+- Every component page ends with an API reference: props and snippets in tables with type, default, required, and binding, then forwarded attributes, limits, and related components. A test compares each reference with the component declarations. Tables scroll inside a labeled region at narrow widths.
+
 ### Changed
 
 - Select opens a styled menu instead of the browser list. The trigger centers its label and chevron on the input line. The menu is an adaptation. Options stay on one line.
 - Gallery Variations controls and the Get started package manager picker use the library Select instead of native selects.
 - Docs source blocks use file tabs, Expand Code, and a copy icon. The surface follows the active theme tokens. Highlighting uses Serendipity Midnight, with those hues darkened for the light surface, which is an adaptation. The 16px radius and 320px collapsed height are gallery adaptations.
-
-### Added
-
-- Select `sizing` keeps the trigger as wide as the longest option (`stable`, the default) or fits the selected label with an eased width change (`dynamic`, an adaptation).
-- Nine primitives: Textarea, Slider, RadioGroup, Tabs, Accordion, Progress, Separator, DropdownMenu, and AlertDialog. Each has a docs page with variations, source, and an API reference. Their visual values are adaptations built from the existing tokens. New exported types: `TabItem`, `AccordionItem`, `RadioOption`, and `MenuEntry`.
-- `--portal-on-error` and `--portal-error-hover` for the danger button. Both are adaptations.
-- Component pages have an "On this page" rail at 1280px and wider, and previous and next links at the end.
+- Component pages open on one specimen with variation controls below it, instead of a variant matrix. Controls change only existing props, and the example code follows them. Less common cases, such as a link Button, sit under More examples. Size is disabled for quiet Button and says why.
+- Component previews and the Get started specimen sit in a shared stage. Small specimens are centered. Carousel, SectionHeader, RowList, Row, TopBar, and FloatingNav use the wide stage.
+- Docs open on Get started, with install steps, a first component, and where to go next.
 
 ### Fixed
 
@@ -24,15 +35,6 @@ Notable changes, newest first.
 - The Source header no longer stacks its file picker over the heading on phones.
 - More examples uses a drawn chevron instead of the browser's disclosure triangle.
 - Checkbox draws its check with the Lucide icon instead of a text glyph.
-
-- Docs search finds guide sections and component APIs, not only page titles. A result links to its section, such as Get started, Installation, or Input, API reference, and shows the matching text in bold. Queries match prop names, defaults, binding names, limits, and example source. Aliases such as setup and a11y work. Results are capped at 12, and an empty query still lists one result per page. Guide headings now have fragment links.
-- Component pages open on one specimen with variation controls below it, instead of a variant matrix. Controls change only existing props, and the example code follows them. Less common cases, such as a link Button, sit under More examples. Size is disabled for quiet Button and says why.
-- Every component page shows complete, copyable consumer source: `+layout.svelte`, an `App.svelte` that passes the selected settings, and the full example. A file selector switches between them, and Copy copies the raw file. Static example source is highlighted at build time with Shiki, a dev dependency. The browser receives no highlighter. Long source expands from a button and long lines scroll inside the block.
-- Component previews and the Get started specimen sit in a shared stage. Small specimens are centered. Carousel, SectionHeader, RowList, Row, TopBar, and FloatingNav use the wide stage.
-- Get started lists the supported Svelte and Bits UI ranges, a package-manager command, and separate layout and page examples. Each example can be copied. A blocked clipboard keeps the source selectable and says that the copy failed.
-- The gallery deploys to GitHub Pages on every push to `main`.
-- Every component page ends with an API reference: props and snippets in tables with type, default, required, and binding, then forwarded attributes, limits, and related components. A test compares each reference with the component declarations. Tables scroll inside a labeled region at narrow widths.
-- Docs open on Get started, with install steps, a first component, and where to go next.
 
 ## [0.4.0] - 2026-09-25
 
